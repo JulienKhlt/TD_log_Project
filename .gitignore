@@ -1,1 +1,7 @@
 find_test
+.project/*
+.project
+__*
+.idea
+.idea/*
+
