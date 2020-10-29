@@ -74,6 +74,7 @@ def init_project():
     curr_path = path / '.project'
     project_dir = path
     if curr_path.is_dir():
+        extend_project(path,path)
         start()
     else:
         print("Directory not found, looking for parent")
