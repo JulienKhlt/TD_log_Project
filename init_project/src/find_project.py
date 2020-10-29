@@ -23,7 +23,11 @@ def create_project():
 
 
 def extend_project(curr_dir, project_dir):
-    """Extend current project to all subdirectory"""
+    """Extend current project to all subdirectory
+
+        :param curr_dir: The directory in which we look for every directory that need a .project file.
+        :param project_dir: The directory where the .project folder is.
+    """
     for child in curr_dir.iterdir():
         if (child / '.project').is_dir():
             merge_project(project_dir, child)
@@ -39,7 +43,11 @@ def extend_project(curr_dir, project_dir):
 
 def merge_project(project_dir, child_dir):
     """Ask the user wether or not he wants to merge the current project with one found in a subdirectory, if yes the
-    subproject will be remove and all data will be lost """
+    subproject will be remove and all data will be lost
+
+        :param project_dir: A parent directory of ``child_dir`` which contains a .project folder.
+        :param child_dir: A subdirectory of ``project_dir`̀ whicj also contains a .project folder.
+     """
 
     if (child_dir / '.project').is_dir() and (project_dir / '.project').is_dir():
         is_fuse = input(f"Do you want to merge project in {child_dir} with "
@@ -59,7 +67,10 @@ def merge_project(project_dir, child_dir):
 
 
 def clear_project(curr_dir):
-    """Clear all subdirectory from .project file"""
+    """Clear all subdirectory from .project file
+
+        :param curr_dir: The directory from which the cleaning process starts.
+    """
     for child in curr_dir.iterdir():
         if (child / '.project').is_file():
             (child / '.project').unlink()
@@ -68,9 +79,12 @@ def clear_project(curr_dir):
     return
 
 
-def init_project():
+def init_project(anchor=Path.home()):
     """Initialize a project inside the current directory, it will look for an existing project in a parent directory,
-    if none is found, it will create one, if not, it will extend the project to all subdirectory """
+    if none is found, it will create one, if not, it will extend the project to all subdirectory
+
+        :param anchor: The directory upon which the search process stops, set to /home/usr by default.
+    """
     curr_path = path / '.project'
     project_dir = path
     if curr_path.is_dir():
@@ -80,7 +94,7 @@ def init_project():
         print("Directory not found, looking for parent")
         for k, parent in enumerate(parents):
             print(f'{k},{parent.name}')
-            if parent.name == Path.home().name:
+            if parent.name == anchor.name:
                 create_project()
                 extend_project(path, path)
                 start()
@@ -99,7 +113,10 @@ def init_project():
 
 def indexing(project_dir):
     """Create an index file in .project directory in the root folder of the project, it contains all the .py files
-    part of the project (ie all subdirectory) """
+    part of the project (ie all subdirectory)
+
+        :param project_dir: The directory containing the .project folder.
+    """
 
     print('Indexing project')
     path_list = list(project_dir.glob('**/*.py'))
