@@ -67,15 +67,25 @@ def merge_project(project_dir, child_dir):
 
 
 def clear_project(curr_dir):
-    """Clear all subdirectory from .project file
+    """Clear all subdirectory from .project file and curr_dir from .project folder
 
         :param curr_dir: The directory from which the cleaning process starts.
     """
+    if (curr_dir / '.project').is_dir():
+        for child in (curr_dir / '.project').iterdir():
+            try:
+                child.unlink()
+            except:
+                pass
+        try:
+            (curr_dir / '.project').rmdir()
+        except:
+            pass
     for child in curr_dir.iterdir():
         if (child / '.project').is_file():
             (child / '.project').unlink()
+        elif child.is_dir():
             clear_project(child)
-    print("Project cleared")
     return
 
 

@@ -10,7 +10,7 @@ No project is already created, so the script will create one in the **current di
 
 ### Demo 2
 
-A project already exist in a parent directory, so the script will extend this projject to the one you are about to create. It will result in .project files being created in all subdirectory of the **root directory**.
+A project already exist in a parent directory, so the script will extend this project to the one you are about to create. It will result in .project files being created in all subdirectory of the **root directory**.
 
 ### Demo 3
 
