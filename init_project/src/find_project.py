@@ -26,7 +26,9 @@ def extend_project(curr_dir, project_dir):
     """Extend current project to all subdirectory"""
     for child in curr_dir.iterdir():
         if (child / '.project').is_dir():
-            fuse_project(project_dir, child)
+            merge_project(project_dir, child)
+        if '.' in child.stem:
+            continue
         elif child.is_dir():
             file = child / '.project'
             with file.open(mode='w') as f:
@@ -35,12 +37,12 @@ def extend_project(curr_dir, project_dir):
     return
 
 
-def fuse_project(project_dir, child_dir):
-    """Ask the user wether or not he wants to fuse the current project with one found in a subdirectory, if yes the
+def merge_project(project_dir, child_dir):
+    """Ask the user wether or not he wants to merge the current project with one found in a subdirectory, if yes the
     subproject will be remove and all data will be lost """
 
     if (child_dir / '.project').is_dir() and (project_dir / '.project').is_dir():
-        is_fuse = input(f"Do you want to fuse project in {child_dir} with "
+        is_fuse = input(f"Do you want to merge project in {child_dir} with "
                         f"the project you are about to create in {project_dir} ? (y/n)")
         while True:
             if is_fuse == 'y':
