@@ -19,3 +19,7 @@ A project already exists in a subdirectory, so when you are about to create one 
 * Merge project: The .project file in the **child directory** will be deleted, the subdirectory of the **child directory** will be appended to the the project in the **root directory**.
 
 * Do not merge: The **child directory** will be ignored by the extending process of the project in the **root directory** so that both can be considered independants.
+
+#### Reset
+
+Run clear script to reset demo.
