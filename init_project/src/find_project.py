@@ -4,9 +4,6 @@
 
 from pathlib import Path
 
-path = Path().resolve()
-parents = path.parents
-
 
 def start():
     """Start the script"""
@@ -14,7 +11,7 @@ def start():
     return
 
 
-def create_project():
+def create_project(path):
     """Create a project in the current directory"""
     print(f'No parents found, creating .project in {path}')
     curr_path = path / '.project'
@@ -29,10 +26,10 @@ def extend_project(curr_dir, project_dir):
         :param project_dir: The directory where the .project folder is.
     """
     for child in curr_dir.iterdir():
-        if (child / '.project').is_dir():
-            merge_project(project_dir, child)
         if '.' in child.stem:
             continue
+        elif (child / '.project').is_dir():
+            merge_project(project_dir, child)
         elif child.is_dir():
             file = child / '.project'
             with file.open(mode='w') as f:
@@ -66,7 +63,7 @@ def merge_project(project_dir, child_dir):
     return
 
 
-def clear_project(curr_dir):
+def clear_project(curr_dir=Path().resolve()):
     """Clear all subdirectory from .project file and curr_dir from .project folder
 
         :param curr_dir: The directory from which the cleaning process starts.
@@ -89,23 +86,25 @@ def clear_project(curr_dir):
     return
 
 
-def init_project(anchor=Path.home()):
+def init_project(anchor=Path.home(), path=Path().resolve()):
     """Initialize a project inside the current directory, it will look for an existing project in a parent directory,
     if none is found, it will create one, if not, it will extend the project to all subdirectory
 
         :param anchor: The directory upon which the search process stops, set to /home/usr by default.
+        :param path: Path were the project is intended to be created first, set to '.' by default.
     """
+    parents = path.parents
     curr_path = path / '.project'
     project_dir = path
     if curr_path.is_dir():
-        extend_project(path,path)
+        extend_project(path, path)
         start()
     else:
         print("Directory not found, looking for parent")
         for k, parent in enumerate(parents):
             print(f'{k},{parent.name}')
             if parent.name == anchor.name:
-                create_project()
+                create_project(path)
                 extend_project(path, path)
                 start()
                 project_dir = path
