@@ -19,9 +19,9 @@ class Scope(Base):
 
     module_id = Column(Integer, ForeignKey("module.id"))
     module = relationship("Module", back_populates="scope")
-    variable = relationship("Variable", back_populates="scope")
-    function = relationship("Function", back_populates="scope")
-    classes = relationship("Class", back_populates="scope")
+    variable = relationship("Variable", back_populates="scope", cascade="all, delete, delete-orphan")
+    function = relationship("Function", back_populates="scope", cascade="all, delete, delete-orphan")
+    classes = relationship("Class", back_populates="scope", cascade="all, delete, delete-orphan")
 
     def exist(self, variable_name):
         """Return True if variable already exists in scope."""
