@@ -16,4 +16,5 @@ class Module(Base):
     project_id = Column(Integer, ForeignKey("project.id"))
     project = relationship("Project", back_populates="module")
     scope = relationship("Scope", back_populates="module")
+    imports = relationship("Import", back_populates="module_from", foreign_keys="Import.module_from_id")
 

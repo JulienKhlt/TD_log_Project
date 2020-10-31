@@ -80,8 +80,7 @@ def handle_class_def(scope, class_node, indent_table):
 
 def handle_import(scope, import_node):
     for alias in import_node.names:
-        # scope.module.imports.append(Import(name=alias.name, asname=alias.asname))
-        pass
+        scope.module.imports.append(Import(name=alias.name, asname=alias.asname))
 def indent(current_indent_level, indent_table):
     """Return new indent_level and indent_level_id as a tuple and update indent_table"""
     new_scope_indent_level = current_indent_level + 1
