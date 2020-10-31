@@ -13,6 +13,9 @@ from bdd.Config import Config
 from bdd.Module import Module
 from bdd.Variable import Variable
 from bdd.Scope import Scope
+from bdd.Function import Function
+from bdd.Class import Class
+from bdd.Import import Import
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

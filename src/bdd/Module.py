@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
 from bdd.bdd import Base
-
+from bdd.Project import Project
+from bdd.Scope import Scope
 
 class Module(Base):
     __tablename__ = 'module'
@@ -14,5 +15,5 @@ class Module(Base):
 
     project_id = Column(Integer, ForeignKey("project.id"))
     project = relationship("Project", back_populates="module")
-    scopes = relationship("Scope", back_populates="module")
+    scope = relationship("Scope", back_populates="module")
 

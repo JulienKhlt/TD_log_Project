@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 
 from bdd.bdd import Base
+from bdd.Config import Config
 
 
 class Project(Base):
@@ -15,4 +16,4 @@ class Project(Base):
     active = Column(Boolean)
 
     config = relationship("Config", uselist=False, back_populates="project")
-    modules = relationship("Module", back_populates="project")
+    module = relationship("Module", back_populates="project")
