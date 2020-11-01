@@ -10,6 +10,10 @@ def run():
     process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
     process.communicate()
 
+    bash_command = "alembic upgrade head"
+    process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+    process.communicate()
+
     print("To visualize data please visit: http://localhost:8888")
     print("Username: tdlog")
     print("Password: tdlog")
