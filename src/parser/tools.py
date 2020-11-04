@@ -1,8 +1,11 @@
 import ast
+import re
+from pathlib import Path
 
 from bdd.Class import Class
 from bdd.Function import Function
 from bdd.Import import Import
+from bdd.ImportFrom import ImportFrom
 from bdd.Scope import Scope
 from bdd.Variable import Variable
 
@@ -10,10 +13,13 @@ from bdd.Variable import Variable
 def calculate(module):
     """Populate module with its scopes, variables, functions and classes."""
 
-    module_path = module.path
+    module_path = Path(module.path)
     module_name = module.name
 
-    with open(module_path, 'r') as file:
+    if module_path.is_dir():
+        module_path = module_path.joinpath('__init__.py')
+
+    with open(str(module_path), 'r') as file:
         module_text = file.read()
     module_ast = ast.parse(module_text, module_name)
 
@@ -23,7 +29,7 @@ def calculate(module):
     indent_table = {0: 0}
 
     calculate_rec(module, module_scope, module_ast, indent_table)
-    print(ast.dump(module_ast))
+    # print(ast.dump(module_ast))
 
 def handle_assign_node(scope, single_target):
     if type(single_target) == ast.Name:
@@ -83,6 +89,13 @@ def handle_class_def(scope, class_node, indent_table):
 def handle_import(scope, import_node):
     for alias in import_node.names:
         scope.module.imports.append(Import(name=alias.name, asname=alias.asname))
+
+
+def handle_import_from(scope, import_node):
+    for alias in import_node.names:
+        scope.module.imports_from.append(ImportFrom(name=import_node.module,
+                                                    target_name=alias.name, target_asname=alias.asname))
+
 def indent(current_indent_level, indent_table):
     """Return new indent_level and indent_level_id as a tuple and update indent_table"""
     new_scope_indent_level = current_indent_level + 1
@@ -110,5 +123,12 @@ def calculate_rec(module, current_scope, module_ast, indent_table):
         handle_class_def(current_scope, module_ast, indent_table)
     elif type(module_ast) == ast.Import:
         handle_import(current_scope, module_ast)
+    elif type(module_ast) == ast.ImportFrom:
+        handle_import_from(current_scope, module_ast)
     else:
-        print(f"Unrecognized node: {type(module_ast)}")
+        # print(f"Unrecognized node: {type(module_ast)}")
+        pass
+def get_relative_path(from_path, fullpath):
+    match = re.search(from_path, fullpath)
+    if match:
+        return fullpath[match.end() + 1:]

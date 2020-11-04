@@ -21,3 +21,8 @@ class Module(Base):
     imports = relationship("Import", back_populates="module_from", foreign_keys="Import.module_from_id",
                            cascade="all, delete, delete-orphan")
 
+    imports_from = relationship("ImportFrom", back_populates="module_from", foreign_keys="ImportFrom.module_from_id",
+                                cascade="all, delete, delete-orphan")
+
+    imports_to = relationship("Import", back_populates="module_to", foreign_keys="Import.module_to_id",
+                              cascade="all")

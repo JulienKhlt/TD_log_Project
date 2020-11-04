@@ -1,16 +1,13 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
+from bdd.Definition import Definition
 from bdd.bdd import Base
 
 
-class Function(Base):
-    __tablename__ = 'function'
+class Function(Definition):
+    __tablename__ = None
 
-    id = Column(Integer, primary_key=True)
-
-    name = Column(String(50))
-
-    scope_id = Column(Integer, ForeignKey("scope.id"))
-    scope = relationship("Scope")
-
+    __mapper_args__ = {
+        'polymorphic_identity': 'function'
+    }
