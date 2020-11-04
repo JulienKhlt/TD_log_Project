@@ -27,8 +27,10 @@ def calculate(module):
 
 def handle_assign_node(scope, single_target):
     if type(single_target) == ast.Name:
+        var = Variable(name=single_target.id, scope=scope, lineno=single_target.lineno, colno=single_target.col_offset)
         if not scope.exist(single_target.id):
-            scope.variable.append(Variable(name=single_target.id, scope=scope))
+            var.first_definition = True
+        scope.variable.append(var)
 
 COND_STMT = [ast.If, ast.For, ast.AsyncFor, ast.While]
 def handle_cond_stmt(scope, cond_node, indent_table):

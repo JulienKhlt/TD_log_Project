@@ -14,3 +14,8 @@ class Variable(Base):
     scope_id = Column(Integer, ForeignKey("scope.id"))
     scope = relationship("Scope")
 
+    # True if it's the first time a variable is used.
+    first_definition = Column(Boolean, default=False)
+
+    lineno = Column(Integer)
+    colno = Column(Integer)

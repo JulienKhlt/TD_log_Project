@@ -51,5 +51,5 @@ def remove_project(project_name):
     session.commit()
 
 if __name__ == '__main__':
-    # create_project(Project(name="AutoComplete", path="/home/pglandon/PycharmProjects/AutoComplete/src"))
     remove_project("AutoComplete")
+    create_project(Project(name="AutoComplete", path="/home/pglandon/PycharmProjects/AutoComplete/src"))

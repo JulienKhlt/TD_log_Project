@@ -1,4 +1,6 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+import datetime
+
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
 from bdd.bdd import Base
@@ -11,6 +13,7 @@ class Module(Base):
 
     name = Column(String(50))
     path = Column(String(200))
+    visit_date = Column(DateTime, default=datetime.datetime.now())
 
     project_id = Column(Integer, ForeignKey("project.id"))
     project = relationship("Project", back_populates="module")
