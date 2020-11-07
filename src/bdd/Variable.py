@@ -1,16 +1,16 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.bdd import Base
+from src.bdd.Definition import Definition
+from src.bdd.bdd import Base
 
 
-class Variable(Base):
-    __tablename__ = 'variable'
+class Variable(Definition):
+    __tablename__ = None
 
-    id = Column(Integer, primary_key=True)
+    __mapper_args__ = {
+        'polymorphic_identity': 'variable'
+    }
 
-    name = Column(String(50))
-
-    scope_id = Column(Integer, ForeignKey("scope.id"))
-    scope = relationship("Scope")
-
+    # True if it's the first time a variable is used.
+    first_definition = Column(Boolean, default=False)

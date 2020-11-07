@@ -1,16 +1,14 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.bdd import Base
+from src.bdd.Definition import Definition
+from src.bdd.bdd import Base
 
 
-class Class(Base):
-    __tablename__ = 'class'
+class Class(Definition):
+    __tablename__ = None
 
-    id = Column(Integer, primary_key=True)
-
-    name = Column(String(50))
-
-    scope_id = Column(Integer, ForeignKey("scope.id"))
-    scope = relationship("Scope")
+    __mapper_args__ = {
+        'polymorphic_identity': 'class'
+    }
 
