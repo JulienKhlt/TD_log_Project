@@ -1,6 +1,6 @@
 import unittest
 
-from bdd.Project import Config
+from src.bdd.Project import Config
 
 
 class MyTestCase(unittest.TestCase):

@@ -2,12 +2,12 @@ import ast
 import re
 from pathlib import Path
 
-from bdd.Class import Class
-from bdd.Function import Function
-from bdd.Import import Import
-from bdd.ImportFrom import ImportFrom
-from bdd.Scope import Scope
-from bdd.Variable import Variable
+from src.bdd.Class import Class
+from src.bdd.Function import Function
+from src.bdd.Import import Import
+from src.bdd.ImportFrom import ImportFrom
+from src.bdd.Scope import Scope
+from src.bdd.Variable import Variable
 
 
 def calculate(module):
@@ -92,6 +92,10 @@ def handle_import(scope, import_node):
 
 
 def handle_import_from(scope, import_node):
+    if not import_node.module:
+        import_node.module = scope.module.path
+    else:
+        import_node.module = '/'.join(import_node.module.split('.'))
     for alias in import_node.names:
         scope.module.imports_from.append(ImportFrom(name=import_node.module,
                                                     target_name=alias.name, target_asname=alias.asname))

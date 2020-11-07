@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.Definition import Definition
-from bdd.bdd import Base
+from src.bdd.Definition import Definition
+from src.bdd.bdd import Base
 
 
 class Variable(Definition):

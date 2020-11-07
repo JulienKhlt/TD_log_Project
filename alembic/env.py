@@ -8,15 +8,15 @@ from alembic import context
 from bdd.bdd import Base
 
 # Add import here to generate migrations.
-from bdd.Project import Project
-from bdd.Config import Config
-from bdd.Module import Module
-from bdd.Variable import Variable
-from bdd.Scope import Scope
-from bdd.Function import Function
-from bdd.Class import Class
-from bdd.Import import Import
-from bdd.ImportFrom import ImportFrom
+from src.bdd.Project import Project
+from src.bdd.Config import Config
+from src.bdd.Module import Module
+from src.bdd.Variable import Variable
+from src.bdd.Scope import Scope
+from src.bdd.Function import Function
+from src.bdd.Class import Class
+from src.bdd.Import import Import
+from src.bdd.ImportFrom import ImportFrom
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

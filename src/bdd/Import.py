@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.bdd import Base
+import sys
+from src.bdd.bdd import Base
 
 
 class Import(Base):
@@ -9,7 +10,7 @@ class Import(Base):
 
     id = Column(Integer, primary_key=True)
 
-    name = Column(String(200))
+    name = Column(String(200), default="")
     asname = Column(String(50))
 
     module_from_id = Column(Integer, ForeignKey("module.id"))

@@ -1,14 +1,15 @@
+import logging
 import re
 from pathlib import Path
 
 from sqlalchemy.orm import sessionmaker
 
-from bdd.Config import Config
-from bdd.Project import Project
-from bdd.bdd import engine, Session
+from src.bdd.Config import Config
+from src.bdd.Project import Project, ProjectManager
+from src.bdd.bdd import engine, Session
 
-from bdd.Module import Module
-from bdd.Import import Import
+from src.bdd.Module import Module
+from src.bdd.Import import Import
 
 
 def index(project_dir, ensure_package=False, onedir=False):
@@ -47,6 +48,7 @@ def create_project(project):
     project_path = Path(project.path).resolve()
 
     # index external modules as project
+    # Way too heavy, we are gonna change that!
     if not project.external:
         search_paths = project.config.get_python_module_search_path()
         for string_path in search_paths:
@@ -136,10 +138,21 @@ def bind_import(project_name):
         print(f"{project_name} doesn't not exist.")
         return
 
-    query_result.bind_imports()
+    query_result.bind_imports(session)
 
 if __name__ == '__main__':
-    # purge()
+    purge()
     # create_project(Project(name="AutoComplete", path="/home/pglandon/PycharmProjects/AutoComplete/src",
     #                        config=Config(python_home="/home/pglandon/PycharmProjects/AutoComplete/venv")))
-    bind_import("http")
+    # bind_import("AutoComplete")
+
+    logging.basicConfig(level=logging.INFO)
+    ProjectManager.initialize(Session)
+
+    logging.basicConfig(level=logging.DEBUG)
+    remove_project('AutoComplete')
+
+    ProjectManager().register_project('AutoComplete', "/home/pglandon/PycharmProjects/AutoComplete/",
+                                      external=False, fast=True,
+                                      from_path="/home/pglandon/PycharmProjects/AutoComplete/src")
+

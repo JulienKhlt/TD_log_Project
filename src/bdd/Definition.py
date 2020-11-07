@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.bdd import Base
+from src.bdd.bdd import Base
 
 
 class Definition(Base):
