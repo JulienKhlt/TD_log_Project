@@ -6,6 +6,7 @@ from src.bdd.Variable import Variable
 from src.bdd.Function import Function
 from src.bdd.Class import Class
 
+
 class Scope(Base):
     __tablename__ = 'scope'
 
@@ -40,4 +41,3 @@ class Scope(Base):
 
     def __le__(self, other):
         return self < other or self == other
-
