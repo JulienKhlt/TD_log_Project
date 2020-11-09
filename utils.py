@@ -3,6 +3,8 @@ import shutil
 import subprocess
 import sys
 
+import src.bdd.bdd
+
 
 def run():
     # Run container

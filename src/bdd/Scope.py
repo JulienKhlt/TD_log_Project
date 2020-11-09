@@ -1,10 +1,11 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 
-from bdd.bdd import Base
-from bdd.Variable import Variable
-from bdd.Function import Function
-from bdd.Class import Class
+from src.bdd.bdd import Base
+from src.bdd.Variable import Variable
+from src.bdd.Function import Function
+from src.bdd.Class import Class
+
 
 class Scope(Base):
     __tablename__ = 'scope'
@@ -40,4 +41,3 @@ class Scope(Base):
 
     def __le__(self, other):
         return self < other or self == other
-

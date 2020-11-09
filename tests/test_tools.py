@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from bdd.Module import Module
-from parser.tools import calculate
+from src.bdd.Module import Module
+from src.parser.tools import calculate
 
 
 class TestTools(TestCase):
