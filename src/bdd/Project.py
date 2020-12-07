@@ -1,8 +1,9 @@
 import logging
 import re
+import datetime
 from pathlib import Path
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import relationship
 
 from src.bdd.Module import Module
@@ -10,20 +11,24 @@ from src.bdd.bdd import Base, Session
 from src.bdd.Config import Config
 from src.parser.tools import calculate, get_relative_path
 
+
 class ProjectManager:
     class __ProjectManager:
         """A collection of tools to manage projects"""
 
         def __init__(self, sessionmaker):
-            """sessionmaker is a function that enables sql alchemy session creation."""
+            """sessionmaker is a function that enables sql alchemy
+            session creation."""
             self.sessionmaker = sessionmaker
 
         def exist(self, project_name):
-            """Return True if a project with given name is already registered in BDD, False otherwise."""
+            """Return True if a project with given name is already registered
+            in BDD, False otherwise."""
             session = self.sessionmaker()
 
             # check if project exists.
-            query_result = session.query(Project.path).filter_by(name=project_name).first()
+            query_result = session.query(Project.path).filter_by(
+                name=project_name).first()
             if query_result:
                 session.close()
                 return True
@@ -31,18 +36,20 @@ class ProjectManager:
             return False
 
         def update_project(self, project_name, from_path):
-            """Index new files in project, update bindings and external dependencies."""
+            """Index new files in project, update bindings and
+            external dependencies."""
             session = self.sessionmaker()
 
-
             # check if project exists.
-            query_result = session.query(Project).filter_by(name=project_name).first()
+            query_result = session.query(Project).filter_by(
+                name=project_name).first()
             if not query_result:
                 logging.info(f"{project_name} not found, skipping.")
                 return
 
             if query_result.fully_indexed and query_result.external:
-                logging.debug(f"{project_name} already fully indexed, skipping.")
+                logging.debug(
+                    f"{project_name} already fully indexed, skipping.")
                 return
 
             query_result.index(from_path)
@@ -51,8 +58,8 @@ class ProjectManager:
             session.commit()
             session.close()
 
-
-        def register_project(self, project_name, project_path, external=False, fast=True,from_path=None):
+        def register_project(self, project_name, project_path, external=False,
+                             fast=True, from_path=None):
             if self.exist(project_name):
                 if not external:
                     logging.info(f"{project_name} already registered!")
@@ -88,7 +95,6 @@ class ProjectManager:
         return ProjectManager.instance
 
 
-
 class Project(Base):
     __tablename__ = 'project'
 
@@ -102,8 +108,12 @@ class Project(Base):
     external = Column(Boolean, default=False)
     fully_indexed = Column(Boolean, default=False)
 
-    config = relationship("Config", uselist=False, back_populates="project", cascade="all, delete, delete-orphan")
-    module = relationship("Module", back_populates="project", cascade="all, delete, delete-orphan")
+    config = relationship("Config", uselist=False,
+                          back_populates="project", cascade="all, delete, delete-orphan")
+    module = relationship("Module", back_populates="project",
+                          cascade="all, delete, delete-orphan")
+
+    last_update = Column(DateTime, default=datetime.datetime.utcnow)
 
     def build(self, from_path=None):
         """Build the relationships between the project and its modules. Bind imports and external projects.
@@ -118,7 +128,6 @@ class Project(Base):
         if not self.external:
             self.bind_external_project()
             self.bind_imports()
-
 
     def index_modules_path(self, rec_path=None):
         """Returns a list of Path of all the files in a project."""
@@ -157,7 +166,8 @@ class Project(Base):
 
         # Check if module is not in project.
         if module_path.stem == '__init__':
-            module = Module(path=str(module_path.parent), name=module_path.stem)
+            module = Module(path=str(module_path.parent),
+                            name=module_path.stem)
         else:
             module = Module(path=str(module_path), name=module_path.stem)
 
@@ -215,7 +225,6 @@ class Project(Base):
         else:
             return self.get_project_root(file_path.parent)
 
-
     def bind_external_project(self):
         """Bind external projects to this project. Call this AFTER all modules have been indexed.
         Fast make that only necessary files are indexed, not everything"""
@@ -231,26 +240,26 @@ class Project(Base):
 
                     if self.config.fast:
                         from_path = module_path
-                    ProjectManager().register_project(project_name, str(project_root), True, True, from_path)
-
+                    ProjectManager().register_project(
+                        project_name, str(project_root), True, True, from_path)
 
     def bind_imports(self, session=Session()):
-            """Bind modules together via imports. Call this AFTER all modules have been indexed."""
+        """Bind modules together via imports. Call this AFTER all modules have been indexed."""
 
-            for project_module in self.module:
-                for module_import in project_module.imports + project_module.imports_from:
-                    paths = self.config.get_python_module_search_path()
-                    for string_path in paths:
-                        path = Path(string_path, module_import.name)
+        for project_module in self.module:
+            for module_import in project_module.imports + project_module.imports_from:
+                paths = self.config.get_python_module_search_path()
+                for string_path in paths:
+                    path = Path(string_path, module_import.name)
 
-                        result = session.query(Module.id).filter_by(path=str(path)).first()
-                        if not result:
-                            path_py = path.with_suffix('.py')
-                            result = session.query(Module.id).filter_by(path=str(path_py)).first()
-                        if result:
-                            module_import.module_to_id = result[0]
-                            break
-                    if not module_import.module_to_id:
-                        logging.warning(f"Import not found: {module_import.name}")
-
-
+                    result = session.query(Module.id).filter_by(
+                        path=str(path)).first()
+                    if not result:
+                        path_py = path.with_suffix('.py')
+                        result = session.query(Module.id).filter_by(
+                            path=str(path_py)).first()
+                    if result:
+                        module_import.module_to_id = result[0]
+                        break
+                if not module_import.module_to_id:
+                    logging.warning(f"Import not found: {module_import.name}")
