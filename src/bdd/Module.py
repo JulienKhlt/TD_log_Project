@@ -37,6 +37,19 @@ class Module(Base):
     imports_from_to = relationship("ImportFrom", back_populates="module_to", foreign_keys="ImportFrom.module_to_id",
                                    cascade="all")
 
+    def update(self):
+        self.scope = []
+        self.imports = []
+        self.imports_from = []
+
+        self.visit_date = datetime.datetime.now()
+
+        logging.info(f"updating module {self.name}")
+
+        # We rebuild everything! (We don't really know how the module was changed...)
+        # and tracking difference would be way less efficient (AST substraction)
+        self.build()
+
     def get_imports_name(self):
         """Return name of imported modules in module."""
         imports_name = []
@@ -47,7 +60,8 @@ class Module(Base):
     def build(self):
         """Index all scopes and imports within module."""
 
-        # logging.info(f"building module {self.name}")
+        if not self.external:
+            logging.info(f"building module {self.name}")
 
         module_path = Path(self.path)
         module_name = self.name
@@ -89,3 +103,18 @@ class Module(Base):
             handle_import_from(current_scope, module_ast)
         else:
             pass
+
+    def complete(self, to_complete):
+
+        logging.info(f"Tring to complete {to_complete} in module {self.name}")
+
+        possibility = []
+
+        for module_scope in self.scope:
+            for scope_variable in module_scope.variable:
+                regex = "^" + to_complete
+                match = re.match(regex, scope_variable.name)
+                if match:
+                    possibility.append(scope_variable.name)
+
+        return possibility

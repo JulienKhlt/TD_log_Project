@@ -2,6 +2,7 @@ import logging
 import re
 import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.orm import relationship
@@ -20,6 +21,7 @@ class ProjectManager:
             """sessionmaker is a function that enables sql alchemy
             session creation."""
             self.sessionmaker = sessionmaker
+            self.session = self.sessionmaker()
 
         def exist(self, project_name):
             """Return True if a project with given name is already registered
@@ -60,13 +62,14 @@ class ProjectManager:
 
         def register_project(self, project_name, project_path, external=False,
                              fast=True, from_path=None):
+            """Register a project with given path, return it afterward (might take a while async ?)."""
             if self.exist(project_name):
                 if not external:
                     logging.info(f"{project_name} already registered!")
                 else:
                     self.update_project(project_name, from_path)
                 return
-            project = Project(name=project_name, path=project_path, external=external,
+            project = Project(name=project_name, path=str(project_path), external=external,
                               config=Config(python_home="/home/pglandon/PycharmProjects/AutoComplete/venv",
                                             fast=fast))
 
@@ -82,16 +85,54 @@ class ProjectManager:
 
             session.close()
 
+            return project
+
+        def is_workspace_registered(self, workspaceUri):
+            """Return associatied Project if given workspace is registered, False otherwise.
+            Doesn't close session if a project is found!"""
+            workspaceUri = Path(workspaceUri)
+
+            query_result = self.session.query(Project).filter_by(
+                path=str(workspaceUri)).first()
+
+            return query_result
+
+        def lsp_add_workspace(self, workspacePath):
+            """Called on LS initialization to either register current workspace if it's not already referenced
+            or update it. Returns Project associated to workspacePath, None in case of failure."""
+
+            # Let's use pathlib to assure cross-OS compatibility :
+            workspacePath = Path(workspacePath)
+            if not workspacePath.is_dir() or not workspacePath.exists():
+                logging.error("Project root doesn't exist!")
+                return None
+
+            # Workspace exists, let's check if it's already referenced.
+            project = self.is_workspace_registered(workspacePath)
+
+            if project:
+                logging.info("Workspace already registered, updating...")
+
+                self.session.add(project)
+                project.update()
+                self.session.commit()
+                project.build()
+                self.session.commit()
+
+                return project
+            else:
+                return self.register_project(workspacePath.name, workspacePath)
+
     instance = None
 
     @staticmethod
-    def initialize(sessionmaker):
-        ProjectManager.instance = ProjectManager.__ProjectManager(sessionmaker)
+    def initialize(sessionmaker=Session):
+        if not ProjectManager.instance:
+            ProjectManager.instance = ProjectManager.__ProjectManager(sessionmaker)
 
     def __new__(cls):
         if not ProjectManager.instance:
-            logging.error("Please initialize ProjectManager first!")
-            exit(1)
+            ProjectManager.initialize()
         return ProjectManager.instance
 
 
@@ -248,6 +289,8 @@ class Project(Base):
 
         for project_module in self.module:
             for module_import in project_module.imports + project_module.imports_from:
+                if module_import.module_to_id is not None:
+                    continue
                 paths = self.config.get_python_module_search_path()
                 for string_path in paths:
                     path = Path(string_path, module_import.name)
@@ -263,3 +306,41 @@ class Project(Base):
                         break
                 if not module_import.module_to_id:
                     logging.warning(f"Import not found: {module_import.name}")
+
+    def update(self):
+        """Check for new modules and/or modules modification.
+        Operations are done in MEMORY! Commit to session to see modification in database."""
+        modules_path = self.index_modules_path()
+
+        # TODO : find a better matching algorithm (Nb_files ** 2 here)
+        for module_path in modules_path:
+            is_referenced = False
+            for referenced_module in self.module:
+                referenced_module_path = Path(referenced_module.path)
+                if referenced_module_path == module_path:
+                    is_referenced = True
+
+                    # We check if it has been modified outside the Language Client
+                    if referenced_module.visit_date < datetime.datetime.fromtimestamp(module_path.stat().st_mtime):
+                        # We update this module
+                        referenced_module.update()
+                    break
+
+            if not is_referenced:
+                # Not referenced, we had it to the project.
+                self.add_module(module_path)
+
+        # Don't forget to rebuild the project afterward or imports won't be linked!
+
+    def complete(self, to_complete, module_path):
+        """Return a list of string that corresponds to possible completion for TO_COMPLETE in file MODULE_PATH"""
+
+        logging.info(f"Tring to complete {to_complete} in module {module_path}")
+
+        for project_module in self.module:
+            if project_module.path == module_path:
+                return project_module.complete(to_complete)
+
+        return []
+
+

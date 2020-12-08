@@ -79,13 +79,16 @@ export function activate(context: ExtensionContext) {
   } else {
     // Production - Client is going to run the server (for use within `.vsix` package)
     const cwd = path.join(__dirname, "..", "..");
-    const pythonPath = workspace.getConfiguration("python").get<string>("pythonPath");
+    // const pythonPath = workspace.getConfiguration("python").get<string>("pythonPath");
+    const pythonPath = "/home/pglandon/PycharmProjects/AutoComplete/venv2/bin/python"
 
     if (!pythonPath) {
       throw new Error("`python.pythonPath` is not set");
     }
 
-    client = startLangServer(pythonPath, ["/home/pglandon/Projects/TD_log_Project/src/lsp"], cwd);
+    // TODO : get server dynamically!
+    console.log("Using python: " + pythonPath)
+    client = startLangServer(pythonPath, ["/home/pglandon/PycharmProjects/AutoComplete/src/lsp"], cwd);
   }
 
   context.subscriptions.push(client.start());
