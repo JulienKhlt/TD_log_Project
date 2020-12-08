@@ -141,6 +141,8 @@ def bind_import(project_name):
     query_result.bind_imports(session)
 
 if __name__ == '__main__':
+    create_project(Project(name="AutoComplete", path="/home/pglandon/PycharmProjects/AutoComplete/src"))
+    # remove_project("AutoComplete")
     purge()
     # create_project(Project(name="AutoComplete", path="/home/pglandon/PycharmProjects/AutoComplete/src",
     #                        config=Config(python_home="/home/pglandon/PycharmProjects/AutoComplete/venv")))
@@ -155,4 +157,3 @@ if __name__ == '__main__':
     ProjectManager().register_project('AutoComplete', "/home/pglandon/PycharmProjects/AutoComplete/",
                                       external=False, fast=True,
                                       from_path="/home/pglandon/PycharmProjects/AutoComplete/src")
-
