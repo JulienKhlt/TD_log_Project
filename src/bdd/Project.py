@@ -1,15 +1,14 @@
+import datetime
 import logging
 import re
-import datetime
 from pathlib import Path
 from urllib.parse import urlparse
 
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm import relationship
-
-from src.bdd.Module import Module
 from src.bdd.bdd import Base, Session
 from src.bdd.Config import Config
+from src.bdd.Module import Module
 from src.parser.tools import calculate, get_relative_path
 
 
@@ -121,7 +120,10 @@ class ProjectManager:
 
                 return project
             else:
-                return self.register_project(workspacePath.name, workspacePath)
+                project = self.register_project(workspacePath.name, workspacePath)
+                self.session.add(project)
+
+                return project
 
     instance = None
 

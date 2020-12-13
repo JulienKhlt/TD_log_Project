@@ -1,14 +1,15 @@
+import logging
 from pathlib import Path
 from urllib.parse import urlparse
 
-from pygls.features import (COMPLETION, TEXT_DOCUMENT_DID_CHANGE,
-                            TEXT_DOCUMENT_DID_CLOSE, TEXT_DOCUMENT_DID_OPEN, INITIALIZE)
-from pygls.server import LanguageServer
-from pygls.types import *
-
+from pygls.features import (COMPLETION, INITIALIZE, TEXT_DOCUMENT_DID_CHANGE,
+                            TEXT_DOCUMENT_DID_CLOSE, TEXT_DOCUMENT_DID_OPEN)
 from pygls.protocol import LanguageServerProtocol
-import logging
-
+from pygls.server import LanguageServer
+from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
+                         CompletionParams, CompletionTriggerKind,
+                         DidChangeTextDocumentParams, InitializeParams,
+                         Position)
 from src.bdd.Project import ProjectManager
 
 logging.basicConfig(filename="ponthon.log", filemode="w", level=logging.DEBUG)
@@ -20,16 +21,27 @@ class PonthonProtocol(LanguageServerProtocol):
     def bf_initialize(self, params: InitializeParams):
         """Called when the Language Server starts.
        Start Reference Server for given projects."""
-        logging.info("Ponthon Language Server initialized.")
 
-        # TODO : initialize Reference Server.
-        rootPath = urlparse(params.rootUri).path
+        if not params.rootPath and not params.rootUri:
+            logging.error("Language Client might have a problem! rootPath or rootUri is required.")
+            exit(1)
 
-        logging.info(f"Workspace path is {rootPath}.")
+        rootPath = str(params.rootUri)
+        if not rootPath:
+            rootPath = str(params.rootPath)
+
+        rootPath = urlparse(rootPath).path
+
+        logging.info(f"Workspace path is {rootPath}")
 
         projectManager = ProjectManager()
         self.project = projectManager.lsp_add_workspace(rootPath)
 
+        if not self.project:
+            logging.error("Couldn't load workspace.")
+            exit(1)
+
+        logging.info("Ponthon Language Server initialized.")
         return super().bf_initialize(params)
 
 
@@ -48,9 +60,9 @@ ponthon = Ponthon()
 @ponthon.feature(COMPLETION, trigger_characters=['.'])
 def completions(ls, params: CompletionParams = None):
     """Returns completion items."""
-
-    logging.info(ponthon.lsp.project.path)
-
+    if not params:
+        return CompletionList(False, [])
+    
     if params.context.triggerKind == CompletionTriggerKind.TriggerCharacter:
         no_point = Position(params.position.line, params.position.character - 1)
 
@@ -63,13 +75,13 @@ def completions(ls, params: CompletionParams = None):
         word_before = ls.workspace.get_document(params.textDocument.uri).word_at_position(params.position)
 
         logging.info(f"Completion requested for {word_before}")
-        completions = ponthon.lsp.project.complete( word_before, urlparse(params.textDocument.uri).path)
+        completions = ponthon.lsp.project.complete( word_before, str(urlparse(params.textDocument.uri).path))
 
         for completion in completions:
             logging.info(f"{completion} candidate was found.")
         # TODO : Write semantic competion.
 
-    completionItems = [CompletionItem(x) for x in completions]
+    completionItems = [CompletionItem(x, CompletionItemKind.Variable) for x in completions]
 
     return CompletionList(False, completionItems)
 

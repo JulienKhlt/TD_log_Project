@@ -1,17 +1,12 @@
 # Json Language Server
 
-## Install Server Dependencies
-
-1. `python -m venv env`
-1. `python -m pip install -e .` from root directory
-1. Create `.vscode/settings.json` file and set `python.pythonPath` to point to your python environment where `pygls` is installed
-
 ## Install Client Dependencies
 
 Open terminal and execute following commands:
 
 1. `npm install`
 1. `cd client/ && npm install`
+1. Change pythonPath and serverPath in `client/extension.ts` to point to the location of the server and a python installation where requirements are installed. 
 
 ## Run Example
 
