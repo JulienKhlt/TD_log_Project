@@ -3,9 +3,8 @@ import datetime
 import logging
 from pathlib import Path
 
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-
 from src.bdd.bdd import Base
 from src.bdd.Scope import Scope
 from src.parser.tools import *
@@ -111,6 +110,7 @@ class Module(Base):
         possibility = []
 
         for module_scope in self.scope:
+            # Variable completion
             for scope_variable in module_scope.variable:
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)

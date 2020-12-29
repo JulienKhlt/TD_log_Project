@@ -335,7 +335,7 @@ class Project(Base):
         # Don't forget to rebuild the project afterward or imports won't be linked!
 
     def complete(self, to_complete, module_path):
-        """Return a list of string that corresponds to possible completion for TO_COMPLETE in file MODULE_PATH"""
+        """Return a list of LSP::CompletionItem that corresponds to possible completion for TO_COMPLETE (CompletionParams) in file MODULE_PATH."""
 
         logging.info(f"Tring to complete {to_complete} in module {module_path}")
 

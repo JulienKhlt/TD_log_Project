@@ -11,6 +11,7 @@ from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
                          DidChangeTextDocumentParams, InitializeParams,
                          Position)
 from src.bdd.Project import ProjectManager
+from src.lsp.CompletionParser import CompletionParser
 
 logging.basicConfig(filename="ponthon.log", filemode="w", level=logging.DEBUG)
 
@@ -63,28 +64,18 @@ def completions(ls, params: CompletionParams = None):
     if not params:
         return CompletionList(False, [])
     
-    if params.context.triggerKind == CompletionTriggerKind.TriggerCharacter:
-        no_point = Position(params.position.line, params.position.character - 1)
+    parser = CompletionParser(params, ls)
+    logging.info(f'Trying to complete: {parser.get_word()}')
+    logging.info(f'Word before is: {parser.get_word_before()}')
+    if parser.is_heritage_completion():
+        logging.info("Heritage completion!")
+    if parser.is_import_completion():
+        logging.info("Import completion!")
+    if parser.is_import_from_completion():
+        logging.info("Import from completion!")
 
-        word_before = ls.workspace.get_document(params.textDocument.uri).word_at_position(no_point)
-        logging.info(f"Trigger character completion requested for {word_before}.")
-        # TODO : Write dot completion.
-
-        completions = []
-    else:
-        word_before = ls.workspace.get_document(params.textDocument.uri).word_at_position(params.position)
-
-        logging.info(f"Completion requested for {word_before}")
-        completions = ponthon.lsp.project.complete( word_before, str(urlparse(params.textDocument.uri).path))
-
-        for completion in completions:
-            logging.info(f"{completion} candidate was found.")
-        # TODO : Write semantic competion.
-
-    completionItems = [CompletionItem(x, CompletionItemKind.Variable) for x in completions]
-
-    return CompletionList(False, completionItems)
-
+    return CompletionList(False, [])
+    
 @ponthon.feature(TEXT_DOCUMENT_DID_CHANGE)
 def did_change(ls, params: DidChangeTextDocumentParams):
     pass
