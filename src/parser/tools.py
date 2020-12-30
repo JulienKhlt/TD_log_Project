@@ -23,7 +23,7 @@ def calculate(module):
         module_text = file.read()
     module_ast = ast.parse(module_text, module_name)
 
-    module_scope = Scope(indent_level=0, indent_level_id=0, name=module_name)
+    module_scope = Scope(indent_level=0, indent_level_id=0, name=module_name, lineno = 0)
     module.scope.append(module_scope)
 
     indent_table = {0: 0}
@@ -41,7 +41,7 @@ def handle_assign_node(scope, single_target):
 COND_STMT = [ast.If, ast.For, ast.AsyncFor, ast.While]
 def handle_cond_stmt(scope, cond_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno = cond_node.lineno)
     scope.module.scope.append(new_scope)
 
     if type(cond_node) == ast.For or type(cond_node) == ast.AsyncFor:
@@ -51,7 +51,7 @@ def handle_cond_stmt(scope, cond_node, indent_table):
         calculate_rec(scope.module, new_scope, stmt, indent_table)
 
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno=cond_node.lineno)
     scope.module.scope.append(new_scope)
 
     for stmt in cond_node.orelse:
@@ -59,7 +59,7 @@ def handle_cond_stmt(scope, cond_node, indent_table):
 
 def handle_fun_def(scope, def_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name, lineno=def_node.lineno)
     scope.module.scope.append(new_scope)
 
     scope.function.append(Function(name=def_node.name))
@@ -76,7 +76,7 @@ def handle_fun_def(scope, def_node, indent_table):
 
 def handle_class_def(scope, class_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=class_node.name)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=class_node.name, lineno=class_node.lineno)
     scope.module.scope.append(new_scope)
 
     scope.classes.append(Class(name=class_node.name))

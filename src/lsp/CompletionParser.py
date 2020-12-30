@@ -1,6 +1,8 @@
 import copy
 import logging
+import pathlib
 import re
+from urllib.parse import urlparse
 
 import numpy
 from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
@@ -38,6 +40,10 @@ def levenshtein(seq1, seq2):
 def make_keyword_completion_item(word):
     """Return a LSP::CompletionItem for reserved keyword WORD."""
     return CompletionItem(word, CompletionItemKind.Keyword)
+
+def make_variable_completion_item(word):
+    """Return a LSP::CompletionItem for variable name WORD."""
+    return CompletionItem(word, CompletionItemKind.Variable)
 
 class CompletionType:
     """An enumeration of different type of completion."""
@@ -108,6 +114,23 @@ class CompletionParser(CompletionParams):
         self.line = None
         self.document = None
         self.completion_types = None
+        self._module = None
+
+    @property
+    def module(self):
+        if self._module:
+            return self._module
+
+        module = self.server_context.project.get_module(self.get_document_path())
+        if not module:
+            logging.error(f"Module at {self.get_document_path()} is not registered!")
+
+        self._module = module
+        return self._module
+
+    def get_document_path(self):
+        """Return Path from Uri."""
+        return pathlib.Path(urlparse(self.get_document().uri).path)
 
     def get_current_line(self):
         """Return a string matching the line under cursor."""
@@ -241,6 +264,19 @@ class CompletionParser(CompletionParams):
 
         return completion_item_list
 
+    def complete_semantic_variable(self):
+        """Return a list of CompletionItem for variable completion."""
+        real_lineno = self.position.line + 1
+        variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+        return [make_variable_completion_item(var_name) for var_name in variable_list]
+
+    def complete_semantic(self):
+        """Return a list of CompletionItem for semantic completion."""
+        completion_list = []
+        completion_list += self.complete_semantic_variable()
+
+        return completion_list
+
     def complete(self):
         """Return CompletionList for given context."""
         completion_item_list = []
@@ -250,5 +286,7 @@ class CompletionParser(CompletionParams):
 
         if CompletionType.KEYWORD_COMPLETION in completion_types:
             completion_item_list += self.complete_keyword()
+        if CompletionType.SEMANTIC_COMPLETION in completion_types:
+            completion_item_list += self.complete_semantic()
 
         return CompletionList(False, completion_item_list)

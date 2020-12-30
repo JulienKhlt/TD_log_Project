@@ -78,6 +78,9 @@ def did_change(ls, params: DidChangeTextDocumentParams):
 
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
 
+    # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)
+    ProjectManager().session.commit()
+    
     #
     # with open("test.test", "w") as file:
     #     text = ls.workspace.get_document(params.textDocument.uri)

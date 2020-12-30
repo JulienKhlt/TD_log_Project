@@ -104,7 +104,7 @@ class Module(Base):
         try:
             module_ast = ast.parse(source, self.name)
 
-            module_scope = Scope(indent_level=0, indent_level_id=0, name=self.name)
+            module_scope = Scope(indent_level=0, indent_level_id=0, name=self.name, lineno=0)
             self.scope.append(module_scope)
 
             indent_table = {0: 0}
@@ -112,8 +112,10 @@ class Module(Base):
             self.build_helper(module_scope, module_ast, indent_table)
         except SyntaxError:
             logging.warn(
-                f"Couldn't parse {module_name} at {module_path} (Invalid Syntax)"
+                f"Couldn't parse {self.name} (Invalid Syntax)"
             )
+        except Exception as error:
+            logging.error(str(error))
 
     def build_helper(self, current_scope, module_ast, indent_table):
         """Recursive method to help build module."""
@@ -139,14 +141,26 @@ class Module(Base):
         else:
             pass
 
-    def complete(self, to_complete):
+    def get_scope_from_lineno(self, lineno):
+        """Return Scope from this Module matching given line number."""
+        good_scope = self.scope[0]
+        for scope in self.scope:
+            if scope.lineno > good_scope.lineno and scope.lineno <= lineno:
+                good_scope = scope
 
+        return good_scope
+
+    def complete_variable(self, to_complete, lineno):
+        # TODO add scope aware completion...
         logging.info(f"Tring to complete {to_complete} in module {self.name}")
 
         possibility = []
+        scope = self.get_scope_from_lineno(lineno)
 
         for module_scope in self.scope:
             # Variable completion
+            if module_scope > scope:
+                continue
             for scope_variable in module_scope.variable:
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)

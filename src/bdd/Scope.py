@@ -1,10 +1,9 @@
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
-from sqlalchemy.orm import relationship
-
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy.orm import backref, relationship
 from src.bdd.bdd import Base
-from src.bdd.Variable import Variable
-from src.bdd.Function import Function
 from src.bdd.Class import Class
+from src.bdd.Function import Function
+from src.bdd.Variable import Variable
 
 
 class Scope(Base):
@@ -17,6 +16,10 @@ class Scope(Base):
 
     # To access module, class or function scope
     name = Column(String(50))
+    lineno = Column(Integer)
+
+    parent_id = Column(Integer, ForeignKey('scope.id'))
+    parent = relationship("Scope", backref='children', remote_side=[id], cascade="all, delete, delete-orphan")
 
     module_id = Column(Integer, ForeignKey("module.id"))
     module = relationship("Module", back_populates="scope")
