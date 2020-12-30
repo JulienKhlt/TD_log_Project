@@ -13,495 +13,112 @@ INFO:pygls.feature_manager:Registered textDocument/completion with options {'tri
 INFO:pygls.feature_manager:Registered textDocument/didChange with options {}
 INFO:pygls.server:Starting IO server
 DEBUG:pygls.server:Content length: 2776
-DEBUG:pygls.protocol:Received b'Content-Length: 2776\r\n\r\n{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":255393,"rootPath":"/home/pglandon/Projects/TD_log_Project/tests/fake_project","rootUri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}}},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true}}},"trace":"off","workspaceFolders":[{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project","name":"fake_project"}]}}'
+DEBUG:pygls.protocol:Received b'Content-Length: 2776\r\n\r\n{"jsonrpc":"2.0","id":0,"method":"initialize","params":{"processId":324748,"rootPath":"/home/pglandon/Projects/TD_log_Project/tests/fake_project","rootUri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project","capabilities":{"workspace":{"applyEdit":true,"workspaceEdit":{"documentChanges":true,"resourceOperations":["create","rename","delete"],"failureHandling":"textOnlyTransactional"},"didChangeConfiguration":{"dynamicRegistration":true},"didChangeWatchedFiles":{"dynamicRegistration":true},"symbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]}},"executeCommand":{"dynamicRegistration":true},"configuration":true,"workspaceFolders":true},"textDocument":{"publishDiagnostics":{"relatedInformation":true},"synchronization":{"dynamicRegistration":true,"willSave":true,"willSaveWaitUntil":true,"didSave":true},"completion":{"dynamicRegistration":true,"contextSupport":true,"completionItem":{"snippetSupport":true,"commitCharactersSupport":true,"documentationFormat":["markdown","plaintext"],"deprecatedSupport":true,"preselectSupport":true},"completionItemKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25]}},"hover":{"dynamicRegistration":true,"contentFormat":["markdown","plaintext"]},"signatureHelp":{"dynamicRegistration":true,"signatureInformation":{"documentationFormat":["markdown","plaintext"],"parameterInformation":{"labelOffsetSupport":true}}},"definition":{"dynamicRegistration":true,"linkSupport":true},"references":{"dynamicRegistration":true},"documentHighlight":{"dynamicRegistration":true},"documentSymbol":{"dynamicRegistration":true,"symbolKind":{"valueSet":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]},"hierarchicalDocumentSymbolSupport":true},"codeAction":{"dynamicRegistration":true,"codeActionLiteralSupport":{"codeActionKind":{"valueSet":["","quickfix","refactor","refactor.extract","refactor.inline","refactor.rewrite","source","source.organizeImports"]}}},"codeLens":{"dynamicRegistration":true},"formatting":{"dynamicRegistration":true},"rangeFormatting":{"dynamicRegistration":true},"onTypeFormatting":{"dynamicRegistration":true},"rename":{"dynamicRegistration":true,"prepareSupport":true},"documentLink":{"dynamicRegistration":true},"typeDefinition":{"dynamicRegistration":true,"linkSupport":true},"implementation":{"dynamicRegistration":true,"linkSupport":true},"colorProvider":{"dynamicRegistration":true},"foldingRange":{"dynamicRegistration":true,"rangeLimit":5000,"lineFoldingOnly":true},"declaration":{"dynamicRegistration":true,"linkSupport":true}}},"trace":"off","workspaceFolders":[{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project","name":"fake_project"}]}}'
 DEBUG:pygls.protocol:Request message received.
 INFO:root:Workspace path is /home/pglandon/Projects/TD_log_Project/tests/fake_project
 INFO:root:building module a_file from file.
 INFO:root:building project fake_project
-INFO:root:building module __config__ from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _distributor_init from file.
-INFO:root:building module _globals from file.
-INFO:root:building module _pytesttester from file.
-INFO:root:building module conftest from file.
-INFO:root:building module ctypeslib from file.
-INFO:root:building module dual from file.
-INFO:root:building module matlib from file.
-INFO:root:building module setup from file.
-INFO:root:building module version from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _inspect from file.
-INFO:root:building module py3k from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_compat from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _add_newdocs from file.
-INFO:root:building module _asarray from file.
-INFO:root:building module _dtype from file.
-INFO:root:building module _dtype_ctypes from file.
-INFO:root:building module _exceptions from file.
-INFO:root:building module _internal from file.
-INFO:root:building module _methods from file.
-INFO:root:building module _string_helpers from file.
-INFO:root:building module _type_aliases from file.
-INFO:root:building module _ufunc_config from file.
-INFO:root:building module arrayprint from file.
-INFO:root:building module cversions from file.
-INFO:root:building module defchararray from file.
-INFO:root:building module einsumfunc from file.
-INFO:root:building module fromnumeric from file.
-INFO:root:building module function_base from file.
-INFO:root:building module generate_numpy_api from file.
-INFO:root:building module getlimits from file.
-INFO:root:building module machar from file.
-INFO:root:building module memmap from file.
-INFO:root:building module multiarray from file.
-INFO:root:building module numeric from file.
-INFO:root:building module numerictypes from file.
-INFO:root:building module overrides from file.
-INFO:root:building module records from file.
-INFO:root:building module setup from file.
-INFO:root:building module setup_common from file.
-INFO:root:building module shape_base from file.
-INFO:root:building module umath from file.
-INFO:root:building module umath_tests from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _locales from file.
-INFO:root:building module test__exceptions from file.
-INFO:root:building module test_abc from file.
-INFO:root:building module test_api from file.
-INFO:root:building module test_arrayprint from file.
-INFO:root:building module test_conversion_utils from file.
-INFO:root:building module test_cpu_features from file.
-INFO:root:building module test_datetime from file.
-INFO:root:building module test_defchararray from file.
-INFO:root:building module test_deprecations from file.
-INFO:root:building module test_dtype from file.
-INFO:root:building module test_einsum from file.
-INFO:root:building module test_errstate from file.
-INFO:root:building module test_extint128 from file.
-INFO:root:building module test_function_base from file.
-INFO:root:building module test_getlimits from file.
-INFO:root:building module test_half from file.
-INFO:root:building module test_indexerrors from file.
-INFO:root:building module test_indexing from file.
-INFO:root:building module test_item_selection from file.
-INFO:root:building module test_longdouble from file.
-INFO:root:building module test_machar from file.
-INFO:root:building module test_mem_overlap from file.
-INFO:root:building module test_memmap from file.
-INFO:root:building module test_multiarray from file.
-INFO:root:building module test_nditer from file.
-INFO:root:building module test_numeric from file.
-INFO:root:building module test_numerictypes from file.
-INFO:root:building module test_overrides from file.
-INFO:root:building module test_print from file.
-INFO:root:building module test_protocols from file.
-INFO:root:building module test_records from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module test_scalar_ctors from file.
-INFO:root:building module test_scalar_methods from file.
-INFO:root:building module test_scalarbuffer from file.
-INFO:root:building module test_scalarinherit from file.
-INFO:root:building module test_scalarmath from file.
-INFO:root:building module test_scalarprint from file.
-INFO:root:building module test_shape_base from file.
-INFO:root:building module test_ufunc from file.
-INFO:root:building module test_umath from file.
-INFO:root:building module test_umath_accuracy from file.
-INFO:root:building module test_umath_complex from file.
-INFO:root:building module test_unicode from file.
-INFO:root:building module __config__ from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _shell_utils from file.
-INFO:root:building module ccompiler from file.
-INFO:root:building module conv_template from file.
-INFO:root:building module core from file.
-INFO:root:building module cpuinfo from file.
-INFO:root:building module exec_command from file.
-INFO:root:building module extension from file.
-INFO:root:building module from_template from file.
-INFO:root:building module intelccompiler from file.
-INFO:root:building module lib2def from file.
-INFO:root:building module line_endings from file.
-INFO:root:building module log from file.
-INFO:root:building module mingw32ccompiler from file.
-INFO:root:building module misc_util from file.
-INFO:root:building module msvc9compiler from file.
-INFO:root:building module msvccompiler from file.
-INFO:root:building module npy_pkg_config from file.
-INFO:root:building module numpy_distribution from file.
-INFO:root:building module pathccompiler from file.
-INFO:root:building module setup from file.
-INFO:root:building module system_info from file.
-INFO:root:building module unixccompiler from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module autodist from file.
-INFO:root:building module bdist_rpm from file.
-INFO:root:building module build from file.
-INFO:root:building module build_clib from file.
-INFO:root:building module build_ext from file.
-INFO:root:building module build_py from file.
-INFO:root:building module build_scripts from file.
-INFO:root:building module build_src from file.
-INFO:root:building module config from file.
-INFO:root:building module config_compiler from file.
-INFO:root:building module develop from file.
-INFO:root:building module egg_info from file.
-INFO:root:building module install from file.
-INFO:root:building module install_clib from file.
-INFO:root:building module install_data from file.
-INFO:root:building module install_headers from file.
-INFO:root:building module sdist from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module absoft from file.
-INFO:root:building module compaq from file.
-INFO:root:building module environment from file.
-INFO:root:building module g95 from file.
-INFO:root:building module gnu from file.
-INFO:root:building module hpux from file.
-INFO:root:building module ibm from file.
-INFO:root:building module intel from file.
-INFO:root:building module lahey from file.
-INFO:root:building module mips from file.
-INFO:root:building module nag from file.
-INFO:root:building module none from file.
-INFO:root:building module nv from file.
-INFO:root:building module pathf95 from file.
-INFO:root:building module pg from file.
-INFO:root:building module sun from file.
-INFO:root:building module vast from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_exec_command from file.
-INFO:root:building module test_fcompiler from file.
-INFO:root:building module test_fcompiler_gnu from file.
-INFO:root:building module test_fcompiler_intel from file.
-INFO:root:building module test_fcompiler_nagfor from file.
-INFO:root:building module test_from_template from file.
-INFO:root:building module test_mingw32ccompiler from file.
-INFO:root:building module test_misc_util from file.
-INFO:root:building module test_npy_pkg_config from file.
-INFO:root:building module test_shell_utils from file.
-INFO:root:building module test_system_info from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module basics from file.
-INFO:root:building module broadcasting from file.
-INFO:root:building module byteswapping from file.
-INFO:root:building module constants from file.
-INFO:root:building module creation from file.
-INFO:root:building module dispatch from file.
-INFO:root:building module glossary from file.
-INFO:root:building module indexing from file.
-INFO:root:building module internals from file.
-INFO:root:building module misc from file.
-INFO:root:building module structured_arrays from file.
-INFO:root:building module subclassing from file.
-INFO:root:building module ufuncs from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module __main__ from file.
-INFO:root:building module __version__ from file.
-INFO:root:building module auxfuncs from file.
-INFO:root:building module capi_maps from file.
-INFO:root:building module cb_rules from file.
-INFO:root:building module cfuncs from file.
-INFO:root:building module common_rules from file.
-INFO:root:building module crackfortran from file.
-INFO:root:building module diagnose from file.
-INFO:root:building module f2py2e from file.
-INFO:root:building module f2py_testing from file.
-INFO:root:building module f90mod_rules from file.
-INFO:root:building module func2subr from file.
-INFO:root:building module rules from file.
-INFO:root:building module setup from file.
-INFO:root:building module use_rules from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_array_from_pyobj from file.
-INFO:root:building module test_assumed_shape from file.
-INFO:root:building module test_block_docstring from file.
-INFO:root:building module test_callback from file.
-INFO:root:building module test_common from file.
-INFO:root:building module test_compile_function from file.
-INFO:root:building module test_crackfortran from file.
-INFO:root:building module test_kind from file.
-INFO:root:building module test_mixed from file.
-INFO:root:building module test_parameter from file.
-INFO:root:building module test_quoted_character from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module test_return_character from file.
-INFO:root:building module test_return_complex from file.
-INFO:root:building module test_return_integer from file.
-INFO:root:building module test_return_logical from file.
-INFO:root:building module test_return_real from file.
-INFO:root:building module test_semicolon_split from file.
-INFO:root:building module test_size from file.
-INFO:root:building module test_string from file.
-INFO:root:building module util from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _pocketfft from file.
-INFO:root:building module helper from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_helper from file.
-INFO:root:building module test_pocketfft from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _datasource from file.
-INFO:root:building module _iotools from file.
-INFO:root:building module _version from file.
-INFO:root:building module arraypad from file.
-INFO:root:building module arraysetops from file.
-INFO:root:building module arrayterator from file.
-INFO:root:building module financial from file.
-INFO:root:building module format from file.
-INFO:root:building module function_base from file.
-INFO:root:building module histograms from file.
-INFO:root:building module index_tricks from file.
-INFO:root:building module mixins from file.
-INFO:root:building module nanfunctions from file.
-INFO:root:building module npyio from file.
-INFO:root:building module polynomial from file.
-INFO:root:building module recfunctions from file.
-INFO:root:building module scimath from file.
-INFO:root:building module setup from file.
-INFO:root:building module shape_base from file.
-INFO:root:building module stride_tricks from file.
-INFO:root:building module twodim_base from file.
-INFO:root:building module type_check from file.
-INFO:root:building module ufunclike from file.
-INFO:root:building module user_array from file.
-INFO:root:building module utils from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test__datasource from file.
-INFO:root:building module test__iotools from file.
-INFO:root:building module test__version from file.
-INFO:root:building module test_arraypad from file.
-INFO:root:building module test_arraysetops from file.
-INFO:root:building module test_arrayterator from file.
-INFO:root:building module test_financial from file.
-INFO:root:building module test_format from file.
-INFO:root:building module test_function_base from file.
-INFO:root:building module test_histograms from file.
-INFO:root:building module test_index_tricks from file.
-INFO:root:building module test_io from file.
-INFO:root:building module test_mixins from file.
-INFO:root:building module test_nanfunctions from file.
-INFO:root:building module test_packbits from file.
-INFO:root:building module test_polynomial from file.
-INFO:root:building module test_recfunctions from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module test_shape_base from file.
-INFO:root:building module test_stride_tricks from file.
-INFO:root:building module test_twodim_base from file.
-INFO:root:building module test_type_check from file.
-INFO:root:building module test_ufunclike from file.
-INFO:root:building module test_utils from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module linalg from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_build from file.
-INFO:root:building module test_deprecations from file.
-INFO:root:building module test_linalg from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module bench from file.
-INFO:root:building module core from file.
-INFO:root:building module extras from file.
-INFO:root:building module mrecords from file.
-INFO:root:building module setup from file.
-INFO:root:building module testutils from file.
-INFO:root:building module timer_comparison from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_core from file.
-INFO:root:building module test_deprecations from file.
-INFO:root:building module test_extras from file.
-INFO:root:building module test_mrecords from file.
-INFO:root:building module test_old_ma from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module test_subclassing from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module defmatrix from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_defmatrix from file.
-INFO:root:building module test_interaction from file.
-INFO:root:building module test_masked_matrix from file.
-INFO:root:building module test_matrix_linalg from file.
-INFO:root:building module test_multiarray from file.
-INFO:root:building module test_numeric from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _polybase from file.
-INFO:root:building module chebyshev from file.
-INFO:root:building module hermite from file.
-INFO:root:building module hermite_e from file.
-INFO:root:building module laguerre from file.
-INFO:root:building module legendre from file.
-INFO:root:building module polynomial from file.
-INFO:root:building module polyutils from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_chebyshev from file.
-INFO:root:building module test_classes from file.
-INFO:root:building module test_hermite from file.
-INFO:root:building module test_hermite_e from file.
-INFO:root:building module test_laguerre from file.
-INFO:root:building module test_legendre from file.
-INFO:root:building module test_polynomial from file.
-INFO:root:building module test_polyutils from file.
-INFO:root:building module test_printing from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module _pickle from file.
-INFO:root:building module setup from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_direct from file.
-INFO:root:building module test_extending from file.
-INFO:root:building module test_generator_mt19937 from file.
-INFO:root:building module test_generator_mt19937_regressions from file.
-INFO:root:building module test_random from file.
-INFO:root:building module test_randomstate from file.
-INFO:root:building module test_randomstate_regression from file.
-INFO:root:building module test_regression from file.
-INFO:root:building module test_seed_sequence from file.
-INFO:root:building module test_smoke from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module print_coercion_tables from file.
-INFO:root:building module setup from file.
-INFO:root:building module utils from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module decorators from file.
-INFO:root:building module noseclasses from file.
-INFO:root:building module nosetester from file.
-INFO:root:building module parameterized from file.
-INFO:root:building module utils from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_decorators from file.
-INFO:root:building module test_doctesting from file.
-INFO:root:building module test_utils from file.
-INFO:root:building module __init__ from file.
-INFO:root:building module test_ctypeslib from file.
-INFO:root:building module test_matlib from file.
-INFO:root:building module test_numpy_version from file.
-INFO:root:building module test_public_api from file.
-INFO:root:building module test_reloading from file.
-INFO:root:building module test_scripts from file.
-INFO:root:building module test_warnings from file.
-INFO:root:building project numpy
-ERROR:pygls.protocol:Failed to handle request 0 initialize Object(processId=255393, rootPath='/home/pglandon/Projects/TD_log_Project/tests/fake_project', rootUri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project', capabilities=Object(workspace=Object(applyEdit=True, workspaceEdit=Object(documentChanges=True, resourceOperations=['create', 'rename', 'delete'], failureHandling='textOnlyTransactional'), didChangeConfiguration=Object(dynamicRegistration=True), didChangeWatchedFiles=Object(dynamicRegistration=True), symbol=Object(dynamicRegistration=True, symbolKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26])), executeCommand=Object(dynamicRegistration=True), configuration=True, workspaceFolders=True), textDocument=Object(publishDiagnostics=Object(relatedInformation=True), synchronization=Object(dynamicRegistration=True, willSave=True, willSaveWaitUntil=True, didSave=True), completion=Object(dynamicRegistration=True, contextSupport=True, completionItem=Object(snippetSupport=True, commitCharactersSupport=True, documentationFormat=['markdown', 'plaintext'], deprecatedSupport=True, preselectSupport=True), completionItemKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25])), hover=Object(dynamicRegistration=True, contentFormat=['markdown', 'plaintext']), signatureHelp=Object(dynamicRegistration=True, signatureInformation=Object(documentationFormat=['markdown', 'plaintext'], parameterInformation=Object(labelOffsetSupport=True))), definition=Object(dynamicRegistration=True, linkSupport=True), references=Object(dynamicRegistration=True), documentHighlight=Object(dynamicRegistration=True), documentSymbol=Object(dynamicRegistration=True, symbolKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]), hierarchicalDocumentSymbolSupport=True), codeAction=Object(dynamicRegistration=True, codeActionLiteralSupport=Object(codeActionKind=Object(valueSet=['', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports']))), codeLens=Object(dynamicRegistration=True), formatting=Object(dynamicRegistration=True), rangeFormatting=Object(dynamicRegistration=True), onTypeFormatting=Object(dynamicRegistration=True), rename=Object(dynamicRegistration=True, prepareSupport=True), documentLink=Object(dynamicRegistration=True), typeDefinition=Object(dynamicRegistration=True, linkSupport=True), implementation=Object(dynamicRegistration=True, linkSupport=True), colorProvider=Object(dynamicRegistration=True), foldingRange=Object(dynamicRegistration=True, rangeLimit=5000, lineFoldingOnly=True), declaration=Object(dynamicRegistration=True, linkSupport=True))), trace='off', workspaceFolders=[Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project', name='fake_project')])
-Traceback (most recent call last):
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
-    self.dialect.do_execute(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py", line 163, in execute
-    result = self._query(query)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py", line 321, in _query
-    conn.query(q)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 505, in query
-    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 724, in _read_query_result
-    result.read()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 1069, in read
-    first_packet = self.connection._read_packet()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 676, in _read_packet
-    packet.raise_for_error()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/protocol.py", line 223, in raise_for_error
-    err.raise_mysql_exception(self._data)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
-    raise errorclass(errno, errval)
-pymysql.err.DataError: (1406, "Data too long for column 'name' at row 1")
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
-    self._execute_request(msg_id, handler, params)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
-    self._send_response(msg_id, handler(params))
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 56, in decorator
-    ret_val = base_func(self, *args, **kwargs)
-  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 39, in bf_initialize
-    self.project = projectManager.lsp_add_workspace(rootPath)
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 124, in lsp_add_workspace
-    project = self.register_project(workspacePath.name, workspacePath)
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 83, in register_project
-    project.build(from_path)
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 185, in build
-    self.bind_external_project()
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 313, in bind_external_project
-    ProjectManager().register_project(
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 69, in register_project
-    self.update_project(project_name, from_path)
-  File "/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py", line 59, in update_project
-    session.commit()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 1042, in commit
-    self.transaction.commit()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 504, in commit
-    self._prepare_impl()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 483, in _prepare_impl
-    self.session.flush()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2536, in flush
-    self._flush(objects)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2678, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
-    compat.raise_(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py", line 2638, in _flush
-    flush_context.execute()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py", line 586, in execute
-    persistence.save_obj(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 239, in save_obj
-    _emit_insert_statements(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py", line 1135, in _emit_insert_statements
-    result = cached_connections[connection].execute(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1011, in execute
-    return meth(self, multiparams, params)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/sql/elements.py", line 298, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1124, in _execute_clauseelement
-    ret = self._execute_context(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1316, in _execute_context
-    self._handle_dbapi_exception(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1510, in _handle_dbapi_exception
-    util.raise_(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/compat.py", line 182, in raise_
-    raise exception
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py", line 1276, in _execute_context
-    self.dialect.do_execute(
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/default.py", line 593, in do_execute
-    cursor.execute(statement, parameters)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py", line 163, in execute
-    result = self._query(query)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py", line 321, in _query
-    conn.query(q)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 505, in query
-    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 724, in _read_query_result
-    result.read()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 1069, in read
-    first_packet = self.connection._read_packet()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py", line 676, in _read_packet
-    packet.raise_for_error()
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/protocol.py", line 223, in raise_for_error
-    err.raise_mysql_exception(self._data)
-  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/err.py", line 107, in raise_mysql_exception
-    raise errorclass(errno, errval)
-sqlalchemy.exc.DataError: (pymysql.err.DataError) (1406, "Data too long for column 'name' at row 1")
-[SQL: INSERT INTO scope (indent_level, indent_level_id, name, module_id) VALUES (%(indent_level)s, %(indent_level_id)s, %(name)s, %(module_id)s)]
-[parameters: {'indent_level': 1, 'indent_level_id': 7, 'name': 'TestBinaryReprInsufficientWidthParameterForRepresentation', 'module_id': 430}]
-(Background on this error at: http://sqlalche.me/e/13/9h9h)
-INFO:pygls.protocol:Sending data: {"id": 0, "jsonrpc": "2.0", "error": {"code": -32602, "message": "sqlalchemy.exc.DataError: (pymysql.err.DataError) (1406, \"Data too long for column 'name' at row 1\")\n[SQL: INSERT INTO scope (indent_level, indent_level_id, name, module_id) VALUES (%(indent_level)s, %(indent_level_id)s, %(name)s, %(module_id)s)]\n[parameters: {'indent_level': 1, 'indent_level_id': 7, 'name': 'TestBinaryReprInsufficientWidthParameterForRepresentation', 'module_id': 430}]\n(Background on this error at: http://sqlalche.me/e/13/9h9h)", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 56, in decorator\\n    ret_val = base_func(self, *args, **kwargs)\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 39, in bf_initialize\\n    self.project = projectManager.lsp_add_workspace(rootPath)\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 124, in lsp_add_workspace\\n    project = self.register_project(workspacePath.name, workspacePath)\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 83, in register_project\\n    project.build(from_path)\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 185, in build\\n    self.bind_external_project()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 313, in bind_external_project\\n    ProjectManager().register_project(\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 69, in register_project\\n    self.update_project(project_name, from_path)\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/bdd/Project.py\", line 59, in update_project\\n    session.commit()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 1042, in commit\\n    self.transaction.commit()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 504, in commit\\n    self._prepare_impl()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 483, in _prepare_impl\\n    self.session.flush()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 2536, in flush\\n    self._flush(objects)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 2678, in _flush\\n    transaction.rollback(_capture_exception=True)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/langhelpers.py\", line 68, in __exit__\\n    compat.raise_(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/compat.py\", line 182, in raise_\\n    raise exception\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/session.py\", line 2638, in _flush\\n    flush_context.execute()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py\", line 422, in execute\\n    rec.execute(self)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/unitofwork.py\", line 586, in execute\\n    persistence.save_obj(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py\", line 239, in save_obj\\n    _emit_insert_statements(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/orm/persistence.py\", line 1135, in _emit_insert_statements\\n    result = cached_connections[connection].execute(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py\", line 1011, in execute\\n    return meth(self, multiparams, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/sql/elements.py\", line 298, in _execute_on_connection\\n    return connection._execute_clauseelement(self, multiparams, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py\", line 1124, in _execute_clauseelement\\n    ret = self._execute_context(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py\", line 1316, in _execute_context\\n    self._handle_dbapi_exception(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py\", line 1510, in _handle_dbapi_exception\\n    util.raise_(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/util/compat.py\", line 182, in raise_\\n    raise exception\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/base.py\", line 1276, in _execute_context\\n    self.dialect.do_execute(\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/sqlalchemy/engine/default.py\", line 593, in do_execute\\n    cursor.execute(statement, parameters)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py\", line 163, in execute\\n    result = self._query(query)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/cursors.py\", line 321, in _query\\n    conn.query(q)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py\", line 505, in query\\n    self._affected_rows = self._read_query_result(unbuffered=unbuffered)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py\", line 724, in _read_query_result\\n    result.read()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py\", line 1069, in read\\n    first_packet = self.connection._read_packet()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/connections.py\", line 676, in _read_packet\\n    packet.raise_for_error()\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/protocol.py\", line 223, in raise_for_error\\n    err.raise_mysql_exception(self._data)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pymysql/err.py\", line 107, in raise_mysql_exception\\n    raise errorclass(errno, errval)\\n']}"}}
-DEBUG:pygls.server:Content length: 58
-DEBUG:pygls.protocol:Received b'Content-Length: 58\r\n\r\n{"jsonrpc":"2.0","id":1,"method":"shutdown","params":null}'
-DEBUG:pygls.protocol:Request message received.
-INFO:pygls.protocol:Sending data: {"id": 1, "jsonrpc": "2.0", "result": null}
-DEBUG:pygls.server:Content length: 47
-DEBUG:pygls.protocol:Received b'Content-Length: 47\r\n\r\n{"jsonrpc":"2.0","method":"exit","params":null}'
+INFO:root:Ponthon Language Server initialized.
+INFO:pygls.protocol:Language server initialized Object(processId=324748, rootPath='/home/pglandon/Projects/TD_log_Project/tests/fake_project', rootUri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project', capabilities=Object(workspace=Object(applyEdit=True, workspaceEdit=Object(documentChanges=True, resourceOperations=['create', 'rename', 'delete'], failureHandling='textOnlyTransactional'), didChangeConfiguration=Object(dynamicRegistration=True), didChangeWatchedFiles=Object(dynamicRegistration=True), symbol=Object(dynamicRegistration=True, symbolKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26])), executeCommand=Object(dynamicRegistration=True), configuration=True, workspaceFolders=True), textDocument=Object(publishDiagnostics=Object(relatedInformation=True), synchronization=Object(dynamicRegistration=True, willSave=True, willSaveWaitUntil=True, didSave=True), completion=Object(dynamicRegistration=True, contextSupport=True, completionItem=Object(snippetSupport=True, commitCharactersSupport=True, documentationFormat=['markdown', 'plaintext'], deprecatedSupport=True, preselectSupport=True), completionItemKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25])), hover=Object(dynamicRegistration=True, contentFormat=['markdown', 'plaintext']), signatureHelp=Object(dynamicRegistration=True, signatureInformation=Object(documentationFormat=['markdown', 'plaintext'], parameterInformation=Object(labelOffsetSupport=True))), definition=Object(dynamicRegistration=True, linkSupport=True), references=Object(dynamicRegistration=True), documentHighlight=Object(dynamicRegistration=True), documentSymbol=Object(dynamicRegistration=True, symbolKind=Object(valueSet=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26]), hierarchicalDocumentSymbolSupport=True), codeAction=Object(dynamicRegistration=True, codeActionLiteralSupport=Object(codeActionKind=Object(valueSet=['', 'quickfix', 'refactor', 'refactor.extract', 'refactor.inline', 'refactor.rewrite', 'source', 'source.organizeImports']))), codeLens=Object(dynamicRegistration=True), formatting=Object(dynamicRegistration=True), rangeFormatting=Object(dynamicRegistration=True), onTypeFormatting=Object(dynamicRegistration=True), rename=Object(dynamicRegistration=True, prepareSupport=True), documentLink=Object(dynamicRegistration=True), typeDefinition=Object(dynamicRegistration=True, linkSupport=True), implementation=Object(dynamicRegistration=True, linkSupport=True), colorProvider=Object(dynamicRegistration=True), foldingRange=Object(dynamicRegistration=True, rangeLimit=5000, lineFoldingOnly=True), declaration=Object(dynamicRegistration=True, linkSupport=True))), trace='off', workspaceFolders=[Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project', name='fake_project')])
+DEBUG:pygls.protocol:Server capabilities: {'textDocumentSync': <TextDocumentSyncKind.INCREMENTAL: 2>, 'hoverProvider': False, 'completionProvider': <pygls.types.CompletionOptions object at 0x7f66933131f0>, 'definitionProvider': False, 'referencesProvider': False, 'documentHighlightProvider': False, 'documentSymbolProvider': False, 'workspaceSymbolProvider': False, 'codeActionProvider': False, 'documentFormattingProvider': False, 'documentRangeFormattingProvider': False, 'renameProvider': False, 'executeCommandProvider': <pygls.types.ExecuteCommandOptions object at 0x7f6693313160>, 'workspace': {'workspaceFolders': {'supported': True, 'changeNotifications': True}}}
+INFO:pygls.protocol:Sending data: {"id": 0, "jsonrpc": "2.0", "result": {"capabilities": {"textDocumentSync": 2, "hoverProvider": false, "completionProvider": {"resolveProvider": false, "triggerCharacters": ["."]}, "definitionProvider": false, "referencesProvider": false, "documentHighlightProvider": false, "documentSymbolProvider": false, "workspaceSymbolProvider": false, "codeActionProvider": false, "documentFormattingProvider": false, "documentRangeFormattingProvider": false, "renameProvider": false, "executeCommandProvider": {"commands": []}, "workspace": {"workspaceFolders": {"supported": true, "changeNotifications": true}}}}}
+DEBUG:pygls.server:Content length: 52
+DEBUG:pygls.protocol:Received b'Content-Length: 52\r\n\r\n{"jsonrpc":"2.0","method":"initialized","params":{}}'
 DEBUG:pygls.protocol:Notification message received.
-INFO:pygls.server:Shutting down the server
-INFO:pygls.server:Closing the event loop.
+DEBUG:pygls.server:Content length: 436
+DEBUG:pygls.protocol:Received b'Content-Length: 436\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","languageId":"python","version":1,"text":"def print_hello_world():\\n    print(\\"Hello, World!\\")\\n    print(\\"Yeeesaie\\")\\n\\nif __name__ == \\"__main__\\":\\n    print_hello_world()\\n    java = \\"Bonjour, monsieur.\\"\\n    test = \\"toto\\"\\n    x = 15\\n\\n    machin = 25\\n\\n    j"}}}'
+DEBUG:pygls.protocol:Notification message received.
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":2},"contentChanges":[{"range":{"start":{"line":9,"character":0},"end":{"line":9,"character":0}},"rangeLength":0,"text":"    "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":3},"contentChanges":[{"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":4}},"rangeLength":0,"text":"b"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":1,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 1, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "False", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "await", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "else", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "import", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "pass", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "except", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "in", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "raise", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "True", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "class", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "is", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "return", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "and", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "for", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "lambda", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "try", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "as", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "def", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "from", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "while", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "assert", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "del", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "not", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "with", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "async", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "elif", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "if", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "or", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "yield", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":4},"contentChanges":[{"range":{"start":{"line":9,"character":5},"end":{"line":9,"character":5}},"rangeLength":0,"text":"o"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":5},"contentChanges":[{"range":{"start":{"line":9,"character":6},"end":{"line":9,"character":6}},"rangeLength":0,"text":"n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":2,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":7},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 2, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "False", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "await", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "else", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "import", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "pass", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "except", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "in", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "raise", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "True", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "class", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "is", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "return", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "and", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "for", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "lambda", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "try", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "as", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "def", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "from", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "while", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "assert", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "del", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "not", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "with", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "async", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "elif", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "if", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "or", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "yield", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":6},"contentChanges":[{"range":{"start":{"line":9,"character":7},"end":{"line":9,"character":7}},"rangeLength":0,"text":"h"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":3,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":8},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 3, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "False", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "await", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "else", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "import", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "pass", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "except", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "raise", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "True", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "class", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "return", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "and", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "for", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "lambda", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "from", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "while", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "assert", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "not", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "with", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "async", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "elif", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "yield", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":7},"contentChanges":[{"range":{"start":{"line":9,"character":8},"end":{"line":9,"character":8}},"rangeLength":0,"text":"o"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":4,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":9},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 4, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}
+DEBUG:pygls.server:Content length: 295
+DEBUG:pygls.protocol:Received b'Content-Length: 295\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":8},"contentChanges":[{"range":{"start":{"line":9,"character":8},"end":{"line":9,"character":9}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 295
+DEBUG:pygls.protocol:Received b'Content-Length: 295\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":9},"contentChanges":[{"range":{"start":{"line":9,"character":7},"end":{"line":9,"character":8}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":10},"contentChanges":[{"range":{"start":{"line":9,"character":6},"end":{"line":9,"character":7}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":11},"contentChanges":[{"range":{"start":{"line":9,"character":5},"end":{"line":9,"character":6}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":12},"contentChanges":[{"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 297
+DEBUG:pygls.protocol:Received b'Content-Length: 297\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":13},"contentChanges":[{"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":4}},"rangeLength":0,"text":"i"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":5,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 5, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "False", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "await", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "else", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "import", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "pass", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "except", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "in", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "raise", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "True", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "class", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "is", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "return", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "and", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "for", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "lambda", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "try", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "as", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "def", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "from", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "while", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "assert", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "del", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "not", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "with", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "async", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "elif", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "if", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "or", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "yield", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}
+DEBUG:pygls.server:Content length: 297
+DEBUG:pygls.protocol:Received b'Content-Length: 297\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":14},"contentChanges":[{"range":{"start":{"line":9,"character":5},"end":{"line":9,"character":5}},"rangeLength":0,"text":"m"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":15},"contentChanges":[{"range":{"start":{"line":9,"character":5},"end":{"line":9,"character":6}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 296
+DEBUG:pygls.protocol:Received b'Content-Length: 296\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":16},"contentChanges":[{"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 297
+DEBUG:pygls.protocol:Received b'Content-Length: 297\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":17},"contentChanges":[{"range":{"start":{"line":9,"character":4},"end":{"line":9,"character":4}},"rangeLength":0,"text":"j"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+INFO:root:building module a_file from buffer.
+DEBUG:pygls.server:Content length: 234
+DEBUG:pygls.protocol:Received b'Content-Length: 234\r\n\r\n{"jsonrpc":"2.0","id":6,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":9,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:[2, 5, 6]
+INFO:pygls.protocol:Sending data: {"id": 6, "jsonrpc": "2.0", "result": {"isIncomplete": false, "items": [{"label": "False", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "await", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "else", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "import", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "pass", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "None", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "break", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "except", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "in", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "raise", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "True", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "class", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "finally", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "is", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "return", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "and", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "continue", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "for", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "lambda", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "try", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "as", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "def", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "from", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "nonlocal", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "while", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "assert", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "del", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "global", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "not", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "with", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "async", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "elif", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "if", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "or", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}, {"label": "yield", "kind": 14, "detail": null, "documentation": null, "deprecated": false, "preselect": false, "sortText": null, "filterText": null, "insertText": null, "insertTextFormat": null, "textEdit": null, "additionalTextEdits": null, "commitCharacters": null, "command": null, "data": null}]}}

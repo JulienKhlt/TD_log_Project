@@ -73,17 +73,14 @@ class ProjectManager:
                               config=Config(python_home="/usr/",
                                             fast=fast))
 
-            session = self.sessionmaker()
-            session.add(project)
-            session.commit()
+            self.session.add(project)
+            self.session.commit()
 
             project.index(from_path)
-            session.commit()
+            self.session.commit()
 
             project.build(from_path)
-            session.commit()
-
-            session.close()
+            self.session.commit()
 
             return project
 
@@ -281,6 +278,7 @@ class Project(Base):
         for module in self.module:
             if module_path_string == module.path:
                 return module
+        return None
 
     def get_project_root(self, file_path):
         """Try to find the project's root for a given file path with the following rules:
