@@ -52,7 +52,9 @@ class Ponthon(LanguageServer):
     def __init__(self):
         super().__init__(protocol_cls=PonthonProtocol)
 
-        self.project = None
+    @property
+    def project(self):
+        return self.lsp.project
 
 
 ponthon = Ponthon()
@@ -63,23 +65,19 @@ def completions(ls, params: CompletionParams = None):
     """Returns completion items."""
     if not params:
         return CompletionList(False, [])
-    
-    parser = CompletionParser(params, ls)
-    logging.info(f'Trying to complete: {parser.get_word()}')
-    logging.info(f'Word before is: {parser.get_word_before()}')
-    if parser.is_heritage_completion():
-        logging.info("Heritage completion!")
-    if parser.is_import_completion():
-        logging.info("Import completion!")
-    if parser.is_import_from_completion():
-        logging.info("Import from completion!")
 
-    return CompletionList(False, [])
-    
+    parser = CompletionParser(params, ls)
+    return parser.complete()
+
 @ponthon.feature(TEXT_DOCUMENT_DID_CHANGE)
 def did_change(ls, params: DidChangeTextDocumentParams):
-    pass
-    # documentPath = Path(urlparse(params.textDocument.uri).path)
+    """Update given Module if its a valid python file."""
+
+    document_path = Path(urlparse(params.textDocument.uri).path)
+    module = ls.project.get_module(document_path)
+
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+
     #
     # with open("test.test", "w") as file:
     #     text = ls.workspace.get_document(params.textDocument.uri)

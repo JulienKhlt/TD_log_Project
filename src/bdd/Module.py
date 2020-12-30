@@ -11,7 +11,7 @@ from src.parser.tools import *
 
 
 class Module(Base):
-    __tablename__ = 'module'
+    __tablename__ = "module"
 
     id = Column(Integer, primary_key=True)
 
@@ -23,31 +23,54 @@ class Module(Base):
 
     project_id = Column(Integer, ForeignKey("project.id"))
     project = relationship("Project", back_populates="module")
-    scope = relationship("Scope", back_populates="module", cascade="all, delete, delete-orphan")
-    imports = relationship("Import", back_populates="module_from", foreign_keys="Import.module_from_id",
-                           cascade="all, delete, delete-orphan")
+    scope = relationship(
+        "Scope", back_populates="module", cascade="all, delete, delete-orphan"
+    )
+    imports = relationship(
+        "Import",
+        back_populates="module_from",
+        foreign_keys="Import.module_from_id",
+        cascade="all, delete, delete-orphan",
+    )
 
-    imports_from = relationship("ImportFrom", back_populates="module_from", foreign_keys="ImportFrom.module_from_id",
-                                cascade="all, delete, delete-orphan")
+    imports_from = relationship(
+        "ImportFrom",
+        back_populates="module_from",
+        foreign_keys="ImportFrom.module_from_id",
+        cascade="all, delete, delete-orphan",
+    )
 
-    imports_to = relationship("Import", back_populates="module_to", foreign_keys="Import.module_to_id",
-                              cascade="all")
+    imports_to = relationship(
+        "Import",
+        back_populates="module_to",
+        foreign_keys="Import.module_to_id",
+        cascade="all",
+    )
 
-    imports_from_to = relationship("ImportFrom", back_populates="module_to", foreign_keys="ImportFrom.module_to_id",
-                                   cascade="all")
+    imports_from_to = relationship(
+        "ImportFrom",
+        back_populates="module_to",
+        foreign_keys="ImportFrom.module_to_id",
+        cascade="all",
+    )
 
-    def update(self):
+    def update(self, source=None):
         self.scope = []
         self.imports = []
         self.imports_from = []
 
         self.visit_date = datetime.datetime.now()
 
-        logging.info(f"updating module {self.name}")
-
         # We rebuild everything! (We don't really know how the module was changed...)
         # and tracking difference would be way less efficient (AST substraction)
-        self.build()
+        # We could really optimize with how the LS Protocol works, but it would require much more
+        # work. (LSP tells us what changed in a file, we could theorically update the Module from here
+        # instead of recomputing it entirely on change in the buffer. But it should be alright if file isn't
+        # too big.)
+        if not source:
+            self.build()
+        else:
+            self.build_from_string(source)
 
     def get_imports_name(self):
         """Return name of imported modules in module."""
@@ -59,25 +82,38 @@ class Module(Base):
     def build(self):
         """Index all scopes and imports within module."""
 
-        if not self.external:
-            logging.info(f"building module {self.name}")
-
         module_path = Path(self.path)
         module_name = self.name
 
         if module_path.is_dir():
-            module_path = module_path.joinpath('__init__.py')
+            module_path = module_path.joinpath("__init__.py")
 
-        with open(str(module_path), 'r') as file:
+
+        with open(str(module_path), "r") as file:
             module_text = file.read()
-        module_ast = ast.parse(module_text, module_name)
+        self.build_from_string(module_text, True)
 
-        module_scope = Scope(indent_level=0, indent_level_id=0, name=module_name)
-        self.scope.append(module_scope)
+    def build_from_string(self, source, from_file=False):
+        """Index from given string instead of using saved file (for real time completion)."""
+        if not self.external:
+            if from_file:
+                logging.info(f"building module {self.name} from file.")
+            else:
+                logging.info(f"building module {self.name} from buffer.")
 
-        indent_table = {0: 0}
+        try:
+            module_ast = ast.parse(source, self.name)
 
-        self.build_helper(module_scope, module_ast, indent_table)
+            module_scope = Scope(indent_level=0, indent_level_id=0, name=self.name)
+            self.scope.append(module_scope)
+
+            indent_table = {0: 0}
+
+            self.build_helper(module_scope, module_ast, indent_table)
+        except SyntaxError:
+            logging.warn(
+                f"Couldn't parse {module_name} at {module_path} (Invalid Syntax)"
+            )
 
     def build_helper(self, current_scope, module_ast, indent_table):
         """Recursive method to help build module."""

@@ -68,8 +68,9 @@ class ProjectManager:
                 else:
                     self.update_project(project_name, from_path)
                 return
+            # TODO -> venv support!
             project = Project(name=project_name, path=str(project_path), external=external,
-                              config=Config(python_home="/home/pglandon/PycharmProjects/AutoComplete/venv",
+                              config=Config(python_home="/usr/",
                                             fast=fast))
 
             session = self.sessionmaker()
@@ -124,6 +125,18 @@ class ProjectManager:
                 self.session.add(project)
 
                 return project
+
+        def drop_project(self, project_name):
+            """Remove project and linked objects from BDD."""
+            query_result = self.session.query(Project).filter_by(name=project_name).first()
+            if not query_result:
+                print(f"{project_name} doesn't not exist.")
+                return
+
+            self.session.delete(query_result)
+            self.session.commit()
+
+
 
     instance = None
 
@@ -254,6 +267,20 @@ class Project(Base):
             if full_path_py.exists():
                 return full_path_py
         return None
+
+    def get_python_module_path_from_system_path(self, system_path):
+        """Return a Module valide Path from a system Path (if __init__.py/__main__.py return upper dir)."""
+
+        # TODO (if import -> __init__.py, if ran -> __main__.py... I hate python!)
+        return system_path
+
+    def get_module(self, module_path):
+        """Return Module object at module_path (Path) if in project, None otherwise."""
+
+        module_path_string = str(module_path)
+        for module in self.module:
+            if module_path_string == module.path:
+                return module
 
     def get_project_root(self, file_path):
         """Try to find the project's root for a given file path with the following rules:

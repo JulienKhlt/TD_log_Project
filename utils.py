@@ -4,6 +4,7 @@ import subprocess
 import sys
 
 import src.bdd.bdd
+from src.bdd.Project import ProjectManager
 
 
 def run():
@@ -44,13 +45,22 @@ def install():
     process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
     process.communicate()
 
+def drop(project_name):
+    """Drop Project from BDD."""
+    ProjectManager().drop_project(project_name)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Install/Run BDD for development purpose.")
-    parser.add_argument('action', choices=['install', 'run'], help="What should I do ?")
+    parser.add_argument('action', choices=['install', 'run', 'drop'], help="What should I do ?")
+    parser.add_argument('project_name', nargs=1, default=None)
     args = parser.parse_args()
 
     if args.action == 'run':
         run()
     elif args.action == 'install':
         install()
+    elif args.action == 'drop':
+        if args.project_name:
+            drop(args.project_name)
+        else:
+            print("Usage: python utils.py drop PROJECT_NAME.")
