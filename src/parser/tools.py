@@ -42,6 +42,7 @@ COND_STMT = [ast.If, ast.For, ast.AsyncFor, ast.While]
 def handle_cond_stmt(scope, cond_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
     new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno = cond_node.lineno)
+    new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
     if type(cond_node) == ast.For or type(cond_node) == ast.AsyncFor:
@@ -50,8 +51,10 @@ def handle_cond_stmt(scope, cond_node, indent_table):
     for stmt in cond_node.body:
         calculate_rec(scope.module, new_scope, stmt, indent_table)
 
+    # TODO Check if code isn't duplicated
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
     new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno=cond_node.lineno)
+    new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
     for stmt in cond_node.orelse:
@@ -60,6 +63,7 @@ def handle_cond_stmt(scope, cond_node, indent_table):
 def handle_fun_def(scope, def_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
     new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name, lineno=def_node.lineno)
+    new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
     scope.function.append(Function(name=def_node.name))
@@ -77,6 +81,7 @@ def handle_fun_def(scope, def_node, indent_table):
 def handle_class_def(scope, class_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
     new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=class_node.name, lineno=class_node.lineno)
+    new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
     scope.classes.append(Class(name=class_node.name))

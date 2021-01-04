@@ -19,7 +19,7 @@ class Scope(Base):
     lineno = Column(Integer)
 
     parent_id = Column(Integer, ForeignKey('scope.id'))
-    parent = relationship("Scope", backref='children', remote_side=[id], cascade="all, delete, delete-orphan")
+    parent = relationship("Scope", backref='children', remote_side=[id])
 
     module_id = Column(Integer, ForeignKey("module.id"))
     module = relationship("Module", back_populates="scope")
@@ -35,6 +35,13 @@ class Scope(Base):
                     if variable.name == variable_name:
                         return True
         return False
+
+    def get_parents(self):
+        """Return a list of Scope. Those Scope are the 'parent' scope (Scope in a file can be represented as a tree)."""
+        if self.parent is None:
+            return [self]
+        else:
+            return [self] + self.parent.get_parents()
 
     def __lt__(self, other):
         return self.indent_level < other.indent_level
