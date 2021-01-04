@@ -21,3 +21,6 @@ numpy = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+migrate = "alembic upgrade head"

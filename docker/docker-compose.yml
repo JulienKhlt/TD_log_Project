@@ -23,9 +23,3 @@ services:
     restart: always
     ports:
       - 8888:8080
-
-  admin:
-    image: ubuntu
-    restart: always
-    volumes:
-      - ./bdd:/home:ro

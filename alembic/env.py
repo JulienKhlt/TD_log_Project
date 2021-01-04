@@ -5,7 +5,9 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from bdd.bdd import Base
+
+
+from src.bdd.bdd import Base
 
 # Add import here to generate migrations.
 from src.bdd.Project import Project
