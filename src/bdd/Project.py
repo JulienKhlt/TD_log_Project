@@ -1,29 +1,35 @@
+import datetime
 import logging
 import re
 from pathlib import Path
+from urllib.parse import urlparse
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
 from sqlalchemy.orm import relationship
-
-from src.bdd.Module import Module
 from src.bdd.bdd import Base, Session
 from src.bdd.Config import Config
+from src.bdd.Module import Module
 from src.parser.tools import calculate, get_relative_path
+
 
 class ProjectManager:
     class __ProjectManager:
         """A collection of tools to manage projects"""
 
         def __init__(self, sessionmaker):
-            """sessionmaker is a function that enables sql alchemy session creation."""
+            """sessionmaker is a function that enables sql alchemy
+            session creation."""
             self.sessionmaker = sessionmaker
+            self.session = self.sessionmaker()
 
         def exist(self, project_name):
-            """Return True if a project with given name is already registered in BDD, False otherwise."""
+            """Return True if a project with given name is already registered
+            in BDD, False otherwise."""
             session = self.sessionmaker()
 
             # check if project exists.
-            query_result = session.query(Project.path).filter_by(name=project_name).first()
+            query_result = session.query(Project.path).filter_by(
+                name=project_name).first()
             if query_result:
                 session.close()
                 return True
@@ -31,18 +37,20 @@ class ProjectManager:
             return False
 
         def update_project(self, project_name, from_path):
-            """Index new files in project, update bindings and external dependencies."""
+            """Index new files in project, update bindings and
+            external dependencies."""
             session = self.sessionmaker()
 
-
             # check if project exists.
-            query_result = session.query(Project).filter_by(name=project_name).first()
+            query_result = session.query(Project).filter_by(
+                name=project_name).first()
             if not query_result:
                 logging.info(f"{project_name} not found, skipping.")
                 return
 
             if query_result.fully_indexed and query_result.external:
-                logging.debug(f"{project_name} already fully indexed, skipping.")
+                logging.debug(
+                    f"{project_name} already fully indexed, skipping.")
                 return
 
             query_result.index(from_path)
@@ -51,42 +59,93 @@ class ProjectManager:
             session.commit()
             session.close()
 
-
-        def register_project(self, project_name, project_path, external=False, fast=True,from_path=None):
+        def register_project(self, project_name, project_path, external=False,
+                             fast=True, from_path=None):
+            """Register a project with given path, return it afterward (might take a while async ?)."""
             if self.exist(project_name):
                 if not external:
                     logging.info(f"{project_name} already registered!")
                 else:
                     self.update_project(project_name, from_path)
                 return
-            project = Project(name=project_name, path=project_path, external=external,
-                              config=Config(python_home="/home/pglandon/PycharmProjects/AutoComplete/venv",
+            # TODO -> venv support!
+            project = Project(name=project_name, path=str(project_path), external=external,
+                              config=Config(python_home="/usr/",
                                             fast=fast))
 
-            session = self.sessionmaker()
-            session.add(project)
-            session.commit()
+            self.session.add(project)
+            self.session.commit()
 
             project.index(from_path)
-            session.commit()
+            self.session.commit()
 
             project.build(from_path)
-            session.commit()
+            self.session.commit()
 
-            session.close()
+            return project
+
+        def is_workspace_registered(self, workspaceUri):
+            """Return associatied Project if given workspace is registered, False otherwise.
+            Doesn't close session if a project is found!"""
+            workspaceUri = Path(workspaceUri)
+
+            query_result = self.session.query(Project).filter_by(
+                path=str(workspaceUri)).first()
+
+            return query_result
+
+        def lsp_add_workspace(self, workspacePath):
+            """Called on LS initialization to either register current workspace if it's not already referenced
+            or update it. Returns Project associated to workspacePath, None in case of failure."""
+
+            # Let's use pathlib to assure cross-OS compatibility :
+            workspacePath = Path(workspacePath)
+            if not workspacePath.is_dir() or not workspacePath.exists():
+                logging.error("Project root doesn't exist!")
+                return None
+
+            # Workspace exists, let's check if it's already referenced.
+            project = self.is_workspace_registered(workspacePath)
+
+            if project:
+                logging.info("Workspace already registered, updating...")
+
+                self.session.add(project)
+                project.update()
+                self.session.commit()
+                project.build()
+                self.session.commit()
+
+                return project
+            else:
+                project = self.register_project(workspacePath.name, workspacePath)
+                self.session.add(project)
+
+                return project
+
+        def drop_project(self, project_name):
+            """Remove project and linked objects from BDD."""
+            query_result = self.session.query(Project).filter_by(name=project_name).first()
+            if not query_result:
+                print(f"{project_name} doesn't not exist.")
+                return
+
+            self.session.delete(query_result)
+            self.session.commit()
+
+
 
     instance = None
 
     @staticmethod
-    def initialize(sessionmaker):
-        ProjectManager.instance = ProjectManager.__ProjectManager(sessionmaker)
+    def initialize(sessionmaker=Session):
+        if not ProjectManager.instance:
+            ProjectManager.instance = ProjectManager.__ProjectManager(sessionmaker)
 
     def __new__(cls):
         if not ProjectManager.instance:
-            logging.error("Please initialize ProjectManager first!")
-            exit(1)
+            ProjectManager.initialize()
         return ProjectManager.instance
-
 
 
 class Project(Base):
@@ -102,8 +161,12 @@ class Project(Base):
     external = Column(Boolean, default=False)
     fully_indexed = Column(Boolean, default=False)
 
-    config = relationship("Config", uselist=False, back_populates="project", cascade="all, delete, delete-orphan")
-    module = relationship("Module", back_populates="project", cascade="all, delete, delete-orphan")
+    config = relationship("Config", uselist=False,
+                          back_populates="project", cascade="all, delete, delete-orphan")
+    module = relationship("Module", back_populates="project",
+                          cascade="all, delete, delete-orphan")
+
+    last_update = Column(DateTime, default=datetime.datetime.utcnow)
 
     def build(self, from_path=None):
         """Build the relationships between the project and its modules. Bind imports and external projects.
@@ -118,7 +181,6 @@ class Project(Base):
         if not self.external:
             self.bind_external_project()
             self.bind_imports()
-
 
     def index_modules_path(self, rec_path=None):
         """Returns a list of Path of all the files in a project."""
@@ -157,7 +219,8 @@ class Project(Base):
 
         # Check if module is not in project.
         if module_path.stem == '__init__':
-            module = Module(path=str(module_path.parent), name=module_path.stem)
+            module = Module(path=str(module_path.parent),
+                            name=module_path.stem)
         else:
             module = Module(path=str(module_path), name=module_path.stem)
 
@@ -202,6 +265,21 @@ class Project(Base):
                 return full_path_py
         return None
 
+    def get_python_module_path_from_system_path(self, system_path):
+        """Return a Module valide Path from a system Path (if __init__.py/__main__.py return upper dir)."""
+
+        # TODO (if import -> __init__.py, if ran -> __main__.py... I hate python!)
+        return system_path
+
+    def get_module(self, module_path):
+        """Return Module object at module_path (Path) if in project, None otherwise."""
+
+        module_path_string = str(module_path)
+        for module in self.module:
+            if module_path_string == module.path:
+                return module
+        return None
+
     def get_project_root(self, file_path):
         """Try to find the project's root for a given file path with the following rules:
             - if the directory containing the file has __init__.py we look in the up dir and we repeat the process.
@@ -214,7 +292,6 @@ class Project(Base):
                 return file_path
         else:
             return self.get_project_root(file_path.parent)
-
 
     def bind_external_project(self):
         """Bind external projects to this project. Call this AFTER all modules have been indexed.
@@ -231,26 +308,66 @@ class Project(Base):
 
                     if self.config.fast:
                         from_path = module_path
-                    ProjectManager().register_project(project_name, str(project_root), True, True, from_path)
-
+                    ProjectManager().register_project(
+                        project_name, str(project_root), True, True, from_path)
 
     def bind_imports(self, session=Session()):
-            """Bind modules together via imports. Call this AFTER all modules have been indexed."""
+        """Bind modules together via imports. Call this AFTER all modules have been indexed."""
 
-            for project_module in self.module:
-                for module_import in project_module.imports + project_module.imports_from:
-                    paths = self.config.get_python_module_search_path()
-                    for string_path in paths:
-                        path = Path(string_path, module_import.name)
+        for project_module in self.module:
+            for module_import in project_module.imports + project_module.imports_from:
+                if module_import.module_to_id is not None:
+                    continue
+                paths = self.config.get_python_module_search_path()
+                for string_path in paths:
+                    path = Path(string_path, module_import.name)
 
-                        result = session.query(Module.id).filter_by(path=str(path)).first()
-                        if not result:
-                            path_py = path.with_suffix('.py')
-                            result = session.query(Module.id).filter_by(path=str(path_py)).first()
-                        if result:
-                            module_import.module_to_id = result[0]
-                            break
-                    if not module_import.module_to_id:
-                        logging.warning(f"Import not found: {module_import.name}")
+                    result = session.query(Module.id).filter_by(
+                        path=str(path)).first()
+                    if not result:
+                        path_py = path.with_suffix('.py')
+                        result = session.query(Module.id).filter_by(
+                            path=str(path_py)).first()
+                    if result:
+                        module_import.module_to_id = result[0]
+                        break
+                if not module_import.module_to_id:
+                    logging.warning(f"Import not found: {module_import.name}")
+
+    def update(self):
+        """Check for new modules and/or modules modification.
+        Operations are done in MEMORY! Commit to session to see modification in database."""
+        modules_path = self.index_modules_path()
+
+        # TODO : find a better matching algorithm (Nb_files ** 2 here)
+        for module_path in modules_path:
+            is_referenced = False
+            for referenced_module in self.module:
+                referenced_module_path = Path(referenced_module.path)
+                if referenced_module_path == module_path:
+                    is_referenced = True
+
+                    # We check if it has been modified outside the Language Client
+                    if referenced_module.visit_date < datetime.datetime.fromtimestamp(module_path.stat().st_mtime):
+                        # We update this module
+                        referenced_module.update()
+                    break
+
+            if not is_referenced:
+                # Not referenced, we had it to the project.
+                self.add_module(module_path)
+
+        # Don't forget to rebuild the project afterward or imports won't be linked!
+
+    def complete(self, to_complete, module_path):
+        """Return a list of LSP::CompletionItem that corresponds to possible completion for TO_COMPLETE (CompletionParams) in file MODULE_PATH."""
+
+        logging.info(f"Tring to complete {to_complete} in module {module_path}")
+
+        for project_module in self.module:
+            if project_module.path == module_path:
+                return project_module.complete(to_complete)
+
+        return []
 
 

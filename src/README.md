@@ -11,8 +11,7 @@ Ce module est appele depuis les extensions d'editeur definies dans *extensions*.
 Contient l'implementation du Reference Server (marque deposee).
 En gros c'est ici que l'on manipule les projets, que l'on reference (variables, fonctions, classes, imports, dependences...) et que l'on les enregistre dans une BDD. C'est l'implementation de l'ORM.
 
-* Les fichiers finissant par *Manager* servent a manipuler leur prefixe. Ce sont des singletons qu'il faut penser a initialise!!
-* Les autres fichiers commencant par une majuscule definisse une table dans la BDD.
+* Les fichiers commencant par une majuscule definisse une table dans la BDD, ils contiennent egalement des Manager (Singleton) qui permmettent la gestion des dites tables.
 * *bdd.py* permet d'initialiser l'ORM (on pourra ajouter un fichier de config plus tard).
 
 ## daemon
