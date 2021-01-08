@@ -42,3 +42,20 @@ https://trello.com/b/hZRqQjoj/projet-tdlog
 ## Licence
 
 Whatever
+
+
+## TODOs
+
+- TODO Write Tests
+- TODO Add a CLI
+- TODO Write type inference
+- TODO Write dot completion
+- TODO Change bdd size for everything (problem with numpy today)
+- TODO better completion type detection (i.e. better regex)
+- TODO add dynamic completion (No computation on EACH change)
+- TODO write heritage completion
+- TODO write import completion
+- TODO write import/from completion
+- TODO add virtualenv/pipenv support
+- DONE: commit session only on file save
+- TODO add a new file to project
