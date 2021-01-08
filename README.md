@@ -53,10 +53,14 @@ Whatever
 - TODO Change bdd size for everything (problem with numpy today)
 - TODO better completion type detection (i.e. better regex)
 - TODO add dynamic completion (No computation on EACH change)
-- TODO write heritage completion
+- DONE write heritage completion
 - TODO write import completion
 - TODO write import/from completion
 - TODO add virtualenv/pipenv support
 - DONE: commit session only on file save
 - DONE: add a new file to project
 - TODO How to handle external files ?
+- TODO upgrade semantic completion -> 3 loops when 1 is required!
+- DONE: fix "index out of range" on finding good scope
+- TODO clean up logger
+- TODO write separate logs for ls, rs, pygls

@@ -45,6 +45,10 @@ def make_variable_completion_item(word):
     """Return a LSP::CompletionItem for variable name WORD."""
     return CompletionItem(word, CompletionItemKind.Variable)
 
+def make_class_completion_item(word):
+    """Return a LSP::CompletionItem for variable name WORD."""
+    return CompletionItem(word, CompletionItemKind.Class)
+
 class CompletionType:
     """An enumeration of different type of completion."""
 
@@ -270,23 +274,38 @@ class CompletionParser(CompletionParams):
         variable_list = self.module.complete_variable(self.get_word(), real_lineno)
         return [make_variable_completion_item(var_name) for var_name in variable_list]
 
+    def complete_semantic_class(self):
+        """Return a list of CompletionItem for class completion."""
+        real_lineno = self.position.line + 1
+        class_list = self.module.complete_class(self.get_word(), real_lineno)
+        return [make_class_completion_item(var_name) for var_name in class_list]
+
     def complete_semantic(self):
         """Return a list of CompletionItem for semantic completion."""
         completion_list = []
+
+        # TODO : You can do better!
         completion_list += self.complete_semantic_variable()
+        completion_list += self.complete_semantic_class()
 
         return completion_list
+
+    def complete_heritage(self):
+        """Retun a list of CompletionItem for heritage completion. (.i.e semantic completion with class name)"""
+        return self.complete_semantic_class()
 
     def complete(self):
         """Return CompletionList for given context."""
         completion_item_list = []
         completion_types = self.get_completion_types()
 
-        logging.info(completion_types)
+        logging.info(CompletionType.HERITAGE_COMPLETION in completion_types)
 
         if CompletionType.KEYWORD_COMPLETION in completion_types:
             completion_item_list += self.complete_keyword()
         if CompletionType.SEMANTIC_COMPLETION in completion_types:
             completion_item_list += self.complete_semantic()
+        if CompletionType.HERITAGE_COMPLETION in completion_types:
+            completion_item_list += self.complete_heritage()
 
         return CompletionList(False, completion_item_list)
