@@ -58,4 +58,5 @@ Whatever
 - TODO write import/from completion
 - TODO add virtualenv/pipenv support
 - DONE: commit session only on file save
-- TODO add a new file to project
+- DONE: add a new file to project
+- TODO How to handle external files ?

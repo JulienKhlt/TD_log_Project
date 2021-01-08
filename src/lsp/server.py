@@ -9,7 +9,7 @@ from pygls.server import LanguageServer
 from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
                          CompletionParams, CompletionTriggerKind,
                          DidChangeTextDocumentParams, InitializeParams,
-                         Position)
+                         Position, DidOpenTextDocumentParams)
 from src.bdd.Project import ProjectManager
 from src.lsp.CompletionParser import CompletionParser
 
@@ -80,9 +80,26 @@ def did_change(ls, params: DidChangeTextDocumentParams):
 
     # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)
     # ProjectManager().session.commit()
-    # No need! ->
+    # No need! -> We commit on save/close
 
 @ponthon.feature(TEXT_DOCUMENT_DID_SAVE)
 def did_save(ls, params):
     """Commit session on save."""
     ProjectManager().session.commit()
+
+@ponthon.feature(TEXT_DOCUMENT_DID_OPEN)
+def did_open(ls, params: DidOpenTextDocumentParams):
+    """Add file to project if it's a new file."""
+
+    document_path = Path(urlparse(params.textDocument.uri).path)
+    module = ls.project.get_module(document_path)
+
+    if not module:
+        # check if file belongs to project:
+        project_path = Path(ls.project.path)
+        try:
+            document_path.relative_to(project_path)
+            if document_path.suffix == '.py':
+                ls.project.add_module(document_path)
+        except ValueError:
+            logging.info(f"{document_path.name} doesn't belong to project tree.")

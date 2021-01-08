@@ -218,7 +218,7 @@ class Project(Base):
         """Add module to project."""
 
         # Check if module is not in project.
-        if module_path.stem == '__init__':
+        if module_path.stem == '__init__' or module_path.stem == '__main__':
             module = Module(path=str(module_path.parent),
                             name=module_path.stem)
         else:
