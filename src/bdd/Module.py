@@ -207,3 +207,26 @@ class Module(Base):
 
         return possibility
 
+    def complete_function(self, to_complete, lineno):
+        """Return a list of string that corresponds to possible variable completion for TO_COMPLETE at LINENO."""
+        # DONE add scope aware completion...
+        logging.info(f"Tring to complete {to_complete} in module {self.name}")
+
+        possibility = []
+        scope = self.get_scope_from_lineno(lineno)
+        completion_scopes = scope.get_parents()
+
+
+        for completion_scope in completion_scopes:
+            # Variable completion
+            for scope_variable in completion_scope.function:
+
+                # TODO : Use levensthein/damerau
+                regex = "^" + to_complete
+                match = re.match(regex, scope_variable.name)
+                if match:
+                    possibility.append(scope_variable.name)
+
+        return possibility
+
+

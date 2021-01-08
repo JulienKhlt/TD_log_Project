@@ -64,3 +64,4 @@ Whatever
 - DONE: fix "index out of range" on finding good scope
 - TODO clean up logger
 - TODO write separate logs for ls, rs, pygls
+- TODO add import aware completion

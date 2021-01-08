@@ -45,9 +45,19 @@ def make_variable_completion_item(word):
     """Return a LSP::CompletionItem for variable name WORD."""
     return CompletionItem(word, CompletionItemKind.Variable)
 
-def make_class_completion_item(word):
-    """Return a LSP::CompletionItem for variable name WORD."""
-    return CompletionItem(word, CompletionItemKind.Class)
+def make_class_completion_item(word, add_args=True):
+    """Return a LSP::CompletionItem for class name WORD."""
+    if add_args:
+        return CompletionItem(word, CompletionItemKind.Class, insert_text=f"{word}()")
+    else:
+        return CompletionItem(word, CompletionItemKind.Class)
+
+def make_function_completion_item(word, add_args=True):
+    """Return a LSP::CompletionItem for function name WORD."""
+    if add_args:
+        return CompletionItem(word, CompletionItemKind.Function, insert_text=f"{word}()")
+    else:
+        return CompletionItem(word, CompletionItemKind.Class)
 
 class CompletionType:
     """An enumeration of different type of completion."""
@@ -102,7 +112,8 @@ class CompletionParser(CompletionParams):
         "yield"
     ]
 
-    MAX_DISTANCE = 5
+    # Errors can be made!
+    MAX_DISTANCE = 1
 
     def __init__(self, completionParams, server_context):
         super().__init__(
@@ -280,6 +291,12 @@ class CompletionParser(CompletionParams):
         class_list = self.module.complete_class(self.get_word(), real_lineno)
         return [make_class_completion_item(var_name) for var_name in class_list]
 
+    def complete_semantic_function(self):
+        """Return a list of CompletionItem for function completion."""
+        real_lineno = self.position.line + 1
+        function_list = self.module.complete_function(self.get_word(), real_lineno)
+        return [make_function_completion_item(var_name) for var_name in function_list]
+
     def complete_semantic(self):
         """Return a list of CompletionItem for semantic completion."""
         completion_list = []
@@ -287,12 +304,19 @@ class CompletionParser(CompletionParams):
         # TODO : You can do better!
         completion_list += self.complete_semantic_variable()
         completion_list += self.complete_semantic_class()
+        completion_list += self.complete_semantic_function()
 
         return completion_list
 
     def complete_heritage(self):
         """Retun a list of CompletionItem for heritage completion. (.i.e semantic completion with class name)"""
-        return self.complete_semantic_class()
+        real_lineno = self.position.line + 1
+        class_list = self.module.complete_class(self.get_word(), real_lineno)
+        return [make_class_completion_item(var_name, False) for var_name in class_list]
+
+    def complete_import(self):
+        """Return a list CompletionItem for import completion (i.e. module pathes)"""
+        paths = self.server_context.project.config.get_python_module_search_path()
 
     def complete(self):
         """Return CompletionList for given context."""
@@ -307,5 +331,7 @@ class CompletionParser(CompletionParams):
             completion_item_list += self.complete_semantic()
         if CompletionType.HERITAGE_COMPLETION in completion_types:
             completion_item_list += self.complete_heritage()
+        if CompletionType.IMPORT_COMPLETION in completion_types:
+            completion_item_list += self.complete_import()
 
         return CompletionList(False, completion_item_list)

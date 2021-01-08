@@ -1,5 +1,6 @@
 import datetime
 import logging
+import os
 import re
 from pathlib import Path
 from urllib.parse import urlparse
@@ -266,7 +267,7 @@ class Project(Base):
         return None
 
     def get_python_module_path_from_system_path(self, system_path):
-        """Return a Module valide Path from a system Path (if __init__.py/__main__.py return upper dir)."""
+        """Return a Module valid Path from a system Path (if __init__.py/__main__.py return upper dir)."""
 
         # TODO (if import -> __init__.py, if ran -> __main__.py... I hate python!)
         return system_path
@@ -369,5 +370,15 @@ class Project(Base):
                 return project_module.complete(to_complete)
 
         return []
+
+    def complete_import(self, to_complete):
+        """Return a list of string with possible completion."""
+        paths = self.config.get_python_module_search_path()
+        slash_path = to_complete.split('.').join(os.path.sep)
+        regex = rf'^{slash_path}'
+
+
+
+
 
 
