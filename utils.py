@@ -2,7 +2,7 @@ import argparse
 import shutil
 import subprocess
 
-from src.bdd.Project import ProjectManager
+# from src.bdd.Project import ProjectManager
 
 
 def run():
@@ -62,9 +62,9 @@ def migrate():
 
     print("You're good to go! You can now run Ponthon with the run command.")
 
-def drop(project_name):
-    """Drop Project from BDD."""
-    ProjectManager().drop_project(project_name)
+# def drop(project_name):
+#     """Drop Project from BDD."""
+#     ProjectManager().drop_project(project_name)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Install/Run BDD for development purpose.")
@@ -82,6 +82,7 @@ if __name__ == '__main__':
         migrate()
     elif args.action == 'drop':
         if args.project_name:
-            drop(args.project_name)
+            # drop(args.project_name)
+            pass
         else:
             print("Usage: python utils.py drop PROJECT_NAME.")
