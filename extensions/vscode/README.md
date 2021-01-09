@@ -1,4 +1,4 @@
-# Json Language Server
+# Ponthon Language Client
 
 ## Install Client Dependencies
 
@@ -6,10 +6,10 @@ Open terminal and execute following commands:
 
 1. `npm install`
 1. `cd client/ && npm install`
-1. Change pythonPath and serverPath in `client/extension.ts` to point to the location of the server and a python installation where requirements are installed. 
+1. Change projectRoot in `client/extension.ts` to point to the location of the root of the project. (it works if you don't move the extension)
 
-## Run Example
+## Run Client
 
 1. Open this directory in VS Code
 1. Open debug view (`ctrl + shift + D`)
-1. Select `Server + Client` and press `F5`
+1. Select `Client` and press `F5`

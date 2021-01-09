@@ -114,3 +114,969 @@ DEBUG:pygls.server:Content length: 481
 DEBUG:pygls.protocol:Received b'Content-Length: 481\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didOpen","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","languageId":"python","version":1,"text":"def print_hello_world():\\n    print(\\"Hello, World!\\")\\n    print(\\"Yeeesaie\\")\\n\\nif __name__ == \\"__main__\\":\\n    print_hello_world()\\n    java = \\"Bonjour, monsieur.\\"\\n    test = \\"toto\\"\\n    x = 15\\n\\n    machin = 25\\n\\n    machin2 = 28\\n    machin3 = 85\\n\\n    \\n\\n    "}}}'
 DEBUG:pygls.protocol:Notification message received.
 INFO:root:a_file.py doesn't belong to project tree.
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":2},"contentChanges":[{"range":{"start":{"line":17,"character":4},"end":{"line":17,"character":4}},"rangeLength":0,"text":"7"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=2), contentChanges=[Object(range=Object(start=Object(line=17, character=4), end=Object(line=17, character=4)), rangeLength=0, text='7')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 352
+DEBUG:pygls.protocol:Received b'Content-Length: 352\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":3},"contentChanges":[{"range":{"start":{"line":17,"character":5},"end":{"line":17,"character":5}},"rangeLength":0,"text":"AttributeError: \'list\' object has no attribute \'read\'\\n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=3), contentChanges=[Object(range=Object(start=Object(line=17, character=5), end=Object(line=17, character=5)), rangeLength=0, text="AttributeError: 'list' object has no attribute 'read'\n")]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":4},"contentChanges":[{"range":{"start":{"line":18,"character":0},"end":{"line":18,"character":0}},"rangeLength":0,"text":";"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=4), contentChanges=[Object(range=Object(start=Object(line=18, character=0), end=Object(line=18, character=0)), rangeLength=0, text=';')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":5},"contentChanges":[{"range":{"start":{"line":18,"character":1},"end":{"line":18,"character":1}},"rangeLength":0,"text":"\\n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=5), contentChanges=[Object(range=Object(start=Object(line=18, character=1), end=Object(line=18, character=1)), rangeLength=0, text='\n')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":6},"contentChanges":[{"range":{"start":{"line":19,"character":0},"end":{"line":19,"character":0}},"rangeLength":0,"text":"4"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=6), contentChanges=[Object(range=Object(start=Object(line=19, character=0), end=Object(line=19, character=0)), rangeLength=0, text='4')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":7},"contentChanges":[{"range":{"start":{"line":19,"character":1},"end":{"line":19,"character":1}},"rangeLength":0,"text":"r"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=7), contentChanges=[Object(range=Object(start=Object(line=19, character=1), end=Object(line=19, character=1)), rangeLength=0, text='r')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 235
+DEBUG:pygls.protocol:Received b'Content-Length: 235\r\n\r\n{"jsonrpc":"2.0","id":6,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":19,"character":2},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 6 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=19, character=2), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 6, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":8},"contentChanges":[{"range":{"start":{"line":18,"character":1},"end":{"line":18,"character":1}},"rangeLength":0,"text":"d"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=8), contentChanges=[Object(range=Object(start=Object(line=18, character=1), end=Object(line=18, character=1)), rangeLength=0, text='d')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 235
+DEBUG:pygls.protocol:Received b'Content-Length: 235\r\n\r\n{"jsonrpc":"2.0","id":7,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":18,"character":2},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 7 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=18, character=2), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 7, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":9},"contentChanges":[{"range":{"start":{"line":18,"character":2},"end":{"line":18,"character":2}},"rangeLength":0,"text":"[]"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=9), contentChanges=[Object(range=Object(start=Object(line=18, character=2), end=Object(line=18, character=2)), rangeLength=0, text='[]')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 300
+DEBUG:pygls.protocol:Received b'Content-Length: 300\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":10},"contentChanges":[{"range":{"start":{"line":18,"character":3},"end":{"line":18,"character":3}},"rangeLength":0,"text":"\'\'"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=10), contentChanges=[Object(range=Object(start=Object(line=18, character=3), end=Object(line=18, character=3)), rangeLength=0, text="''")]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":11},"contentChanges":[{"range":{"start":{"line":18,"character":4},"end":{"line":18,"character":4}},"rangeLength":0,"text":"e"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=11), contentChanges=[Object(range=Object(start=Object(line=18, character=4), end=Object(line=18, character=4)), rangeLength=0, text='e')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":12},"contentChanges":[{"range":{"start":{"line":18,"character":5},"end":{"line":18,"character":5}},"rangeLength":0,"text":"r"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=12), contentChanges=[Object(range=Object(start=Object(line=18, character=5), end=Object(line=18, character=5)), rangeLength=0, text='r')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":13},"contentChanges":[{"range":{"start":{"line":18,"character":5},"end":{"line":18,"character":5}},"rangeLength":0,"text":"r"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=13), contentChanges=[Object(range=Object(start=Object(line=18, character=5), end=Object(line=18, character=5)), rangeLength=0, text='r')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":14},"contentChanges":[{"range":{"start":{"line":18,"character":6},"end":{"line":18,"character":6}},"rangeLength":0,"text":"["}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=14), contentChanges=[Object(range=Object(start=Object(line=18, character=6), end=Object(line=18, character=6)), rangeLength=0, text='[')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":15},"contentChanges":[{"range":{"start":{"line":18,"character":7},"end":{"line":18,"character":7}},"rangeLength":0,"text":"]"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=15), contentChanges=[Object(range=Object(start=Object(line=18, character=7), end=Object(line=18, character=7)), rangeLength=0, text=']')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":16},"contentChanges":[{"range":{"start":{"line":18,"character":8},"end":{"line":18,"character":8}},"rangeLength":0,"text":"f"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=16), contentChanges=[Object(range=Object(start=Object(line=18, character=8), end=Object(line=18, character=8)), rangeLength=0, text='f')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 300
+DEBUG:pygls.protocol:Received b'Content-Length: 300\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":17},"contentChanges":[{"range":{"start":{"line":18,"character":9},"end":{"line":18,"character":9}},"rangeLength":0,"text":"\\n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=17), contentChanges=[Object(range=Object(start=Object(line=18, character=9), end=Object(line=18, character=9)), rangeLength=0, text='\n')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":18},"contentChanges":[{"range":{"start":{"line":19,"character":0},"end":{"line":19,"character":0}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=18), contentChanges=[Object(range=Object(start=Object(line=19, character=0), end=Object(line=19, character=0)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":19},"contentChanges":[{"range":{"start":{"line":19,"character":1},"end":{"line":19,"character":1}},"rangeLength":0,"text":"d"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=19), contentChanges=[Object(range=Object(start=Object(line=19, character=1), end=Object(line=19, character=1)), rangeLength=0, text='d')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":20},"contentChanges":[{"range":{"start":{"line":19,"character":2},"end":{"line":19,"character":2}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=20), contentChanges=[Object(range=Object(start=Object(line=19, character=2), end=Object(line=19, character=2)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":21},"contentChanges":[{"range":{"start":{"line":19,"character":2},"end":{"line":19,"character":2}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=21), contentChanges=[Object(range=Object(start=Object(line=19, character=2), end=Object(line=19, character=2)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":22},"contentChanges":[{"range":{"start":{"line":19,"character":2},"end":{"line":19,"character":2}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=22), contentChanges=[Object(range=Object(start=Object(line=19, character=2), end=Object(line=19, character=2)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":23},"contentChanges":[{"range":{"start":{"line":19,"character":2},"end":{"line":19,"character":2}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=23), contentChanges=[Object(range=Object(start=Object(line=19, character=2), end=Object(line=19, character=2)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":24},"contentChanges":[{"range":{"start":{"line":19,"character":2},"end":{"line":19,"character":2}},"rangeLength":0,"text":"w"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=24), contentChanges=[Object(range=Object(start=Object(line=19, character=2), end=Object(line=19, character=2)), rangeLength=0, text='w')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":25},"contentChanges":[{"range":{"start":{"line":19,"character":3},"end":{"line":19,"character":3}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=25), contentChanges=[Object(range=Object(start=Object(line=19, character=3), end=Object(line=19, character=3)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":26},"contentChanges":[{"range":{"start":{"line":19,"character":3},"end":{"line":19,"character":3}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=26), contentChanges=[Object(range=Object(start=Object(line=19, character=3), end=Object(line=19, character=3)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":27},"contentChanges":[{"range":{"start":{"line":19,"character":3},"end":{"line":19,"character":3}},"rangeLength":0,"text":"a"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=27), contentChanges=[Object(range=Object(start=Object(line=19, character=3), end=Object(line=19, character=3)), rangeLength=0, text='a')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":28},"contentChanges":[{"range":{"start":{"line":19,"character":4},"end":{"line":19,"character":4}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=28), contentChanges=[Object(range=Object(start=Object(line=19, character=4), end=Object(line=19, character=4)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":29},"contentChanges":[{"range":{"start":{"line":19,"character":14},"end":{"line":19,"character":14}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=29), contentChanges=[Object(range=Object(start=Object(line=19, character=14), end=Object(line=19, character=14)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":30},"contentChanges":[{"range":{"start":{"line":19,"character":14},"end":{"line":19,"character":14}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=30), contentChanges=[Object(range=Object(start=Object(line=19, character=14), end=Object(line=19, character=14)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":31},"contentChanges":[{"range":{"start":{"line":19,"character":14},"end":{"line":19,"character":14}},"rangeLength":0,"text":"a"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=31), contentChanges=[Object(range=Object(start=Object(line=19, character=14), end=Object(line=19, character=14)), rangeLength=0, text='a')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":32},"contentChanges":[{"range":{"start":{"line":19,"character":15},"end":{"line":19,"character":15}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=32), contentChanges=[Object(range=Object(start=Object(line=19, character=15), end=Object(line=19, character=15)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":33},"contentChanges":[{"range":{"start":{"line":19,"character":15},"end":{"line":19,"character":15}},"rangeLength":0,"text":"a"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=33), contentChanges=[Object(range=Object(start=Object(line=19, character=15), end=Object(line=19, character=15)), rangeLength=0, text='a')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":34},"contentChanges":[{"range":{"start":{"line":19,"character":16},"end":{"line":19,"character":16}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=34), contentChanges=[Object(range=Object(start=Object(line=19, character=16), end=Object(line=19, character=16)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":35},"contentChanges":[{"range":{"start":{"line":19,"character":16},"end":{"line":19,"character":16}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=35), contentChanges=[Object(range=Object(start=Object(line=19, character=16), end=Object(line=19, character=16)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":36},"contentChanges":[{"range":{"start":{"line":19,"character":17},"end":{"line":19,"character":17}},"rangeLength":0,"text":"s"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=36), contentChanges=[Object(range=Object(start=Object(line=19, character=17), end=Object(line=19, character=17)), rangeLength=0, text='s')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 302
+DEBUG:pygls.protocol:Received b'Content-Length: 302\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":37},"contentChanges":[{"range":{"start":{"line":19,"character":18},"end":{"line":19,"character":18}},"rangeLength":0,"text":"\\n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=37), contentChanges=[Object(range=Object(start=Object(line=19, character=18), end=Object(line=19, character=18)), rangeLength=0, text='\n')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":38},"contentChanges":[{"range":{"start":{"line":16,"character":0},"end":{"line":21,"character":2}},"rangeLength":96,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=38), contentChanges=[Object(range=Object(start=Object(line=16, character=0), end=Object(line=21, character=2)), rangeLength=96, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":39},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":16,"character":0}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=39), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=16, character=0)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":40},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":"n"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=40), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text='n')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 235
+DEBUG:pygls.protocol:Received b'Content-Length: 235\r\n\r\n{"jsonrpc":"2.0","id":8,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":15,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 8 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=15, character=5), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 8, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":41},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=41), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=5)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":42},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":","}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=42), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text=',')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":43},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=43), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=5)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":44},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":","}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=44), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text=',')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":45},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=45), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=5)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":46},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":"m"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=46), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text='m')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 235
+DEBUG:pygls.protocol:Received b'Content-Length: 235\r\n\r\n{"jsonrpc":"2.0","id":9,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":15,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 9 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=15, character=5), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 9, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":47},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":5}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=47), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=5)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 300
+DEBUG:pygls.protocol:Received b'Content-Length: 300\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":48},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":"[]"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=48), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text='[]')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":49},"contentChanges":[{"range":{"start":{"line":15,"character":5},"end":{"line":15,"character":5}},"rangeLength":0,"text":"f"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=49), contentChanges=[Object(range=Object(start=Object(line=15, character=5), end=Object(line=15, character=5)), rangeLength=0, text='f')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 236
+DEBUG:pygls.protocol:Received b'Content-Length: 236\r\n\r\n{"jsonrpc":"2.0","id":10,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":15,"character":6},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 10 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=15, character=6), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 10, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":50},"contentChanges":[{"range":{"start":{"line":15,"character":5},"end":{"line":15,"character":6}},"rangeLength":1,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=50), contentChanges=[Object(range=Object(start=Object(line=15, character=5), end=Object(line=15, character=6)), rangeLength=1, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 298
+DEBUG:pygls.protocol:Received b'Content-Length: 298\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":51},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":6}},"rangeLength":2,"text":""}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=51), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=6)), rangeLength=2, text='')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":52},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":4}},"rangeLength":0,"text":"p"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=52), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=4)), rangeLength=0, text='p')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 236
+DEBUG:pygls.protocol:Received b'Content-Length: 236\r\n\r\n{"jsonrpc":"2.0","id":11,"method":"textDocument/completion","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py"},"position":{"line":15,"character":5},"context":{"triggerKind":1}}}'
+DEBUG:pygls.protocol:Request message received.
+INFO:root:False
+ERROR:root:Module at /home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py is not registered!
+ERROR:pygls.protocol:Failed to handle request 11 textDocument/completion Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py'), position=Object(line=15, character=5), context=Object(triggerKind=1))
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 324, in _handle_request
+    self._execute_request(msg_id, handler, params)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 249, in _execute_request
+    self._send_response(msg_id, handler(params))
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 70, in completions
+    return parser.complete()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 331, in complete
+    completion_item_list += self.complete_semantic()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 305, in complete_semantic
+    completion_list += self.complete_semantic_variable()
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py", line 285, in complete_semantic_variable
+    variable_list = self.module.complete_variable(self.get_word(), real_lineno)
+AttributeError: 'NoneType' object has no attribute 'complete_variable'
+INFO:pygls.protocol:Sending data: {"id": 11, "jsonrpc": "2.0", "error": {"code": -32602, "message": "AttributeError: 'NoneType' object has no attribute 'complete_variable'", "data": "{'traceback': ['  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 324, in _handle_request\\n    self._execute_request(msg_id, handler, params)\\n', '  File \"/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py\", line 249, in _execute_request\\n    self._send_response(msg_id, handler(params))\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/server.py\", line 70, in completions\\n    return parser.complete()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 331, in complete\\n    completion_item_list += self.complete_semantic()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 305, in complete_semantic\\n    completion_list += self.complete_semantic_variable()\\n', '  File \"/home/pglandon/Projects/TD_log_Project/src/lsp/CompletionParser.py\", line 285, in complete_semantic_variable\\n    variable_list = self.module.complete_variable(self.get_word(), real_lineno)\\n']}"}}
+DEBUG:pygls.server:Content length: 299
+DEBUG:pygls.protocol:Received b'Content-Length: 299\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":53},"contentChanges":[{"range":{"start":{"line":15,"character":5},"end":{"line":15,"character":5}},"rangeLength":0,"text":"r"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=53), contentChanges=[Object(range=Object(start=Object(line=15, character=5), end=Object(line=15, character=5)), rangeLength=0, text='r')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 315
+DEBUG:pygls.protocol:Received b'Content-Length: 315\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":54},"contentChanges":[{"range":{"start":{"line":15,"character":4},"end":{"line":15,"character":6}},"rangeLength":2,"text":"print_hello_world"}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=54), contentChanges=[Object(range=Object(start=Object(line=15, character=4), end=Object(line=15, character=6)), rangeLength=2, text='print_hello_world')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":55},"contentChanges":[{"range":{"start":{"line":15,"character":21},"end":{"line":15,"character":21}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=55), contentChanges=[Object(range=Object(start=Object(line=15, character=21), end=Object(line=15, character=21)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":56},"contentChanges":[{"range":{"start":{"line":15,"character":22},"end":{"line":15,"character":22}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=56), contentChanges=[Object(range=Object(start=Object(line=15, character=22), end=Object(line=15, character=22)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":57},"contentChanges":[{"range":{"start":{"line":15,"character":23},"end":{"line":15,"character":23}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=57), contentChanges=[Object(range=Object(start=Object(line=15, character=23), end=Object(line=15, character=23)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":58},"contentChanges":[{"range":{"start":{"line":15,"character":24},"end":{"line":15,"character":24}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=58), contentChanges=[Object(range=Object(start=Object(line=15, character=24), end=Object(line=15, character=24)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":59},"contentChanges":[{"range":{"start":{"line":15,"character":25},"end":{"line":15,"character":25}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=59), contentChanges=[Object(range=Object(start=Object(line=15, character=25), end=Object(line=15, character=25)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":60},"contentChanges":[{"range":{"start":{"line":15,"character":26},"end":{"line":15,"character":26}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=60), contentChanges=[Object(range=Object(start=Object(line=15, character=26), end=Object(line=15, character=26)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":61},"contentChanges":[{"range":{"start":{"line":15,"character":27},"end":{"line":15,"character":27}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=61), contentChanges=[Object(range=Object(start=Object(line=15, character=27), end=Object(line=15, character=27)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":62},"contentChanges":[{"range":{"start":{"line":15,"character":28},"end":{"line":15,"character":28}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=62), contentChanges=[Object(range=Object(start=Object(line=15, character=28), end=Object(line=15, character=28)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":63},"contentChanges":[{"range":{"start":{"line":15,"character":29},"end":{"line":15,"character":29}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=63), contentChanges=[Object(range=Object(start=Object(line=15, character=29), end=Object(line=15, character=29)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":64},"contentChanges":[{"range":{"start":{"line":15,"character":30},"end":{"line":15,"character":30}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=64), contentChanges=[Object(range=Object(start=Object(line=15, character=30), end=Object(line=15, character=30)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":65},"contentChanges":[{"range":{"start":{"line":15,"character":31},"end":{"line":15,"character":31}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=65), contentChanges=[Object(range=Object(start=Object(line=15, character=31), end=Object(line=15, character=31)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":66},"contentChanges":[{"range":{"start":{"line":15,"character":32},"end":{"line":15,"character":32}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=66), contentChanges=[Object(range=Object(start=Object(line=15, character=32), end=Object(line=15, character=32)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":67},"contentChanges":[{"range":{"start":{"line":15,"character":33},"end":{"line":15,"character":33}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=67), contentChanges=[Object(range=Object(start=Object(line=15, character=33), end=Object(line=15, character=33)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":68},"contentChanges":[{"range":{"start":{"line":15,"character":34},"end":{"line":15,"character":34}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=68), contentChanges=[Object(range=Object(start=Object(line=15, character=34), end=Object(line=15, character=34)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":69},"contentChanges":[{"range":{"start":{"line":15,"character":35},"end":{"line":15,"character":35}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=69), contentChanges=[Object(range=Object(start=Object(line=15, character=35), end=Object(line=15, character=35)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":70},"contentChanges":[{"range":{"start":{"line":15,"character":36},"end":{"line":15,"character":36}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=70), contentChanges=[Object(range=Object(start=Object(line=15, character=36), end=Object(line=15, character=36)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
+DEBUG:pygls.server:Content length: 301
+DEBUG:pygls.protocol:Received b'Content-Length: 301\r\n\r\n{"jsonrpc":"2.0","method":"textDocument/didChange","params":{"textDocument":{"uri":"file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py","version":71},"contentChanges":[{"range":{"start":{"line":15,"character":37},"end":{"line":15,"character":37}},"rangeLength":0,"text":" "}]}}'
+DEBUG:pygls.protocol:Notification message received.
+ERROR:pygls.protocol:Failed to handle *user defined* notification textDocument/didChange: (Object(textDocument=Object(uri='file:///home/pglandon/Projects/TD_log_Project/tests/fake_project/a_file.py', version=71), contentChanges=[Object(range=Object(start=Object(line=15, character=37), end=Object(line=15, character=37)), rangeLength=0, text=' ')]),)
+Traceback (most recent call last):
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 60, in decorator
+    self._execute_notification(user_func, *args, **kwargs)
+  File "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/lib/python3.9/site-packages/pygls/protocol.py", line 220, in _execute_notification
+    handler(*params)
+  File "/home/pglandon/Projects/TD_log_Project/src/lsp/server.py", line 79, in did_change
+    module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+AttributeError: 'NoneType' object has no attribute 'update'
