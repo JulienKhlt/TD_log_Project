@@ -125,9 +125,9 @@ class Module(Base):
         elif type(module_ast) == ast.Assign:
             if type(module_ast.targets) == list:
                 for target in module_ast.targets:
-                    handle_assign_node(current_scope, target)
+                    handle_assign_node(current_scope, target, None)
             else:
-                handle_assign_node(current_scope, module_ast.targets)
+                handle_assign_node(current_scope, module_ast.targets, None)
         elif type(module_ast) in COND_STMT:
             handle_cond_stmt(current_scope, module_ast, indent_table)
         elif type(module_ast) == ast.FunctionDef:

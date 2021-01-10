@@ -8,6 +8,7 @@ from src.bdd.Import import Import
 from src.bdd.ImportFrom import ImportFrom
 from src.bdd.Scope import Scope
 from src.bdd.Variable import Variable
+from src.bdd.Type import get_type_assign, Type
 
 
 def calculate(module):
@@ -23,7 +24,7 @@ def calculate(module):
         module_text = file.read()
     module_ast = ast.parse(module_text, module_name)
 
-    module_scope = Scope(indent_level=0, indent_level_id=0, name=module_name, lineno = 0)
+    module_scope = Scope(indent_level=0, indent_level_id=0, name=module_name, lineno=0)
     module.scope.append(module_scope)
 
     indent_table = {0: 0}
@@ -31,22 +32,30 @@ def calculate(module):
     calculate_rec(module, module_scope, module_ast, indent_table)
     # print(ast.dump(module_ast))
 
-def handle_assign_node(scope, single_target):
+
+def handle_assign_node(scope, single_target, module_ast):
     if type(single_target) == ast.Name:
         var = Variable(name=single_target.id, scope=scope, lineno=single_target.lineno, colno=single_target.col_offset)
         if not scope.exist(single_target.id):
             var.first_definition = True
+        type_list = get_type_assign(module_ast)
+        for _type_ in type_list:
+            cls_type = Type(name=str(_type_))
+            var.type.append(cls_type)
         scope.variable.append(var)
 
+
 COND_STMT = [ast.If, ast.For, ast.AsyncFor, ast.While]
+
+
 def handle_cond_stmt(scope, cond_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno = cond_node.lineno)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, lineno=cond_node.lineno)
     new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
     if type(cond_node) == ast.For or type(cond_node) == ast.AsyncFor:
-        handle_assign_node(new_scope, cond_node.target)
+        handle_assign_node(new_scope, cond_node.target, None)
 
     for stmt in cond_node.body:
         calculate_rec(scope.module, new_scope, stmt, indent_table)
@@ -60,9 +69,11 @@ def handle_cond_stmt(scope, cond_node, indent_table):
     for stmt in cond_node.orelse:
         calculate_rec(scope.module, new_scope, stmt, indent_table)
 
+
 def handle_fun_def(scope, def_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name, lineno=def_node.lineno)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name,
+                      lineno=def_node.lineno)
     new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
@@ -78,9 +89,11 @@ def handle_fun_def(scope, def_node, indent_table):
     for stmt in def_node.body:
         calculate_rec(scope.module, new_scope, stmt, indent_table)
 
+
 def handle_class_def(scope, class_node, indent_table):
     indent_level, indent_level_id = indent(scope.indent_level, indent_table)
-    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=class_node.name, lineno=class_node.lineno)
+    new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=class_node.name,
+                      lineno=class_node.lineno)
     new_scope.parent = scope
     scope.module.scope.append(new_scope)
 
@@ -90,6 +103,7 @@ def handle_class_def(scope, class_node, indent_table):
     # Later we will have a special function to parse function_node (to handle type return for example)
     for stmt in class_node.body:
         calculate_rec(scope.module, new_scope, stmt, indent_table)
+
 
 def handle_import(scope, import_node):
     for alias in import_node.names:
@@ -104,6 +118,7 @@ def handle_import_from(scope, import_node):
     for alias in import_node.names:
         scope.module.imports_from.append(ImportFrom(name=import_node.module,
                                                     target_name=alias.name, target_asname=alias.asname))
+
 
 def indent(current_indent_level, indent_table):
     """Return new indent_level and indent_level_id as a tuple and update indent_table"""
@@ -121,9 +136,9 @@ def calculate_rec(module, current_scope, module_ast, indent_table):
     elif type(module_ast) == ast.Assign:
         if type(module_ast.targets) == list:
             for target in module_ast.targets:
-                handle_assign_node(current_scope, target)
+                handle_assign_node(current_scope, target, module_ast)
         else:
-            handle_assign_node(current_scope, module_ast.targets)
+            handle_assign_node(current_scope, module_ast.targets, module_ast)
     elif type(module_ast) in COND_STMT:
         handle_cond_stmt(current_scope, module_ast, indent_table)
     elif type(module_ast) == ast.FunctionDef:
@@ -137,6 +152,8 @@ def calculate_rec(module, current_scope, module_ast, indent_table):
     else:
         # print(f"Unrecognized node: {type(module_ast)}")
         pass
+
+
 def get_relative_path(from_path, fullpath):
     match = re.search(from_path, fullpath)
     if match:
