@@ -18,7 +18,7 @@ class Type(Base):
     classes = relationship("Class", back_populates="type")
 
 
-def get_type_assign(module_ast, scope = None):
+def get_type_assign(module_ast, scope=None):
     """ Return type of the variable set by module_ast which is a
         ast.Assign instance"""
     if type(module_ast) == ast.Assign:
@@ -42,7 +42,7 @@ def get_type_assign(module_ast, scope = None):
                     tl.append(type_right)
         return tl
     # Name
-    elif type(module_ast, scope) == ast.Name:
+    elif type(module_ast) == ast.Name:
         var_id = module_ast.id
         if scope.exist(var_id):
             for sc in scope.get_parents():
@@ -50,14 +50,22 @@ def get_type_assign(module_ast, scope = None):
                     if var.name == var_id:
                         return var.type
         return [None]
-    # Function call
+    # List
+    elif type(module_ast) in [ast.List, ast.ListComp]:
+        return [type([])]
+    # Call
     elif type(module_ast) == ast.Call:
-        pass
+        return get_type_func_return(module_ast.func.id, scope)
     # Constant
     elif type(module_ast) == ast.Constant:
         return [type(module_ast.value)]
-    return 0
+    return None
 
 
-def get_type_func_return(module_ast):
-    pass
+def get_type_func_return(function_id, scope):
+    """ Look in parent scopes for a function with same name and get the return type """
+    for parent in scope.get_parents():
+        for func in parent.function:
+            if func.name == function_id:
+                return func.return_type
+    return None

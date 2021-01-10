@@ -6,8 +6,8 @@ from src.bdd.bdd import Base
 
 
 class Function(Definition):
-    __tablename__ = None
-
+    __tablename__ = 'function'
+    return_type = relationship("Type", back_populates="function")
     __mapper_args__ = {
         'polymorphic_identity': 'function'
     }

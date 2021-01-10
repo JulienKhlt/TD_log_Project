@@ -8,7 +8,7 @@ from src.bdd.Import import Import
 from src.bdd.ImportFrom import ImportFrom
 from src.bdd.Scope import Scope
 from src.bdd.Variable import Variable
-from src.bdd.Type import get_type_assign, Type
+from src.bdd.Type import get_type_assign, Type, get_type_func_return
 
 
 def calculate(module):
@@ -75,6 +75,7 @@ def handle_fun_def(scope, def_node, indent_table):
     new_scope = Scope(indent_level=indent_level, indent_level_id=indent_level_id, name=def_node.name,
                       lineno=def_node.lineno)
     new_scope.parent = scope
+    new_scope.func_def = def_node.name
     scope.module.scope.append(new_scope)
 
     scope.function.append(Function(name=def_node.name))
@@ -120,6 +121,19 @@ def handle_import_from(scope, import_node):
                                                     target_name=alias.name, target_asname=alias.asname))
 
 
+def handle_return(module_ast, current_scope):
+    # return type
+    ret_type = get_type_assign(module_ast.value)
+    # add return type to function
+    func_name = current_scope.func_def
+    parents = current_scope.get_parents()[1:]
+    for parent in parents:
+        if parent.function:
+            for func in parent.function:
+                if func_name == func.name:
+                    func.return_type.append(Type(name=str(ret_type)))
+
+
 def indent(current_indent_level, indent_table):
     """Return new indent_level and indent_level_id as a tuple and update indent_table"""
     new_scope_indent_level = current_indent_level + 1
@@ -149,6 +163,8 @@ def calculate_rec(module, current_scope, module_ast, indent_table):
         handle_import(current_scope, module_ast)
     elif type(module_ast) == ast.ImportFrom:
         handle_import_from(current_scope, module_ast)
+    elif type(module_ast) == ast.Return:
+        handle_return(module_ast, current_scope)
     else:
         # print(f"Unrecognized node: {type(module_ast)}")
         pass

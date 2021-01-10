@@ -16,6 +16,7 @@ class Scope(Base):
 
     # To access module, class or function scope
     name = Column(String(50))
+    func_def = Column(String(50))
     lineno = Column(Integer)
 
     parent_id = Column(Integer, ForeignKey('scope.id'))
