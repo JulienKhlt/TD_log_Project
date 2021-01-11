@@ -12,6 +12,10 @@ You need the following dependencies to make it work:
 - docker-compose
 - pipenv
 
+**For Debian users, please install pipenv with pip and not with apt/apt-get or it won't work!**
+
+`pip install --user pipenv` should do the trick.
+
 Other dependencies will be automatically installed. For future release, we plan on
 removing those dependencies, but for development it's just easier.
 We didn't test it on Windows, but it should work the same way.
@@ -42,3 +46,27 @@ https://trello.com/b/hZRqQjoj/projet-tdlog
 ## Licence
 
 Whatever
+
+
+## TODOs
+
+- TODO Write Tests
+- TODO Add a CLI
+- TODO Write type inference
+- TODO Write dot completion
+- TODO Change bdd size for everything (problem with numpy today)
+- TODO better completion type detection (i.e. better regex)
+- TODO add dynamic completion (No computation on EACH change)
+- DONE write heritage completion
+- TODO write import completion
+- TODO write import/from completion
+- TODO add virtualenv/pipenv support
+- DONE: commit session only on file save
+- DONE: add a new file to project
+- TODO How to handle external files ?
+- TODO upgrade semantic completion -> 3 loops when 1 is required!
+- DONE: fix "index out of range" on finding good scope
+- TODO clean up logger
+- TODO write separate logs for ls, rs, pygls
+- TODO add import aware completion
+- TODO better vscode extension deployment

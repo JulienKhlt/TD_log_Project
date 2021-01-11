@@ -75,19 +75,11 @@ function startLangServer(
 export function activate(context: ExtensionContext) {
 
   // Production - Client is going to run the server (for use within `.vsix` package)
-  const cwd = path.join(__dirname, "..", "..");
-  const pythonPath = "/home/pglandon/.local/share/virtualenvs/TD_log_Project-Xd3_ybP8/bin/python"
-  const serverPath = "/home/pglandon/Projects/TD_log_Project/src/lsp"
-
-  const config = workspace.getConfiguration()
-
-  if (!pythonPath) {
-    throw new Error("`python.pythonPath` is not set");
-  }
+  const projectRoot = path.join(__dirname, "..", "..", "..", "..");
 
   // TODO : get server dynamically!
-  console.log("Using python: " + pythonPath)
-  client = startLangServer(pythonPath, [serverPath], cwd);
+
+  client = startLangServer("pipenv", ["run", "lsp"], projectRoot);
 
 
   context.subscriptions.push(client.start());

@@ -10,4 +10,9 @@ if __name__ == "__main__":
 
     machin = 25
 
-    j
+    machin2 = 28
+    machin3 = 85
+
+    
+
+    

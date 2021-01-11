@@ -3,13 +3,13 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 from pygls.features import (COMPLETION, INITIALIZE, TEXT_DOCUMENT_DID_CHANGE,
-                            TEXT_DOCUMENT_DID_CLOSE, TEXT_DOCUMENT_DID_OPEN)
+                            TEXT_DOCUMENT_DID_CLOSE, TEXT_DOCUMENT_DID_OPEN, TEXT_DOCUMENT_DID_SAVE)
 from pygls.protocol import LanguageServerProtocol
 from pygls.server import LanguageServer
 from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
                          CompletionParams, CompletionTriggerKind,
                          DidChangeTextDocumentParams, InitializeParams,
-                         Position)
+                         Position, DidOpenTextDocumentParams)
 from src.bdd.Project import ProjectManager
 from src.lsp.CompletionParser import CompletionParser
 
@@ -79,11 +79,27 @@ def did_change(ls, params: DidChangeTextDocumentParams):
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
 
     # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)
+    # ProjectManager().session.commit()
+    # No need! -> We commit on save/close
+
+@ponthon.feature(TEXT_DOCUMENT_DID_SAVE)
+def did_save(ls, params):
+    """Commit session on save."""
     ProjectManager().session.commit()
-    
-    #
-    # with open("test.test", "w") as file:
-    #     text = ls.workspace.get_document(params.textDocument.uri)
-    #     file.write(text.source)
-    #
-    # logging.info(f"Document {documentPath} did change.")
+
+@ponthon.feature(TEXT_DOCUMENT_DID_OPEN)
+def did_open(ls, params: DidOpenTextDocumentParams):
+    """Add file to project if it's a new file."""
+
+    document_path = Path(urlparse(params.textDocument.uri).path)
+    module = ls.project.get_module(document_path)
+
+    if not module:
+        # check if file belongs to project:
+        project_path = Path(ls.project.path)
+        try:
+            document_path.relative_to(project_path)
+            if document_path.suffix == '.py':
+                ls.project.add_module(document_path)
+        except ValueError:
+            logging.info(f"{document_path.name} doesn't belong to project tree.")

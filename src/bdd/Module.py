@@ -54,13 +54,14 @@ class Module(Base):
         cascade="all",
     )
 
+    def validate_code(self, code):
+        try:
+            ast.parse(code)
+        except SyntaxError:
+            return False
+        return True
+
     def update(self, source=None):
-        self.scope = []
-        self.imports = []
-        self.imports_from = []
-
-        self.visit_date = datetime.datetime.now()
-
         # We rebuild everything! (We don't really know how the module was changed...)
         # and tracking difference would be way less efficient (AST substraction)
         # We could really optimize with how the LS Protocol works, but it would require much more
@@ -104,6 +105,13 @@ class Module(Base):
         try:
             module_ast = ast.parse(source, self.name)
 
+            # We erase everything ONLY if the file is valid!
+            self.scope = []
+            self.imports = []
+            self.imports_from = []
+
+            self.visit_date = datetime.datetime.now()
+
             module_scope = Scope(indent_level=0, indent_level_id=0, name=self.name, lineno=0)
             self.scope.append(module_scope)
 
@@ -143,7 +151,12 @@ class Module(Base):
 
     def get_scope_from_lineno(self, lineno):
         """Return Scope from this Module matching given line number."""
-        good_scope = self.scope[0]
+        try:
+            good_scope = self.scope[0]
+        except IndexError:
+            if len(self.scope) == 0:
+                logging.error("Scope can't be empty! What the fuck?!")
+            return Scope()
         for scope in self.scope:
             if scope.lineno > good_scope.lineno and scope.lineno <= lineno:
                 good_scope = scope
@@ -171,3 +184,49 @@ class Module(Base):
                     possibility.append(scope_variable.name)
 
         return possibility
+
+    def complete_class(self, to_complete, lineno):
+        """Return a list of string that corresponds to possible variable completion for TO_COMPLETE at LINENO."""
+        # DONE add scope aware completion...
+        logging.info(f"Tring to complete {to_complete} in module {self.name}")
+
+        possibility = []
+        scope = self.get_scope_from_lineno(lineno)
+        completion_scopes = scope.get_parents()
+
+
+        for completion_scope in completion_scopes:
+            # Variable completion
+            for scope_variable in completion_scope.classes:
+
+                # TODO : Use levensthein/damerau
+                regex = "^" + to_complete
+                match = re.match(regex, scope_variable.name)
+                if match:
+                    possibility.append(scope_variable.name)
+
+        return possibility
+
+    def complete_function(self, to_complete, lineno):
+        """Return a list of string that corresponds to possible variable completion for TO_COMPLETE at LINENO."""
+        # DONE add scope aware completion...
+        logging.info(f"Tring to complete {to_complete} in module {self.name}")
+
+        possibility = []
+        scope = self.get_scope_from_lineno(lineno)
+        completion_scopes = scope.get_parents()
+
+
+        for completion_scope in completion_scopes:
+            # Variable completion
+            for scope_variable in completion_scope.function:
+
+                # TODO : Use levensthein/damerau
+                regex = "^" + to_complete
+                match = re.match(regex, scope_variable.name)
+                if match:
+                    possibility.append(scope_variable.name)
+
+        return possibility
+
+
