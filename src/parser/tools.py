@@ -93,6 +93,8 @@ def handle_class_def(scope, class_node, indent_table):
 
 def handle_import(scope, import_node):
     for alias in import_node.names:
+        if not alias.asname:
+            alias.asname = alias.name
         scope.module.imports.append(Import(name=alias.name, asname=alias.asname))
 
 

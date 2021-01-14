@@ -371,12 +371,15 @@ class Project(Base):
             for module_import in project_module.imports + project_module.imports_from:
                 if module_import.module_to_id is not None:
                     continue
+
                 paths = self.config.get_python_module_search_path()
+                paths.append(Path(self.path))
+
                 for string_path in paths:
                     path = Path(string_path, module_import.name)
 
                     result = session.query(Module.id).filter_by(
-                        path=str(path)).first()
+                        path=str(path.absolute())).first()
                     if not result:
                         path_py = path.with_suffix('.py')
                         result = session.query(Module.id).filter_by(
@@ -385,6 +388,8 @@ class Project(Base):
                         module_import.module_to_id = result[0]
                         break
                 if not module_import.module_to_id:
+
+
                     logging.warning(f"Import not found: {module_import.name}")
 
     def update(self):

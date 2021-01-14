@@ -81,8 +81,12 @@ async def did_change(ls, params: DidChangeTextDocumentParams):
 
     logging.info("Updating module...")
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
-    logging.info("Building bounded external projects...")
-    ls.project.bind_external_project([module])
+
+    # If external is too big, might crash... avoiding till async
+    # logging.info("Building bounded external projects...")
+    # ls.project.bind_external_project([module])
+
+    # Keeping it for local import!
     logging.info("Binding external modules...")
     ls.project.bind_imports()
 

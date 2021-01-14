@@ -1,3 +1,4 @@
+import logging
 import subprocess
 import sys
 import pkg_resources
