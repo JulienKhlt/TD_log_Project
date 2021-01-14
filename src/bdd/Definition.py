@@ -11,7 +11,7 @@ class Definition(Base):
 
     id = Column(Integer, primary_key=True)
 
-    name = Column(String(50))
+    name = Column(String(250))
 
     scope_id = Column(Integer, ForeignKey("scope.id"))
     scope = relationship("Scope")

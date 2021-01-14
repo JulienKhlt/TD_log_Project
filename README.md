@@ -58,7 +58,7 @@ Whatever
 - TODO better completion type detection (i.e. better regex)
 - TODO add dynamic completion (No computation on EACH change)
 - DONE write heritage completion
-- TODO write import completion
+- DONE write import completion
 - TODO write import/from completion
 - TODO add virtualenv/pipenv support
 - DONE: commit session only on file save
@@ -69,4 +69,5 @@ Whatever
 - TODO clean up logger
 - TODO write separate logs for ls, rs, pygls
 - TODO add import aware completion
-- TODO better vscode extension deployment
+- DONE: better vscode extension deployment
+- TODO add chained import completion

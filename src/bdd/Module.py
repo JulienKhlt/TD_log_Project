@@ -80,6 +80,14 @@ class Module(Base):
             imports_name.append(module_import.name)
         return imports_name
 
+    def get_unbound_imports_name(self):
+        """Return name of unbound imported modules in module."""
+        imports_name = []
+        for module_import in self.imports + self.imports_from:
+            if module_import.module_to_id is not None:
+                imports_name.append(module_import.name)
+        return imports_name
+
     def build(self):
         """Index all scopes and imports within module."""
 

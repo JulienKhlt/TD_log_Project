@@ -77,6 +77,8 @@ def did_change(ls, params: DidChangeTextDocumentParams):
     module = ls.project.get_module(document_path)
 
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+    ls.project.bind_external_project([module])
+    ls.project.bind_imports()
 
     # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)
     # ProjectManager().session.commit()

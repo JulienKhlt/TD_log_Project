@@ -59,6 +59,11 @@ def make_function_completion_item(word, add_args=True):
     else:
         return CompletionItem(word, CompletionItemKind.Class)
 
+def make_import_completion_item(word):
+    """Return a LSP::CompletionItem for function name WORD."""
+
+    return CompletionItem(word, CompletionItemKind.Module)
+
 class CompletionType:
     """An enumeration of different type of completion."""
 
@@ -316,7 +321,8 @@ class CompletionParser(CompletionParams):
 
     def complete_import(self):
         """Return a list CompletionItem for import completion (i.e. module pathes)"""
-        paths = self.server_context.project.config.get_python_module_search_path()
+        paths = self.server_context.project.complete_import(self.get_word())
+        return [make_import_completion_item(path) for path in paths]
 
     def complete(self):
         """Return CompletionList for given context."""

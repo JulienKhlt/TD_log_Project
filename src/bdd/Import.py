@@ -19,3 +19,7 @@ class Import(Base):
     module_to_id = Column(Integer, ForeignKey("module.id"))
     module_to = relationship("Module", foreign_keys=module_to_id)
 
+    def __str__(self):
+        result = f"Name: {self.name}, As: {self.asname}, From: {self.module_from.name}, Bound: {self.module_to_id is not None}"
+        return result
+

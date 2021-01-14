@@ -247,12 +247,22 @@ class Project(Base):
 
     def get_project_imports_name(self):
         """Return all imports (and imports_from) name within the project."""
-        importsNameList = []
+        imports_name_list = []
 
         for project_module in self.module:
-            importsNameList += project_module.get_imports_name()
+            imports_name_list += project_module.get_imports_name()
 
-        return importsNameList
+        return imports_name_list
+
+    def get_project_unbound_imports_name(self):
+        """Return all imports (and imports_from) name that are NOT bound within the project."""
+
+        unbound_imports_name_list = []
+
+        for module in self.module:
+            unbound_imports_name_list += module.get_unbound_imports_name()
+
+        return unbound_imports_name_list
 
     def get_module_path(self, module_name):
         """Return module Path from name if it exists in project modules dirs, None otherwise."""
@@ -294,10 +304,16 @@ class Project(Base):
         else:
             return self.get_project_root(file_path.parent)
 
-    def bind_external_project(self):
+    def bind_external_project(self, for_modules=None):
         """Bind external projects to this project. Call this AFTER all modules have been indexed.
-        Fast make that only necessary files are indexed, not everything"""
-        imports_name = self.get_project_imports_name()
+        Fast make that only necessary files are indexed, not everything. if FOR_MODULE is not None, search only in this
+        list."""
+        if not for_modules:
+            imports_name = self.get_project_unbound_imports_name()
+        else:
+            imports_name = []
+            for module in for_modules:
+                imports_name += module.get_unbound_imports_name()
 
         for import_name in imports_name:
             if not self.is_module_in_project(import_name):
@@ -309,6 +325,7 @@ class Project(Base):
 
                     if self.config.fast:
                         from_path = module_path
+                    logging.info(f"Binding {imports_name} to {self.name}.")
                     ProjectManager().register_project(
                         project_name, str(project_root), True, True, from_path)
 
@@ -374,8 +391,25 @@ class Project(Base):
     def complete_import(self, to_complete):
         """Return a list of string with possible completion."""
         paths = self.config.get_python_module_search_path()
-        slash_path = to_complete.split('.').join(os.path.sep)
-        regex = rf'^{slash_path}'
+        regex = re.compile(rf'^{to_complete}')
+
+        completion_list = []
+
+        for path in paths:
+            if not path.exists():
+                continue
+
+            for directory in path.iterdir():
+                match = regex.match(directory.name)
+
+                if match and directory.joinpath('__init__.py').exists():
+                    completion_list.append(directory.name)
+
+            for file in list(path.glob('*.py')):
+                if regex.match(file.stem) and file.suffix == '.py':
+                    completion_list.append(file.stem)
+
+        return completion_list
 
 
 
