@@ -21,26 +21,48 @@ class ProjectManager:
             """sessionmaker is a function that enables sql alchemy
             session creation."""
             self.sessionmaker = sessionmaker
-            self.session = self.sessionmaker()
+            self._session = self.sessionmaker()
+
+        @property
+        def session(self):
+            if not self._session:
+                self._session = self.sessionmaker()
+
+            return self._session
 
         def exist(self, project_name):
             """Return True if a project with given name is already registered
             in BDD, False otherwise."""
-            session = self.sessionmaker()
+            session = self.session
 
             # check if project exists.
             query_result = session.query(Project.path).filter_by(
                 name=project_name).first()
             if query_result:
-                session.close()
+                # session.close()
                 return True
-            session.close()
+            # session.close()
             return False
+
+        def get_project(self, project_name):
+            """Return True if a project with given name is already registered
+            in BDD, False otherwise."""
+            session = self.session
+
+            # check if project exists.
+            query_result = session.query(Project).filter_by(
+                name=project_name).first()
+            if query_result:
+                # session.close()
+                return query_result
+            # session.close()
+            else:
+                return None
 
         def update_project(self, project_name, from_path):
             """Index new files in project, update bindings and
             external dependencies."""
-            session = self.sessionmaker()
+            session = self.session
 
             # check if project exists.
             query_result = session.query(Project).filter_by(
@@ -54,11 +76,19 @@ class ProjectManager:
                     f"{project_name} already fully indexed, skipping.")
                 return
 
+            if query_result.external:
+                module_name = Path(from_path).name
+                if query_result.is_module_in_project(module_name):
+                    logging.info(f"{project_name} is already enough indexed, skipping.")
+                    return
+
+            logging.info(f"Indexing {project_name} from {from_path}.")
             query_result.index(from_path)
+            logging.info(f"Building {project_name}.")
             query_result.build()
 
             session.commit()
-            session.close()
+            # session.close()
 
         def register_project(self, project_name, project_path, external=False,
                              fast=True, from_path=None):
@@ -67,9 +97,11 @@ class ProjectManager:
                 if not external:
                     logging.info(f"{project_name} already registered!")
                 else:
+                    logging.info(f"{project_name} is already referenced as an external project.")
                     self.update_project(project_name, from_path)
-                return
+                return self.get_project(project_name)
             # TODO -> venv support!
+
             project = Project(name=project_name, path=str(project_path), external=external,
                               config=Config(python_home="/usr/",
                                             fast=fast))
@@ -91,7 +123,7 @@ class ProjectManager:
             workspaceUri = Path(workspaceUri)
 
             query_result = self.session.query(Project).filter_by(
-                path=str(workspaceUri)).first()
+                path=str(workspaceUri.absolute())).first()
 
             return query_result
 
@@ -100,7 +132,7 @@ class ProjectManager:
             or update it. Returns Project associated to workspacePath, None in case of failure."""
 
             # Let's use pathlib to assure cross-OS compatibility :
-            workspacePath = Path(workspacePath)
+            workspacePath = Path(workspacePath).absolute()
             if not workspacePath.is_dir() or not workspacePath.exists():
                 logging.error("Project root doesn't exist!")
                 return None
@@ -119,6 +151,7 @@ class ProjectManager:
 
                 return project
             else:
+                logging.info("New workspace, registering...")
                 project = self.register_project(workspacePath.name, workspacePath)
                 self.session.add(project)
 
@@ -265,7 +298,7 @@ class Project(Base):
         return unbound_imports_name_list
 
     def get_module_path(self, module_name):
-        """Return module Path from name if it exists in project modules dirs, None otherwise."""
+        """Return module Path from name if it exists in project modules search dirs, None otherwise."""
         search_paths = self.config.get_python_module_search_path()
         for search_path in search_paths:
             full_path = search_path.joinpath(module_name)
@@ -325,12 +358,14 @@ class Project(Base):
 
                     if self.config.fast:
                         from_path = module_path
-                    logging.info(f"Binding {imports_name} to {self.name}.")
+                    logging.info(f"Binding {import_name} to {self.name}.")
                     ProjectManager().register_project(
                         project_name, str(project_root), True, True, from_path)
 
-    def bind_imports(self, session=Session()):
+    def bind_imports(self):
         """Bind modules together via imports. Call this AFTER all modules have been indexed."""
+
+        session = ProjectManager().session
 
         for project_module in self.module:
             for module_import in project_module.imports + project_module.imports_from:

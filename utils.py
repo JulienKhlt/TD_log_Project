@@ -44,7 +44,7 @@ def install():
 
 def init():
     """Init Project BDD. This should be done before migrating"""
-    bash_command = "docker-compose -f docker/docker-compose.yml up -d db_init"
+    bash_command = "docker-compose -f docker/docker-compose.yml up db_init"
     process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
     process.communicate()
 

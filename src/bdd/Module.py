@@ -84,7 +84,7 @@ class Module(Base):
         """Return name of unbound imported modules in module."""
         imports_name = []
         for module_import in self.imports + self.imports_from:
-            if module_import.module_to_id is not None:
+            if module_import.module_to_id is None:
                 imports_name.append(module_import.name)
         return imports_name
 
@@ -115,6 +115,8 @@ class Module(Base):
 
             # We erase everything ONLY if the file is valid!
             self.scope = []
+
+            # That means we have to rebind import...
             self.imports = []
             self.imports_from = []
 

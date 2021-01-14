@@ -47,23 +47,26 @@ https://trello.com/b/hZRqQjoj/projet-tdlog
 
 Whatever
 
+## Issues
+
+- Do NOT use import in VSCode projects.... The indexing takes too long and make LS crash -> need async but complicated with SQL Alchemy... Fix this by adding your project by command line first!
 
 ## TODOs
 
 - TODO Write Tests
-- TODO Add a CLI
+- INPROGRESS Add a CLI -> What do you need PL ?
 - TODO Write type inference
 - TODO Write dot completion
-- TODO Change bdd size for everything (problem with numpy today)
+- DONE Change bdd size for everything (problem with numpy today)
 - TODO better completion type detection (i.e. better regex)
-- TODO add dynamic completion (No computation on EACH change)
+- DROPPED add dynamic completion (No computation on EACH change)
 - DONE write heritage completion
 - DONE write import completion
 - TODO write import/from completion
 - TODO add virtualenv/pipenv support
 - DONE: commit session only on file save
 - DONE: add a new file to project
-- TODO How to handle external files ?
+- DROPPED How to handle external files ?
 - TODO upgrade semantic completion -> 3 loops when 1 is required!
 - DONE: fix "index out of range" on finding good scope
 - TODO clean up logger
@@ -71,3 +74,5 @@ Whatever
 - TODO add import aware completion
 - DONE: better vscode extension deployment
 - TODO add chained import completion
+- TODO add builtins completion (print, etc)
+- DROPPED write async file referencing

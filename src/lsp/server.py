@@ -19,6 +19,8 @@ logging.basicConfig(filename="ponthon.log", filemode="w", level=logging.DEBUG)
 class PonthonProtocol(LanguageServerProtocol):
     """Override default LSP protocol (pygls) to link our reference server."""
 
+
+
     def bf_initialize(self, params: InitializeParams):
         """Called when the Language Server starts.
        Start Reference Server for given projects."""
@@ -70,14 +72,18 @@ def completions(ls, params: CompletionParams = None):
     return parser.complete()
 
 @ponthon.feature(TEXT_DOCUMENT_DID_CHANGE)
-def did_change(ls, params: DidChangeTextDocumentParams):
+async def did_change(ls, params: DidChangeTextDocumentParams):
     """Update given Module if its a valid python file."""
+
 
     document_path = Path(urlparse(params.textDocument.uri).path)
     module = ls.project.get_module(document_path)
 
+    logging.info("Updating module...")
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+    logging.info("Building bounded external projects...")
     ls.project.bind_external_project([module])
+    logging.info("Binding external modules...")
     ls.project.bind_imports()
 
     # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)

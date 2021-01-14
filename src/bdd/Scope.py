@@ -15,7 +15,7 @@ class Scope(Base):
     indent_level_id = Column(Integer)
 
     # To access module, class or function scope
-    name = Column(String(50))
+    name = Column(String(250))
     lineno = Column(Integer)
 
     parent_id = Column(Integer, ForeignKey('scope.id'))
