@@ -2,6 +2,8 @@ import numbers
 import requests
 
 
+FOO = 'BAR'
+
 def print_hello_world():
     print("Hello, World!")
     print("Yeeesaie")
@@ -15,13 +17,6 @@ if __name__ == "__main__":
     machin = 25
 
     machin2 = 28
-    machin3 = 85
-    
-    machin3
-
-    print_hello_world()
-
-    print
-    
+    machin3 = 85    
 
     

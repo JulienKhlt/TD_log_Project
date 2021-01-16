@@ -255,7 +255,7 @@ class Module(Base):
         """Return RS::Object bound to symbol in this context. -> Can be a Type, a Module..."""
         for rs_import in self.imports:
             if rs_import.asname == symbol:
-                return rs_import
+                return rs_import.module_to
 
         return None
         # TODO : Return Type

@@ -11,6 +11,7 @@ from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
 from pygls.workspace import (RE_START_WORD, position_from_utf16,
                              position_to_utf16)
 from src.rs.CompletionRequest import CompletionRequest
+from src.rs.CompletionTypes import CompletionType
 
 RE_WORD_BEFORE = re.compile(r"(([A-Za-z_0-9]|\.)*\(?)$")
 
@@ -39,96 +40,8 @@ def levenshtein(seq1, seq2):
                 )
     return (matrix[size_x - 1, size_y - 1])
 
-def make_keyword_completion_item(word):
-    """Return a LSP::CompletionItem for reserved keyword WORD."""
-    return CompletionItem(word, CompletionItemKind.Keyword)
-
-def make_variable_completion_item(word):
-    """Return a LSP::CompletionItem for variable name WORD."""
-    return CompletionItem(word, CompletionItemKind.Variable)
-
-def make_class_completion_item(word, add_args=True):
-    """Return a LSP::CompletionItem for class name WORD."""
-    if add_args:
-        return CompletionItem(word, CompletionItemKind.Class, insert_text=f"{word}()")
-    else:
-        return CompletionItem(word, CompletionItemKind.Class)
-
-def make_function_completion_item(word, add_args=True):
-    """Return a LSP::CompletionItem for function name WORD."""
-    if add_args:
-        return CompletionItem(word, CompletionItemKind.Function, insert_text=f"{word}()")
-    else:
-        return CompletionItem(word, CompletionItemKind.Class)
-
-def make_import_completion_item(word):
-    """Return a LSP::CompletionItem for function name WORD."""
-
-    return CompletionItem(word, CompletionItemKind.Module)
-
-def make_external_completion_item(word):
-    """Return a LSP::CompletionItem for function name WORD."""
-
-    return CompletionItem(word, CompletionItemKind.Module)
-
-def make_builtin_completion_item(word):
-    return CompletionItem(word, CompletionItemKind.Function)
-
-class CompletionType:
-    """An enumeration of different type of completion."""
-
-    IMPORT_COMPLETION = 0
-    DOT_COMPLETION = 1
-    SEMANTIC_COMPLETION = 2
-    IMPORT_FROM_COMPLETION = 3
-    HERITAGE_COMPLETION = 4
-    SNIPPET_COMPLETION = 5
-    KEYWORD_COMPLETION = 6
-
-
 class CompletionParser(CompletionParams):
     """A class that adds some useful methods to CompletionParams. -> Binds LS and RS together!"""
-
-    KEYWORDS = [
-        "False",
-        "await",
-        "else",
-        "import",
-        "pass",
-        "None",
-        "break",
-        "except",
-        "in",
-        "raise",
-        "True",
-        "class",
-        "finally",
-        "is",
-        "return",
-        "and",
-        "continue",
-        "for",
-        "lambda",
-        "try",
-        "as",
-        "def",
-        "from",
-        "nonlocal",
-        "while",
-        "assert",
-        "del",
-        "global",
-        "not",
-        "with",
-        "async",
-        "elif",
-        "if",
-        "or",
-        "yield"
-    ]
-
-    # Errors can be made!
-    MAX_DISTANCE = 1
 
     def __init__(self, completionParams, server_context):
         super().__init__(
@@ -157,6 +70,16 @@ class CompletionParser(CompletionParams):
 
         self._module = module
         return self._module
+
+    @property
+    def rs_object(self):
+        """Return RS Object from given context."""
+        if not self.need_context_computation():
+            logging.info(f"Stay within module {self.module.name} context.")
+            return self.module
+
+        return self.get_context()
+
 
     def get_document_path(self):
         """Return Path from Uri."""
@@ -253,9 +176,15 @@ class CompletionParser(CompletionParams):
 
         return False
 
-    def is_dot_completion(self):
+    def need_context_computation(self):
         """I need those type inference PL!!!"""
-        return self.context.triggerKind == CompletionTriggerKind.TriggerCharacter
+
+        # We check that symbols preceding the completion is smthing like foo.bar.
+        if re.match('.*\..*', self.get_word_before()):
+            return True
+
+
+        return False
 
     def get_completion_types(self):
         """Return a map of CompletionType that is computed with given context."""
@@ -274,95 +203,21 @@ class CompletionParser(CompletionParams):
         if self.is_import_from_completion():
             self.completion_types[CompletionType.IMPORT_FROM_COMPLETION] = True
 
-        if self.is_dot_completion():
-            self.completion_types[CompletionType.DOT_COMPLETION] = True
-
         if not self.completion_types:
             self.completion_types[CompletionType.SEMANTIC_COMPLETION] = True
             self.completion_types[CompletionType.SNIPPET_COMPLETION] = True
+            self.completion_types[CompletionType.BUILTINS_COMPLETION] = True
             self.completion_types[CompletionType.KEYWORD_COMPLETION] = True
 
+        if self.need_context_computation():
+            self.completion_types[CompletionType.KEYWORD_COMPLETION] = False
+            self.completion_types[CompletionType.BUILTINS_COMPLETION] = False
+
         return self.completion_types
-
-    def complete_keyword(self):
-        """Return a list of CompletionItem for keyword completion."""
-
-        word = self.get_word()
-        completion_item_list = []
-        for keyword in CompletionParser.KEYWORDS:
-            if levenshtein(word, keyword) < CompletionParser.MAX_DISTANCE + len(keyword) - len(word):
-                completion_item_list.append(make_keyword_completion_item(keyword))
-
-        return completion_item_list
-
-    def complete_semantic_variable(self):
-        """Return a list of CompletionItem for variable completion."""
-        real_lineno = self.position.line + 1
-        variable_list = self.module.complete_variable(self.get_word(), real_lineno)
-        return [make_variable_completion_item(var_name) for var_name in variable_list]
-
-    def complete_semantic_class(self):
-        """Return a list of CompletionItem for class completion."""
-        real_lineno = self.position.line + 1
-        class_list = self.module.complete_class(self.get_word(), real_lineno)
-        return [make_class_completion_item(var_name) for var_name in class_list]
-
-    def complete_semantic_function(self):
-        """Return a list of CompletionItem for function completion."""
-        real_lineno = self.position.line + 1
-        function_list = self.module.complete_function(self.get_word(), real_lineno)
-        return [make_function_completion_item(var_name) for var_name in function_list]
-
-    def complete_semantic_external(self):
-        """Return a list of CompletionItem for external external completion."""
-        module_list = self.module.complete_external(self.get_word())
-        return [make_external_completion_item(module_name) for module_name in module_list]
-
-    def complete_semantic_builtins(self):
-        """Return a list of matching builtins definition."""
-        builtins_list = []
-        regex = re.compile(rf'^{self.get_word()}')
-
-        for builtin in dir(builtins):
-            if regex.match(builtin):
-                builtins_list.append(make_builtin_completion_item(builtin))
-
-        return builtins_list
-
-
-    def complete_semantic(self):
-        """Return a list of CompletionItem for semantic completion."""
-        completion_list = []
-
-        # TODO : You can do better!
-        completion_list += self.complete_semantic_variable()
-        completion_list += self.complete_semantic_class()
-        completion_list += self.complete_semantic_function()
-        completion_list += self.complete_semantic_external()
-        completion_list += self.complete_semantic_builtins()
-
-        return completion_list
 
     @property
     def lineno(self):
         return self.position.line + 1
-
-    def complete_heritage(self):
-        """Retun a list of CompletionItem for heritage completion. (.i.e semantic completion with class name)"""
-        real_lineno = self.position.line + 1
-        class_list = self.module.complete_class(self.get_word(), real_lineno)
-        return [make_class_completion_item(var_name, False) for var_name in class_list]
-
-    def complete_import(self):
-        """Return a list of CompletionItem for import completion (i.e. module pathes)"""
-        paths = self.server_context.project.complete_import(self.get_word())
-        return [make_import_completion_item(path) for path in paths]
-
-    def complete_import_from(self):
-        """Return a list of CompletionItem for import/from completion (i.e. definition in module)"""
-
-        # TODO: might take a while, better work on smthing else!
-        return []
 
     def split_completion_object(self, completion_object):
         """Return a list of string reprenting the object that should be looked for consecutively.
@@ -373,13 +228,20 @@ class CompletionParser(CompletionParams):
 
         return object_symbol_list
 
-    def get_context(self, context, symbol):
+    def get_context(self):
         """Return context for given symbol in given context. Context can be a Type or a Module."""
-        try:
-            return context.get_object(symbol)
-        except:
-            logging.error(f"{type(context)} has no method get_object yet.")
-            return None
+        symbol_chain = self.split_completion_object(self.get_word_before())
+        current_rs_object = self.module
+
+        for symbol in symbol_chain:
+            try:
+                current_rs_object = current_rs_object.get_object(symbol)
+                logging.info(f"New context found: {current_rs_object.name}")
+            except:
+                logging.error(f"{type(current_rs_object)} has no method get_object yet.")
+                return current_rs_object
+
+        return current_rs_object
 
     def complete_dot(self):
         """Check type of word before (Object or Module ?) and give completions accordingly."""
@@ -400,21 +262,6 @@ class CompletionParser(CompletionParams):
 
     def complete(self):
         """Return CompletionList for given context."""
-        # completion_item_# list = []
-        # completion_types = self.get_completion_types()
 
-        # if CompletionType.KEYWORD_COMPLETION in completion_types:
-        #     completion_item_list += self.complete_keyword()
-        # if CompletionType.SEMANTIC_COMPLETION in completion_types:
-        #     completion_item_list += self.complete_semantic()
-        # if CompletionType.HERITAGE_COMPLETION in completion_types:
-        #     completion_item_list += self.complete_heritage()
-        # if CompletionType.IMPORT_COMPLETION in completion_types:
-        #     completion_item_list += self.complete_import()
-        # if CompletionType.IMPORT_FROM_COMPLETION in completion_types:
-        #     completion_item_list += self.complete_import_from()
-        # if CompletionType.DOT_COMPLETION in completion_types:
-        #     self.complete_dot()
-
-        completion_request = CompletionRequest(self.module, self.get_word(), self.lineno, self.get_completion_types())
+        completion_request = CompletionRequest(self.rs_object, self.get_word(), self.lineno, self.get_completion_types())
         return completion_request.complete()
