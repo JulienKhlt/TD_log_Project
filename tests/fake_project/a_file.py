@@ -30,5 +30,6 @@ class Foo(Foo):
 
 truc = Foo()
 requests.get()
-
-    
+truc = Bar()
+requests.get
+numbers.Real()

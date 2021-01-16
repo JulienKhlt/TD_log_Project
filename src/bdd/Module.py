@@ -187,6 +187,8 @@ class Module(Base):
             # Variable completion
             for scope_variable in completion_scope.variable:
 
+                if not scope_variable.first_definition:
+                    continue
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
@@ -208,7 +210,6 @@ class Module(Base):
         for completion_scope in completion_scopes:
             # Variable completion
             for scope_variable in completion_scope.classes:
-
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
@@ -230,7 +231,6 @@ class Module(Base):
         for completion_scope in completion_scopes:
             # Variable completion
             for scope_variable in completion_scope.function:
-
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
