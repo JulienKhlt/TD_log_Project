@@ -1,4 +1,4 @@
-import logging
+from src.lsp.Logger import logging
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -12,9 +12,6 @@ from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
                          Position, DidOpenTextDocumentParams)
 from src.bdd.Project import ProjectManager
 from src.lsp.CompletionParser import CompletionParser
-
-logging.basicConfig(filename="ponthon.log", filemode="w", level=logging.DEBUG)
-
 
 class PonthonProtocol(LanguageServerProtocol):
     """Override default LSP protocol (pygls) to link our reference server."""

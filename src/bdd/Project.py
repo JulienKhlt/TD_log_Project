@@ -1,5 +1,5 @@
 import datetime
-import logging
+from src.bdd.Logger import logging
 import os
 import re
 from pathlib import Path

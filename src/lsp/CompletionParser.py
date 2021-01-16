@@ -1,6 +1,6 @@
 import builtins
 import copy
-import logging
+from src.lsp.Logger import logging
 import pathlib
 import re
 from urllib.parse import urlparse

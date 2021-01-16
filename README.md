@@ -74,7 +74,7 @@ Whatever
 - TODO upgrade semantic completion -> 3 loops when 1 is required!
 - DONE fix "index out of range" on finding good scope
 - TODO clean up logger
-- TODO write separate logs for ls, rs, pygls
+- DONE write separate logs for ls, rs, pygls and bdd
 - TODO add import aware completion
 - DONE: better vscode extension deployment
 - TODO -> IMPORTANT add chained import completion

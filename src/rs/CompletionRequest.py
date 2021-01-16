@@ -1,4 +1,4 @@
-import logging
+from src.rs.Logger import logging
 import builtins
 import re
 from src.rs.PythonKeywords import KEYWORDS

@@ -1,6 +1,6 @@
 import ast
 import datetime
-import logging
+from src.lsp.Logger import logging
 from pathlib import Path
 
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
