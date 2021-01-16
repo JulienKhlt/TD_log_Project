@@ -25,6 +25,8 @@ We didn't test it on Windows, but it should work the same way.
 To check please type `docker run hello-world` (without sudo). If it exits with an error, add yourself to the docker group with `sudo usermod -aG docker yourUsername` 
 and reload the system permission (rebooting works).
 
+*Please check that docker's daemon is running!* type `sudo systemctl enable docker --now` to start it automatically on reboot. `sudo systemctl start docker` to start it this one time.
+
 ## Installation
 
 In the root of the project, you'll find a CLI `utils` that will help you to install, run and test the project. Please use 
@@ -33,6 +35,7 @@ To install the project, run the following commands:
 - `python utils.py install`
 - `python utils.py init`
 - `python utils.py migrate`
+- If the last command fail, please run `cd docker` then `docker-compose up db_init` and do migration again.
 
 ## Usage
 
@@ -54,9 +57,15 @@ Whatever
 ## TODOs
 
 - TODO Write Tests
+<<<<<<< Updated upstream
 - INPROGRESS Add a CLI -> What do you need PL ?
 - TODO Write type inference
 - TODO Write dot completion
+=======
+- INPROGESS Add a CLI -> Need PL
+- TODO Write type inference
+- INPROGESS Write dot completion
+>>>>>>> Stashed changes
 - DONE Change bdd size for everything (problem with numpy today)
 - TODO better completion type detection (i.e. better regex)
 - DROPPED add dynamic completion (No computation on EACH change)
@@ -64,15 +73,25 @@ Whatever
 - DONE write import completion
 - TODO write import/from completion
 - TODO add virtualenv/pipenv support
+<<<<<<< Updated upstream
 - DONE: commit session only on file save
 - DONE: add a new file to project
 - DROPPED How to handle external files ?
+=======
+- DONE commit session only on file save
+- DONE add a new file to project
+- TODO How to handle external files ?
+>>>>>>> Stashed changes
 - TODO upgrade semantic completion -> 3 loops when 1 is required!
-- DONE: fix "index out of range" on finding good scope
+- DONE fix "index out of range" on finding good scope
 - TODO clean up logger
 - TODO write separate logs for ls, rs, pygls
 - TODO add import aware completion
+<<<<<<< Updated upstream
 - DONE: better vscode extension deployment
 - TODO add chained import completion
 - TODO add builtins completion (print, etc)
 - DROPPED write async file referencing
+=======
+- TODO better vscode extension deployment
+>>>>>>> Stashed changes

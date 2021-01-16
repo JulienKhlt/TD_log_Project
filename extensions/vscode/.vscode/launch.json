@@ -18,30 +18,6 @@
             "env": {
                 "VSCODE_DEBUG_MODE": "true"
             }
-        },
-        {
-            "name": "Launch Server",
-            "type": "python",
-            "request": "launch",
-            "module": "server",
-            "args": [
-                "--tcp"
-            ],
-            "justMyCode": false,
-            "pythonPath": "${command:python.interpreterPath}",
-            "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}"
-            }
-        }
-    ],
-    "compounds": [
-        {
-            "name": "Server + Client",
-            "configurations": [
-                "Launch Server",
-                "Launch Client"
-            ]
         }
     ]
 }

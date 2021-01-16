@@ -6,7 +6,8 @@ Open terminal and execute following commands:
 
 1. `npm install`
 1. `cd client/ && npm install`
-1. Change projectRoot in `client/extension.ts` to point to the location of the root of the project. (it works if you don't move the extension)
+1. `sudo npm -g install typescript`
+1. Change projectRoot in `client/extension.ts` to point to the location of the root of the project. (it works out of the box if you don't move the extension)
 
 ## Run Client
 
