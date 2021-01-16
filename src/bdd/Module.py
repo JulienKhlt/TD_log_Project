@@ -251,4 +251,17 @@ class Module(Base):
 
         return module_name_list
 
+    def get_object(self, symbol):
+        """Return RS::Object bound to symbol in this context. -> Can be a Type, a Module..."""
+        for rs_import in self.imports:
+            if rs_import.asname == symbol:
+                return rs_import
 
+        return None
+        # TODO : Return Type
+
+    def get_type(self, symbol):
+        """Return type of SYMBOL in given module context."""
+
+        logging.info(f"Looking for type of {symbol} in {self.name}.")
+        # We check if it's an import:

@@ -1,3 +1,7 @@
+import numbers
+import requests
+
+
 def print_hello_world():
     print("Hello, World!")
     print("Yeeesaie")
@@ -12,7 +16,12 @@ if __name__ == "__main__":
 
     machin2 = 28
     machin3 = 85
+    
+    machin3
 
+    print_hello_world()
+
+    print
     
 
     
