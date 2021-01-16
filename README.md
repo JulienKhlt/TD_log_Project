@@ -35,6 +35,7 @@ To install the project, run the following commands:
 - `python utils.py install`
 - `python utils.py init`
 - `python utils.py migrate`
+- `python utils.py cli scan` to add library to the reference server before hand -> avoid timeout in client (no async yet) | OPTIONAL AND MIGHT TAKE WHILE (APPROX 3 MIN on my computer).
 - If the last command fail, please run `cd docker` then `docker-compose up db_init` and do migration again.
 
 ## Usage
@@ -52,21 +53,21 @@ Whatever
 
 ## Issues
 
-- Do NOT use import in VSCode projects.... The indexing takes too long and make LS crash -> need async but complicated with SQL Alchemy... Fix this by adding your project by command line first!
+- Do NOT use import in VSCode projects.... The indexing takes too long and make LS crash -> need async but complicated with SQL Alchemy... Fix this by adding your project by command line first! or library scanning on install.
 
 ## TODOs
 
 - TODO Write Tests
 - INPROGRESS Add a CLI -> What do you need PL ?
 - TODO Write type inference
-- TODO Write dot completion
+- DONE Write dot completion
 - DONE Change bdd size for everything (problem with numpy today)
 - TODO better completion type detection (i.e. better regex)
 - DROPPED add dynamic completion (No computation on EACH change)
 - DONE write heritage completion
 - DONE write import completion
 - TODO write import/from completion
-- TODO add virtualenv/pipenv support
+- DROPPED -> Client modification needed... add virtualenv/pipenv support
 - DONE: commit session only on file save
 - DONE: add a new file to project
 - DROPPED How to handle external files ?
@@ -76,6 +77,9 @@ Whatever
 - TODO write separate logs for ls, rs, pygls
 - TODO add import aware completion
 - DONE: better vscode extension deployment
-- TODO add chained import completion
-- TODO add builtins completion (print, etc)
+- TODO -> IMPORTANT add chained import completion
+- DONE: add builtins completion (print, etc)
+- DONE Fix heritage
+- TODO Add async file parsing for external files -> or else it will crash
 - DROPPED write async file referencing
+- TODO add library scanning and referencing on install
