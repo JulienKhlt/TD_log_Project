@@ -431,6 +431,7 @@ class Project(Base):
     def complete_import(self, to_complete):
         """Return a list of string with possible completion."""
         paths = self.config.get_python_module_search_path()
+        paths.append(Path(self.path))
         regex = re.compile(rf'^{to_complete}')
 
         completion_list = []

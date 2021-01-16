@@ -239,4 +239,16 @@ class Module(Base):
 
         return possibility
 
+    def complete_external(self, to_complete):
+        module_name_list = []
+        regex = re.compile(rf'^{to_complete}')
+        for module_import in self.imports:
+            if regex.match(module_import.asname):
+                module_name_list.append(module_import.asname)
+        for module_import_from in self.imports_from:
+            if regex.match(module_import_from.target_asname):
+                module_name_list.append(module_import_from.target_asname)
+
+        return module_name_list
+
 
