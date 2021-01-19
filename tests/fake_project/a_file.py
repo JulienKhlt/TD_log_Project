@@ -1,4 +1,15 @@
+import numbers
+import requests
+import docker
+import numpy
+import django
+
+FOO = 'BAR'
+
 def print_hello_world():
+    
+    bar = 12
+    
     print("Hello, World!")
     print("Yeeesaie")
 
@@ -13,6 +24,14 @@ if __name__ == "__main__":
     machin2 = 28
     machin3 = 85
 
-    
+    foo = "bar"
 
-    
+class Foo(Foo):
+    pass
+
+
+truc = Foo()
+requests.get()
+truc = Bar()
+requests.get
+numbers.Real()

@@ -25,6 +25,8 @@ We didn't test it on Windows, but it should work the same way.
 To check please type `docker run hello-world` (without sudo). If it exits with an error, add yourself to the docker group with `sudo usermod -aG docker yourUsername` 
 and reload the system permission (rebooting works).
 
+*Please check that docker's daemon is running!* type `sudo systemctl enable docker --now` to start it automatically on reboot. `sudo systemctl start docker` to start it this one time.
+
 ## Installation
 
 In the root of the project, you'll find a CLI `utils` that will help you to install, run and test the project. Please use 
@@ -33,6 +35,8 @@ To install the project, run the following commands:
 - `python utils.py install`
 - `python utils.py init`
 - `python utils.py migrate`
+- `python utils.py cli scan` to add library to the reference server before hand -> avoid timeout in client (no async yet) | OPTIONAL AND MIGHT TAKE WHILE (APPROX 3 MIN on my computer).
+- If the last command fail, please run `cd docker` then `docker-compose up db_init` and do migration again.
 
 ## Usage
 
@@ -47,26 +51,35 @@ https://trello.com/b/hZRqQjoj/projet-tdlog
 
 Whatever
 
+## Issues
+
+- Do NOT use import in VSCode projects.... The indexing takes too long and make LS crash -> need async but complicated with SQL Alchemy... Fix this by adding your project by command line first! or library scanning on install.
 
 ## TODOs
 
 - TODO Write Tests
-- TODO Add a CLI
+- INPROGRESS Add a CLI -> What do you need PL ?
 - TODO Write type inference
-- TODO Write dot completion
-- TODO Change bdd size for everything (problem with numpy today)
+- DONE Write dot completion
+- DONE Change bdd size for everything (problem with numpy today)
 - TODO better completion type detection (i.e. better regex)
-- TODO add dynamic completion (No computation on EACH change)
+- DROPPED add dynamic completion (No computation on EACH change)
 - DONE write heritage completion
-- TODO write import completion
+- DONE write import completion
 - TODO write import/from completion
-- TODO add virtualenv/pipenv support
+- DROPPED -> Client modification needed... add virtualenv/pipenv support
 - DONE: commit session only on file save
 - DONE: add a new file to project
-- TODO How to handle external files ?
+- DROPPED How to handle external files ?
 - TODO upgrade semantic completion -> 3 loops when 1 is required!
-- DONE: fix "index out of range" on finding good scope
+- DONE fix "index out of range" on finding good scope
 - TODO clean up logger
-- TODO write separate logs for ls, rs, pygls
+- DONE write separate logs for ls, rs, pygls and bdd
 - TODO add import aware completion
-- TODO better vscode extension deployment
+- DONE: better vscode extension deployment
+- TODO -> IMPORTANT add chained import completion
+- DONE: add builtins completion (print, etc)
+- DONE Fix heritage
+- TODO Add async file parsing for external files -> or else it will crash
+- DROPPED write async file referencing
+- TODO add library scanning and referencing on install

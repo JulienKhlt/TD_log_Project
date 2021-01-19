@@ -1,6 +1,6 @@
 import ast
 import datetime
-import logging
+from src.lsp.Logger import logging
 from pathlib import Path
 
 from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String
@@ -80,6 +80,14 @@ class Module(Base):
             imports_name.append(module_import.name)
         return imports_name
 
+    def get_unbound_imports_name(self):
+        """Return name of unbound imported modules in module."""
+        imports_name = []
+        for module_import in self.imports + self.imports_from:
+            if module_import.module_to_id is None:
+                imports_name.append(module_import.name)
+        return imports_name
+
     def build(self):
         """Index all scopes and imports within module."""
 
@@ -90,9 +98,13 @@ class Module(Base):
             module_path = module_path.joinpath("__init__.py")
 
 
-        with open(str(module_path), "r") as file:
-            module_text = file.read()
-        self.build_from_string(module_text, True)
+        try:
+            with open(str(module_path), "r") as file:
+                module_text = file.read()
+                self.build_from_string(module_text, True)
+        except:
+            logging.error(f"Couldn't read file {module_name} (codec error), skipping.")
+            self.build_from_string("", True)
 
     def build_from_string(self, source, from_file=False):
         """Index from given string instead of using saved file (for real time completion)."""
@@ -107,6 +119,8 @@ class Module(Base):
 
             # We erase everything ONLY if the file is valid!
             self.scope = []
+
+            # That means we have to rebind import...
             self.imports = []
             self.imports_from = []
 
@@ -177,6 +191,8 @@ class Module(Base):
             # Variable completion
             for scope_variable in completion_scope.variable:
 
+                if not scope_variable.first_definition:
+                    continue
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
@@ -198,7 +214,6 @@ class Module(Base):
         for completion_scope in completion_scopes:
             # Variable completion
             for scope_variable in completion_scope.classes:
-
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
@@ -220,7 +235,6 @@ class Module(Base):
         for completion_scope in completion_scopes:
             # Variable completion
             for scope_variable in completion_scope.function:
-
                 # TODO : Use levensthein/damerau
                 regex = "^" + to_complete
                 match = re.match(regex, scope_variable.name)
@@ -229,4 +243,29 @@ class Module(Base):
 
         return possibility
 
+    def complete_external(self, to_complete):
+        module_name_list = []
+        regex = re.compile(rf'^{to_complete}')
+        for module_import in self.imports:
+            if regex.match(module_import.asname):
+                module_name_list.append(module_import.asname)
+        for module_import_from in self.imports_from:
+            if regex.match(module_import_from.target_asname):
+                module_name_list.append(module_import_from.target_asname)
 
+        return module_name_list
+
+    def get_object(self, symbol):
+        """Return RS::Object bound to symbol in this context. -> Can be a Type, a Module..."""
+        for rs_import in self.imports:
+            if rs_import.asname == symbol:
+                return rs_import.module_to
+
+        return None
+        # TODO : Return Type
+
+    def get_type(self, symbol):
+        """Return type of SYMBOL in given module context."""
+
+        logging.info(f"Looking for type of {symbol} in {self.name}.")
+        # We check if it's an import:

@@ -108,6 +108,8 @@ def handle_class_def(scope, class_node, indent_table):
 
 def handle_import(scope, import_node):
     for alias in import_node.names:
+        if not alias.asname:
+            alias.asname = alias.name
         scope.module.imports.append(Import(name=alias.name, asname=alias.asname))
 
 
@@ -117,6 +119,8 @@ def handle_import_from(scope, import_node):
     else:
         import_node.module = '/'.join(import_node.module.split('.'))
     for alias in import_node.names:
+        if not alias.asname:
+            alias.asname = alias.name
         scope.module.imports_from.append(ImportFrom(name=import_node.module,
                                                     target_name=alias.name, target_asname=alias.asname))
 

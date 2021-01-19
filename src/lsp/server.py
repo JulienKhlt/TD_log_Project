@@ -1,4 +1,4 @@
-import logging
+from src.lsp.Logger import logging
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -13,11 +13,10 @@ from pygls.types import (CompletionItem, CompletionItemKind, CompletionList,
 from src.bdd.Project import ProjectManager
 from src.lsp.CompletionParser import CompletionParser
 
-logging.basicConfig(filename="ponthon.log", filemode="w", level=logging.DEBUG)
-
-
 class PonthonProtocol(LanguageServerProtocol):
     """Override default LSP protocol (pygls) to link our reference server."""
+
+
 
     def bf_initialize(self, params: InitializeParams):
         """Called when the Language Server starts.
@@ -69,14 +68,25 @@ def completions(ls, params: CompletionParams = None):
     parser = CompletionParser(params, ls)
     return parser.complete()
 
+# @ponthon.thread()
 @ponthon.feature(TEXT_DOCUMENT_DID_CHANGE)
-def did_change(ls, params: DidChangeTextDocumentParams):
+async def did_change(ls, params: DidChangeTextDocumentParams):
     """Update given Module if its a valid python file."""
+
 
     document_path = Path(urlparse(params.textDocument.uri).path)
     module = ls.project.get_module(document_path)
 
+    logging.info("Updating module...")
     module.update(ls.workspace.get_document(params.textDocument.uri)._source)
+
+    # If external is too big, might crash... avoiding till async
+    # logging.info("Building bounded external projects...")
+    # await ls.project.bind_external_project_async([module])
+
+    # Keeping it for local import!
+    logging.info("Binding external modules...")
+    ls.project.bind_imports()
 
     # We commit session for testing purpose (no need to do it, just want to see if DB updates accordingly.)
     # ProjectManager().session.commit()

@@ -25,3 +25,4 @@ python_version = "3"
 [scripts]
 migrate = "alembic upgrade head"
 lsp = "python ./src/lsp"
+cli = "python cli.py"

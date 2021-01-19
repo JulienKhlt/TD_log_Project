@@ -32,7 +32,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['scope_id'], ['scope.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.add_column('scope', sa.Column('name', sa.String(length=50), nullable=True))
+    op.add_column('scope', sa.Column('name', sa.String(length=250), nullable=True))
     # ### end Alembic commands ###
 
 

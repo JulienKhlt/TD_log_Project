@@ -1,5 +1,5 @@
 import datetime
-import logging
+from src.bdd.Logger import logging
 import os
 import re
 from pathlib import Path
@@ -21,26 +21,48 @@ class ProjectManager:
             """sessionmaker is a function that enables sql alchemy
             session creation."""
             self.sessionmaker = sessionmaker
-            self.session = self.sessionmaker()
+            self._session = self.sessionmaker()
+
+        @property
+        def session(self):
+            if not self._session:
+                self._session = self.sessionmaker()
+
+            return self._session
 
         def exist(self, project_name):
             """Return True if a project with given name is already registered
             in BDD, False otherwise."""
-            session = self.sessionmaker()
+            session = self.session
 
             # check if project exists.
             query_result = session.query(Project.path).filter_by(
                 name=project_name).first()
             if query_result:
-                session.close()
+                # session.close()
                 return True
-            session.close()
+            # session.close()
             return False
+
+        def get_project(self, project_name):
+            """Return True if a project with given name is already registered
+            in BDD, False otherwise."""
+            session = self.session
+
+            # check if project exists.
+            query_result = session.query(Project).filter_by(
+                name=project_name).first()
+            if query_result:
+                # session.close()
+                return query_result
+            # session.close()
+            else:
+                return None
 
         def update_project(self, project_name, from_path):
             """Index new files in project, update bindings and
             external dependencies."""
-            session = self.sessionmaker()
+            session = self.session
 
             # check if project exists.
             query_result = session.query(Project).filter_by(
@@ -54,11 +76,19 @@ class ProjectManager:
                     f"{project_name} already fully indexed, skipping.")
                 return
 
+            if query_result.external and from_path:
+                module_name = Path(from_path).name
+                if query_result.is_module_in_project(module_name):
+                    logging.info(f"{project_name} is already enough indexed, skipping.")
+                    return
+
+            logging.info(f"Indexing {project_name} from {from_path}.")
             query_result.index(from_path)
+            logging.info(f"Building {project_name}.")
             query_result.build()
 
             session.commit()
-            session.close()
+            # session.close()
 
         def register_project(self, project_name, project_path, external=False,
                              fast=True, from_path=None):
@@ -67,9 +97,11 @@ class ProjectManager:
                 if not external:
                     logging.info(f"{project_name} already registered!")
                 else:
+                    logging.info(f"{project_name} is already referenced as an external project.")
                     self.update_project(project_name, from_path)
-                return
+                return self.get_project(project_name)
             # TODO -> venv support!
+
             project = Project(name=project_name, path=str(project_path), external=external,
                               config=Config(python_home="/usr/",
                                             fast=fast))
@@ -91,7 +123,7 @@ class ProjectManager:
             workspaceUri = Path(workspaceUri)
 
             query_result = self.session.query(Project).filter_by(
-                path=str(workspaceUri)).first()
+                path=str(workspaceUri.absolute())).first()
 
             return query_result
 
@@ -100,7 +132,7 @@ class ProjectManager:
             or update it. Returns Project associated to workspacePath, None in case of failure."""
 
             # Let's use pathlib to assure cross-OS compatibility :
-            workspacePath = Path(workspacePath)
+            workspacePath = Path(workspacePath).absolute()
             if not workspacePath.is_dir() or not workspacePath.exists():
                 logging.error("Project root doesn't exist!")
                 return None
@@ -119,6 +151,7 @@ class ProjectManager:
 
                 return project
             else:
+                logging.info("New workspace, registering...")
                 project = self.register_project(workspacePath.name, workspacePath)
                 self.session.add(project)
 
@@ -198,9 +231,10 @@ class Project(Base):
 
         modules_path = list(next_path.glob('*.py'))
 
-        for next_dir in next_path.iterdir():
-            if next_dir.is_dir():
-                modules_path += self.index_modules_path(next_dir)
+        if next_path.exists():
+            for next_dir in next_path.iterdir():
+                if next_dir.is_dir():
+                    modules_path += self.index_modules_path(next_dir)
 
         return modules_path
 
@@ -247,15 +281,25 @@ class Project(Base):
 
     def get_project_imports_name(self):
         """Return all imports (and imports_from) name within the project."""
-        importsNameList = []
+        imports_name_list = []
 
         for project_module in self.module:
-            importsNameList += project_module.get_imports_name()
+            imports_name_list += project_module.get_imports_name()
 
-        return importsNameList
+        return imports_name_list
+
+    def get_project_unbound_imports_name(self):
+        """Return all imports (and imports_from) name that are NOT bound within the project."""
+
+        unbound_imports_name_list = []
+
+        for module in self.module:
+            unbound_imports_name_list += module.get_unbound_imports_name()
+
+        return unbound_imports_name_list
 
     def get_module_path(self, module_name):
-        """Return module Path from name if it exists in project modules dirs, None otherwise."""
+        """Return module Path from name if it exists in project modules search dirs, None otherwise."""
         search_paths = self.config.get_python_module_search_path()
         for search_path in search_paths:
             full_path = search_path.joinpath(module_name)
@@ -294,10 +338,16 @@ class Project(Base):
         else:
             return self.get_project_root(file_path.parent)
 
-    def bind_external_project(self):
+    def bind_external_project(self, for_modules=None):
         """Bind external projects to this project. Call this AFTER all modules have been indexed.
-        Fast make that only necessary files are indexed, not everything"""
-        imports_name = self.get_project_imports_name()
+        Fast make that only necessary files are indexed, not everything. if FOR_MODULE is not None, search only in this
+        list."""
+        if not for_modules:
+            imports_name = self.get_project_unbound_imports_name()
+        else:
+            imports_name = []
+            for module in for_modules:
+                imports_name += module.get_unbound_imports_name()
 
         for import_name in imports_name:
             if not self.is_module_in_project(import_name):
@@ -309,22 +359,53 @@ class Project(Base):
 
                     if self.config.fast:
                         from_path = module_path
+                    logging.info(f"Binding {import_name} to {self.name}.")
                     ProjectManager().register_project(
                         project_name, str(project_root), True, True, from_path)
 
-    def bind_imports(self, session=Session()):
+    async def bind_external_project_async(self, for_modules=None):
+        """Bind external projects to this project. Call this AFTER all modules have been indexed.
+        Fast make that only necessary files are indexed, not everything. if FOR_MODULE is not None, search only in this
+        list."""
+        if not for_modules:
+            imports_name = self.get_project_unbound_imports_name()
+        else:
+            imports_name = []
+            for module in for_modules:
+                imports_name += module.get_unbound_imports_name()
+
+        for import_name in imports_name:
+            if not self.is_module_in_project(import_name):
+                module_path = self.get_module_path(import_name)
+                if module_path:
+                    project_root = self.get_project_root(module_path)
+                    project_name = project_root.stem
+                    from_path = None
+
+                    if self.config.fast:
+                        from_path = module_path
+                    logging.info(f"Binding {import_name} to {self.name}.")
+                    ProjectManager().register_project(
+                        project_name, str(project_root), True, True, from_path)
+
+    def bind_imports(self):
         """Bind modules together via imports. Call this AFTER all modules have been indexed."""
+
+        session = ProjectManager().session
 
         for project_module in self.module:
             for module_import in project_module.imports + project_module.imports_from:
                 if module_import.module_to_id is not None:
                     continue
+
                 paths = self.config.get_python_module_search_path()
+                paths.append(Path(self.path))
+
                 for string_path in paths:
                     path = Path(string_path, module_import.name)
 
                     result = session.query(Module.id).filter_by(
-                        path=str(path)).first()
+                        path=str(path.absolute())).first()
                     if not result:
                         path_py = path.with_suffix('.py')
                         result = session.query(Module.id).filter_by(
@@ -333,6 +414,8 @@ class Project(Base):
                         module_import.module_to_id = result[0]
                         break
                 if not module_import.module_to_id:
+
+
                     logging.warning(f"Import not found: {module_import.name}")
 
     def update(self):
@@ -374,8 +457,26 @@ class Project(Base):
     def complete_import(self, to_complete):
         """Return a list of string with possible completion."""
         paths = self.config.get_python_module_search_path()
-        slash_path = to_complete.split('.').join(os.path.sep)
-        regex = rf'^{slash_path}'
+        paths.append(Path(self.path))
+        regex = re.compile(rf'^{to_complete}')
+
+        completion_list = []
+
+        for path in paths:
+            if not path.exists():
+                continue
+
+            for directory in path.iterdir():
+                match = regex.match(directory.name)
+
+                if match and directory.joinpath('__init__.py').exists():
+                    completion_list.append(directory.name)
+
+            for file in list(path.glob('*.py')):
+                if regex.match(file.stem) and file.suffix == '.py':
+                    completion_list.append(file.stem)
+
+        return completion_list
 
 
 

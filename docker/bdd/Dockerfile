@@ -12,4 +12,4 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-CMD dockerize -wait tcp://db:3306 -timeout 300s -wait-retry-interval 30s ./init_db.sh
+CMD dockerize -wait tcp://db:3306 -timeout 300s -wait-retry-interval 1s ./init_db.sh
