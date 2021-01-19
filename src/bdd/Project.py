@@ -76,7 +76,7 @@ class ProjectManager:
                     f"{project_name} already fully indexed, skipping.")
                 return
 
-            if query_result.external:
+            if query_result.external and from_path:
                 module_name = Path(from_path).name
                 if query_result.is_module_in_project(module_name):
                     logging.info(f"{project_name} is already enough indexed, skipping.")
@@ -231,9 +231,10 @@ class Project(Base):
 
         modules_path = list(next_path.glob('*.py'))
 
-        for next_dir in next_path.iterdir():
-            if next_dir.is_dir():
-                modules_path += self.index_modules_path(next_dir)
+        if next_path.exists():
+            for next_dir in next_path.iterdir():
+                if next_dir.is_dir():
+                    modules_path += self.index_modules_path(next_dir)
 
         return modules_path
 
@@ -338,6 +339,31 @@ class Project(Base):
             return self.get_project_root(file_path.parent)
 
     def bind_external_project(self, for_modules=None):
+        """Bind external projects to this project. Call this AFTER all modules have been indexed.
+        Fast make that only necessary files are indexed, not everything. if FOR_MODULE is not None, search only in this
+        list."""
+        if not for_modules:
+            imports_name = self.get_project_unbound_imports_name()
+        else:
+            imports_name = []
+            for module in for_modules:
+                imports_name += module.get_unbound_imports_name()
+
+        for import_name in imports_name:
+            if not self.is_module_in_project(import_name):
+                module_path = self.get_module_path(import_name)
+                if module_path:
+                    project_root = self.get_project_root(module_path)
+                    project_name = project_root.stem
+                    from_path = None
+
+                    if self.config.fast:
+                        from_path = module_path
+                    logging.info(f"Binding {import_name} to {self.name}.")
+                    ProjectManager().register_project(
+                        project_name, str(project_root), True, True, from_path)
+
+    async def bind_external_project_async(self, for_modules=None):
         """Bind external projects to this project. Call this AFTER all modules have been indexed.
         Fast make that only necessary files are indexed, not everything. if FOR_MODULE is not None, search only in this
         list."""

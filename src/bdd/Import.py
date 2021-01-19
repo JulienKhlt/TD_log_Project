@@ -10,8 +10,8 @@ class Import(Base):
 
     id = Column(Integer, primary_key=True)
 
-    name = Column(String(200), default="")
-    asname = Column(String(50))
+    name = Column(String(250), default="")
+    asname = Column(String(250))
 
     module_from_id = Column(Integer, ForeignKey("module.id"))
     module_from = relationship("Module", foreign_keys=module_from_id)

@@ -98,9 +98,13 @@ class Module(Base):
             module_path = module_path.joinpath("__init__.py")
 
 
-        with open(str(module_path), "r") as file:
-            module_text = file.read()
-        self.build_from_string(module_text, True)
+        try:
+            with open(str(module_path), "r") as file:
+                module_text = file.read()
+                self.build_from_string(module_text, True)
+        except:
+            logging.error(f"Couldn't read file {module_name} (codec error), skipping.")
+            self.build_from_string("", True)
 
     def build_from_string(self, source, from_file=False):
         """Index from given string instead of using saved file (for real time completion)."""

@@ -68,6 +68,7 @@ def completions(ls, params: CompletionParams = None):
     parser = CompletionParser(params, ls)
     return parser.complete()
 
+# @ponthon.thread()
 @ponthon.feature(TEXT_DOCUMENT_DID_CHANGE)
 async def did_change(ls, params: DidChangeTextDocumentParams):
     """Update given Module if its a valid python file."""
@@ -81,7 +82,7 @@ async def did_change(ls, params: DidChangeTextDocumentParams):
 
     # If external is too big, might crash... avoiding till async
     # logging.info("Building bounded external projects...")
-    # ls.project.bind_external_project([module])
+    # await ls.project.bind_external_project_async([module])
 
     # Keeping it for local import!
     logging.info("Binding external modules...")
